@@ -1,12 +1,13 @@
 package test;
 
-// import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
+// import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-// @Controller
-@RestController
+// @RestController
+@Controller
 public class TestController {
 
     String greeting = "Hello world!";
@@ -15,9 +16,10 @@ public class TestController {
     public String index() {
         return "forward:/index.html";
     }
-    @GetMapping(path = "/hello-world")
+
+    @GetMapping("/hello-world")
+    @ResponseBody
 	public String helloWorld(){
 		return greeting;
 	}
-
 }

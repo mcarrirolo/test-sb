@@ -70,7 +70,7 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.sayHello = function () {
         var _this = this;
         this.return = 'loading...';
-        this.http.get('http://localhost:8080/hello-world', { responseType: 'text' }).subscribe(function (data) { return console.log(data); });
+        this.http.get('http://localhost:8080/hello-world').subscribe(function (data) { return console.log(data); });
         this.http.get('http://localhost:8080/hello-world', { responseType: 'text' }).subscribe(function (data) { return _this.return = data; });
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

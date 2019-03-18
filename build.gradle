@@ -37,10 +37,17 @@ processResources {
 def angularSrcDir = "$projectDir/src/angular"
 def angularBinDir = "$projectDir/src/main/resources/static"
 
+task lintAngular(type: Exec){
+    workingDir "$angularSrcDir"
+    inputs.dir "$angularSrcDir"
+    outputs.dir "$angularSrcDir"
+    commandLine "ng", "lint", "angular" , "--fix" 
+}
+
 task buildAngular(type: Exec){
+    // dependsOn "lintAngular"
     workingDir "$angularSrcDir"
     inputs.dir "$angularSrcDir"
     outputs.dir "$angularBinDir"
-
-    commandLine "ng", "build"
+    commandLine "ng", "build", "--build-optimizer=false" //,  "--source-map=false"
 }

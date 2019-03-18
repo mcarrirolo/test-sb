@@ -9,14 +9,13 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   title = 'Test-sb';
   return = '';
- 
-  constructor(private http: HttpClient){
+
+  constructor(private http: HttpClient) {
   }
- 
+
   private sayHello(): void {
     this.return = 'loading...';
-    this.http.get('http://localhost:8080/hello-world', {responseType: 'text'}).subscribe(data => console.log(data));
-    this.http.get('http://localhost:8080/hello-world', {responseType: 'text'}).subscribe(data => this.return = data as any);
+    this.http.get('http://localhost:8080/hello-world').subscribe(data => console.log(data));
+    this.http.get('http://localhost:8080/hello-world', {responseType: 'text'}).subscribe(data => this.return = data);
   }
- 
 }

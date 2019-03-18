@@ -1,1 +1,7 @@
 src/angular/node_modules
+build/classes
+build/generated
+build/resources
+bin/
+.vscode/
+.DS_store
