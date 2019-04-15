@@ -20,6 +20,9 @@ bootJar {
 
 repositories {
     mavenCentral()
+    maven {
+      url 'https://jade.tilab.com/maven/'
+    }
 }
 
 sourceCompatibility = 1.8
@@ -27,6 +30,9 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    // https://mvnrepository.com/artifact/com.tilab.jade/jade
+	compile group: 'com.tilab.jade', name: 'jade', version: '4.5.0'
+    
     testCompile("junit:junit")
 }
 
