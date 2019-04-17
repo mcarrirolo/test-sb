@@ -1,0 +1,8 @@
+
+mat-expansion-panel p{
+    cursor: pointer;
+}
+mat-expansion-panel p:hover{
+    color: rgb(92, 116, 221);
+    background-color: rgba(1, 1, 1, 0.1);
+}

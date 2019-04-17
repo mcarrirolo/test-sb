@@ -1,6 +1,50 @@
-<h1>
-  {{title}}
-</h1>
-<p>Press the button to display hello world</p>
-<button (click)="sayHello()">Say Hello</button>
-<span>{{return}}</span>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<mat-drawer-container autosize class="drawer" (contextmenu)="rightClick()">
+    <mat-drawer mode="side" opened>
+        <app-main-menu></app-main-menu>
+    </mat-drawer>
+
+
+    <mat-toolbar>
+        <!-- <button mat-button><i class="material-icons">add_circle</i></button>
+        <button mat-button><i class="material-icons">cancel</i></button>
+        <button mat-button><i class="material-icons">pause_circle_filled</i></button>
+        <button mat-button><i class="material-icons">play_circle_filled</i></button>
+        <button mat-button><i class="material-icons">drafts</i></button>
+        <button mat-button><i class="material-icons">swap_vertical_circle</i></button>
+        <button mat-button><i class="material-icons">supervised_user_circle</i></button>
+        <button mat-button><i class="material-icons">description</i></button>
+        <button mat-button><i class="material-icons">save</i></button>
+        <button mat-button><i class="material-icons">ac_unit</i></button>
+        <button mat-button><i class="material-icons">whatshot</i></button>
+        <button mat-button><i class="material-icons">visibility</i></button>
+        <button mat-button><i class="material-icons">face</i></button>
+        <button mat-button><i class="material-icons">receipt</i></button>
+        <button mat-button><i class="material-icons">bug_report</i></button> -->
+        <button mat-button (click)="sayHello()">Say Hello</button>
+        <button mat-button (click)="changeName()">Change name</button>
+        <button mat-button routerLink="/test" (click)="expand()">Router Test</button>
+    </mat-toolbar>
+
+    <div style="display: grid; grid-template-rows: 100%; height: 90%;" [style.grid-template-columns]="gridlayout">
+        <!-- FIXME: standard divs are preferred over mat-card -->
+        <mat-card class="card">
+            <app-tree></app-tree>
+        </mat-card>
+
+        <mat-card class="card">
+            <p>{{return}}</p>
+        </mat-card>
+
+        <div>
+            <router-outlet></router-outlet>
+            <button mat-button routerLink="/" (click)="unexpand()">Close</button>
+        </div>
+    </div>
+
+
+
+
+
+</mat-drawer-container>

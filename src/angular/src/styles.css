@@ -1,1 +1,28 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+body{
+    margin: 0;
+}
+
+.card{
+    height: 100%;
+    margin: 0;
+    border: 0;
+    padding: 0 !important;
+    width: 100%;
+    display: block !important;
+
+}
+.main-grid{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+p{
+    width: calc(100% - 20px);
+    margin: 0;
+    padding: 10px;
+    border: 0;
+}

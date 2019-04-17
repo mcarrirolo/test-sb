@@ -1,0 +1,14 @@
+
+.drawer{
+    height: 100vh;
+}
+button{
+    padding-left: 6px;
+    padding-right: 6px;
+    min-width: 0px;
+    margin: 0 6px;
+}
+mat-toolbar button{
+    background-color: rgb(92, 116, 221);
+    color: white;
+}

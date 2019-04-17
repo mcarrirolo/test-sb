@@ -1,7 +1,12 @@
 src/angular/node_modules
+src/main/resources
 build/classes
 build/generated
 build/resources
 bin/
 .vscode/
-.DS_store
+.DS_Store
+APDescription.txt
+MTPs-Main-Container.txt
+src/.DS_Store
+jade-src/

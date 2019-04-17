@@ -1,0 +1,48 @@
+<section class="mat-typography">
+    <h2>Start new agent</h2>
+</section>
+
+<mat-list role="list">
+    <mat-list-item role="listitem">
+        <form>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Agent name" [(ngModel)]="name"
+                    [ngModelOptions]="{standalone: true}" required=true>
+            </mat-form-field>
+        </form>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <form>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Class name" [(ngModel)]="clas"
+                    [ngModelOptions]="{standalone: true}" required=true>
+            </mat-form-field>
+        </form>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <form>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Arguments" [(ngModel)]="args"
+                    [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+        </form>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <form>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Owner" [(ngModel)]="own" [ngModelOptions]="{standalone: true}">
+            </mat-form-field>
+        </form>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+        <form>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Container" [(ngModel)]="cont"
+                    [ngModelOptions]="{standalone: true}" required=true>
+            </mat-form-field>
+        </form>
+    </mat-list-item>
+</mat-list>
+
+<button mat-button (click)="cancel()">Cancel</button>
+<button mat-button (click)="send()">OK</button>
