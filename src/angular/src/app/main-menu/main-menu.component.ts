@@ -1,6 +1,7 @@
 import {
     Component,
-    OnInit
+    OnInit,
+    Input
 } from '@angular/core';
 import {
     MatDialog,
@@ -26,6 +27,8 @@ export class MainMenuComponent implements OnInit {
 
     ngOnInit() {}
 
+    @Input() selection = '';
+
     startDialogRef: MatDialogRef < StartDialogComponent > ;
     cloneDialogRef: MatDialogRef < CloneDialogComponent > ;
     securityDialogRef: MatDialogRef < SecurityDialogComponent > ;
@@ -39,7 +42,10 @@ export class MainMenuComponent implements OnInit {
 
     cloneDialog(title: string) {
         this.cloneDialogRef = this.dialog.open(CloneDialogComponent, {
-            data: title
+            data: {
+                1: title,
+                2: this.selection
+            }
         });
         this.snackBar.open("Warning: Some agents might not be able to migrate or be cloned because of lack of serialization support in their implementation. If you are not sure about the  implemementation of this agent, Cancel this operation.", "Dismiss", {
             duration: 16000,
@@ -48,7 +54,10 @@ export class MainMenuComponent implements OnInit {
 
     securityDialog(title: string) {
         this.securityDialogRef = this.dialog.open(SecurityDialogComponent, {
-            data: title
+            data: {
+                1: title,
+                2: this.selection
+            }
         });
     }
 

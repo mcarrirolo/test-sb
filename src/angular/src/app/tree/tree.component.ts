@@ -2,6 +2,9 @@ import {
     Component,
     OnInit,
     ViewChild,
+    Input,
+    Output,
+    AfterViewInit,
 } from '@angular/core';
 import {
     ArrayDataSource
@@ -18,13 +21,14 @@ import {
 import {
     HttpClient
 } from '@angular/common/http';
+import { EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-tree',
     templateUrl: './tree.component.html',
     styleUrls: ['./tree.component.css']
 })
-export class TreeComponent implements OnInit {
+export class TreeComponent implements OnInit{
 
     VOID_DATA: Node[] = [];
     TREE_DATA: Node[] = [];
@@ -33,42 +37,64 @@ export class TreeComponent implements OnInit {
 
     @ViewChild('tree') tree;
 
-    name = '';
-
     constructor(private http: HttpClient) {}
+    
+    platform = '';
+    container = '';
+    agents :string[] = [];
+
+    selected = '';
+    @Output() emitter = new EventEmitter<string>();
 
     ngOnInit() {
+        this.populateTree();
+    }
 
-        let agentlist: Node[] = [{
-            name: '1'
-        }, {
-            name: '2'
-        }];
-        let maincontainer: Node[] = [{
-            name: 'MainContainer',
-            childNode: agentlist
-        }];
-        let ip: Node[] = [{
-            name: '192.168.x.y',
-            childNode: maincontainer
-        }];
-        this.TREE_DATA.push({
-            name: 'Agent Platforms',
-            childNode: ip
-        });
-
-
-
+    focus(selected_ :string) :void{
+        this.selected = selected_;
+        // any time there is a click on the tree, the event is sent to parent component
+        this.emitter.emit(this.selected);
+        // FIXME: also on every click the tree is updated
     }
 
 
-    // private platformName() :any{
-    //     this.http.get('http://localhost:2020/platformName', {
-    //         responseType: 'text'
-    //     }).subscribe(data => {this.name = data; console.log(this.name); return this.name;});
+    private populateTree() :void{
+        this.http.get('http://localhost:2020/containerName', {
+            responseType: 'text'
+        }).subscribe(data => {this.container = data; console.log(this.container);
 
-    // }
+            this.http.get('http://localhost:2020/platformName', {
+            responseType: 'text'
+            }).subscribe(data => {this.platform = data; console.log(this.platform);
 
+                this.http.get('http://localhost:2020/agentsName').subscribe(data => {console.log(data); console.log(typeof data);
+
+                
+                    let agentlist: Node[] = [];
+                    for(let i in data) {
+                        this.agents.push(data[i]);
+                        let ag = new Node(this.agents[i]);
+                        agentlist.push(ag);
+                    }
+                    let maincontainer: Node[] = [{
+                        name: this.container,
+                        childNode: agentlist
+                    }];
+                    let ip: Node[] = [{
+                        name: this.platform,
+                        childNode: maincontainer
+                    }];
+                    this.TREE_DATA.push({
+                        name: 'Agent Platforms',
+                        childNode: ip
+                    });
+                    this.tree.renderNodeChanges(this.TREE_DATA);
+
+                });
+            });
+        });
+
+    }
 
     addContainer(): void {
 
@@ -94,12 +120,16 @@ export class TreeComponent implements OnInit {
 
     hasChild = (_: number, node: Node) => !!node.childNode && node.childNode.length > 0;
 
-
 }
 
 class Node {
 
     name: string = '';
     childNode ? : Node[];
+
+    constructor(name_, childnode_?){
+        this.name = name_;
+        this.childNode = childnode_;
+    }
 
 }

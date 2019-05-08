@@ -2,7 +2,7 @@
 
 <mat-drawer-container autosize class="drawer" (contextmenu)="rightClick()">
     <mat-drawer mode="side" opened>
-        <app-main-menu></app-main-menu>
+        <app-main-menu [selection]="selection"></app-main-menu>
     </mat-drawer>
 
 
@@ -30,7 +30,7 @@
     <div style="display: grid; grid-template-rows: 100%; height: 90%;" [style.grid-template-columns]="gridlayout">
         <!-- FIXME: standard divs are preferred over mat-card -->
         <mat-card class="card">
-            <app-tree></app-tree>
+            <app-tree (emitter)="eventListener($event)"></app-tree>
         </mat-card>
 
         <mat-card class="card">

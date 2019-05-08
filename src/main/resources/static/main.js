@@ -78,7 +78,7 @@ module.exports = "\n.drawer{\n    height: 100vh;\n}\nbutton{\n    padding-left: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\n\n<mat-drawer-container autosize class=\"drawer\" (contextmenu)=\"rightClick()\">\n    <mat-drawer mode=\"side\" opened>\n        <app-main-menu></app-main-menu>\n    </mat-drawer>\n\n\n    <mat-toolbar>\n        <!-- <button mat-button><i class=\"material-icons\">add_circle</i></button>\n        <button mat-button><i class=\"material-icons\">cancel</i></button>\n        <button mat-button><i class=\"material-icons\">pause_circle_filled</i></button>\n        <button mat-button><i class=\"material-icons\">play_circle_filled</i></button>\n        <button mat-button><i class=\"material-icons\">drafts</i></button>\n        <button mat-button><i class=\"material-icons\">swap_vertical_circle</i></button>\n        <button mat-button><i class=\"material-icons\">supervised_user_circle</i></button>\n        <button mat-button><i class=\"material-icons\">description</i></button>\n        <button mat-button><i class=\"material-icons\">save</i></button>\n        <button mat-button><i class=\"material-icons\">ac_unit</i></button>\n        <button mat-button><i class=\"material-icons\">whatshot</i></button>\n        <button mat-button><i class=\"material-icons\">visibility</i></button>\n        <button mat-button><i class=\"material-icons\">face</i></button>\n        <button mat-button><i class=\"material-icons\">receipt</i></button>\n        <button mat-button><i class=\"material-icons\">bug_report</i></button> -->\n        <button mat-button (click)=\"sayHello()\">Say Hello</button>\n        <button mat-button (click)=\"changeName()\">Change name</button>\n        <button mat-button routerLink=\"/test\" (click)=\"expand()\">Router Test</button>\n    </mat-toolbar>\n\n    <div style=\"display: grid; grid-template-rows: 100%; height: 90%;\" [style.grid-template-columns]=\"gridlayout\">\n        <!-- FIXME: standard divs are preferred over mat-card -->\n        <mat-card class=\"card\">\n            <app-tree></app-tree>\n        </mat-card>\n\n        <mat-card class=\"card\">\n            <p>{{return}}</p>\n        </mat-card>\n\n        <div>\n            <router-outlet></router-outlet>\n            <button mat-button routerLink=\"/\" (click)=\"unexpand()\">Close</button>\n        </div>\n    </div>\n\n\n\n\n\n</mat-drawer-container>"
+module.exports = "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\n\n<mat-drawer-container autosize class=\"drawer\" (contextmenu)=\"rightClick()\">\n    <mat-drawer mode=\"side\" opened>\n        <app-main-menu [selection]=\"selection\"></app-main-menu>\n    </mat-drawer>\n\n\n    <mat-toolbar>\n        <!-- <button mat-button><i class=\"material-icons\">add_circle</i></button>\n        <button mat-button><i class=\"material-icons\">cancel</i></button>\n        <button mat-button><i class=\"material-icons\">pause_circle_filled</i></button>\n        <button mat-button><i class=\"material-icons\">play_circle_filled</i></button>\n        <button mat-button><i class=\"material-icons\">drafts</i></button>\n        <button mat-button><i class=\"material-icons\">swap_vertical_circle</i></button>\n        <button mat-button><i class=\"material-icons\">supervised_user_circle</i></button>\n        <button mat-button><i class=\"material-icons\">description</i></button>\n        <button mat-button><i class=\"material-icons\">save</i></button>\n        <button mat-button><i class=\"material-icons\">ac_unit</i></button>\n        <button mat-button><i class=\"material-icons\">whatshot</i></button>\n        <button mat-button><i class=\"material-icons\">visibility</i></button>\n        <button mat-button><i class=\"material-icons\">face</i></button>\n        <button mat-button><i class=\"material-icons\">receipt</i></button>\n        <button mat-button><i class=\"material-icons\">bug_report</i></button> -->\n        <button mat-button (click)=\"sayHello()\">Say Hello</button>\n        <button mat-button (click)=\"changeName()\">Change name</button>\n        <button mat-button routerLink=\"/test\" (click)=\"expand()\">Router Test</button>\n    </mat-toolbar>\n\n    <div style=\"display: grid; grid-template-rows: 100%; height: 90%;\" [style.grid-template-columns]=\"gridlayout\">\n        <!-- FIXME: standard divs are preferred over mat-card -->\n        <mat-card class=\"card\">\n            <app-tree (emitter)=\"eventListener($event)\"></app-tree>\n        </mat-card>\n\n        <mat-card class=\"card\">\n            <p>{{return}}</p>\n        </mat-card>\n\n        <div>\n            <router-outlet></router-outlet>\n            <button mat-button routerLink=\"/\" (click)=\"unexpand()\">Close</button>\n        </div>\n    </div>\n\n\n\n\n\n</mat-drawer-container>"
 
 /***/ }),
 
@@ -104,6 +104,7 @@ var AppComponent = /** @class */ (function () {
         this.title = 'Test-sb';
         this.return = '';
         this.gridlayout = '50% 50%';
+        this.selection = '';
     }
     AppComponent.prototype.sayHello = function () {
         var _this = this;
@@ -137,6 +138,9 @@ var AppComponent = /** @class */ (function () {
     AppComponent.prototype.rightClick = function () {
         console.log("right click");
         // return false;
+    };
+    AppComponent.prototype.eventListener = function ($event) {
+        this.selection = $event;
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -289,7 +293,7 @@ module.exports = "button{\n    margin: 0 10px;\n}\n/*# sourceMappingURL=data:app
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<section class=\"mat-typography\">\n  <h2>{{title}} agent</h2>\n</section>\n\n<mat-list role=\"list\">\n  <mat-list-item role=\"listitem\">\n    <form>\n      <mat-form-field>\n        <input matInput type=\"text\" placeholder=\"Agent name\" [(ngModel)]=\"name\" [ngModelOptions]=\"{standalone: true}\">\n      </mat-form-field>\n    </form>\n  </mat-list-item>\n  <mat-list-item role=\"listitem\">\n    <form>\n      <mat-form-field>\n        <input matInput type=\"text\" placeholder=\"Container\" [(ngModel)]=\"cont\" [ngModelOptions]=\"{standalone: true}\">\n      </mat-form-field>\n    </form>\n  </mat-list-item>\n</mat-list>\n\n<button mat-button (click)=\"cancel()\">Cancel</button>\n<button mat-button (click)=\"send()\">OK</button>"
+module.exports = "<section class=\"mat-typography\">\n  <h2>{{title}} agent</h2>\n</section>\n\n<mat-list role=\"list\">\n  <mat-list-item role=\"listitem\" *ngIf=\"title=='Clone'\">\n    <form>\n      <mat-form-field>\n        <input matInput type=\"text\" placeholder=\"Agent new name\" [(ngModel)]=\"name\" [ngModelOptions]=\"{standalone: true}\">\n      </mat-form-field>\n    </form>\n  </mat-list-item>\n  <mat-list-item role=\"listitem\">\n    <form>\n      <mat-form-field>\n        <input matInput type=\"text\" placeholder=\"Container\" [(ngModel)]=\"cont\" [ngModelOptions]=\"{standalone: true}\">\n      </mat-form-field>\n    </form>\n  </mat-list-item>\n</mat-list>\n\n<button mat-button (click)=\"cancel()\">Cancel</button>\n<button mat-button (click)=\"send()\">OK</button>"
 
 /***/ }),
 
@@ -322,20 +326,23 @@ var CloneDialogComponent = /** @class */ (function () {
     }
     CloneDialogComponent.prototype.ngOnInit = function () {
         console.log(this.data);
-        this.title = this.data;
+        this.title = this.data[1];
+        this.selection = this.data[2];
     };
     CloneDialogComponent.prototype.send = function () {
-        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]().set("name", this.name).set("container", this.cont);
         if (this.title == 'Clone') {
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]().set("name", this.selection).set("container", this.cont).set("newname", this.name);
             this.http.get('http://localhost:2020/clone', {
                 params: params
             }).subscribe(function (data) { return console.log(data); });
         }
         else if (this.title == 'Migrate') {
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]().set("name", this.selection).set("container", this.cont);
             this.http.get('http://localhost:2020/migrate', {
                 params: params
             }).subscribe(function (data) { return console.log(data); });
         }
+        this.dialogRef.close();
     };
     CloneDialogComponent.prototype.cancel = function () {
         this.dialogRef.close();
@@ -374,7 +381,7 @@ module.exports = "\nmat-expansion-panel p{\n    cursor: pointer;\n}\nmat-expansi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-accordion>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    File\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>Close RMA agent</p>\n          <p>Exit this container</p>\n          <p>Shut down AgentPlatform</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Actions\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p (click)=\"startDialog()\">Start new agent</p>\n          <p (click)=\"securityDialog('kill')\">Kill</p>\n          <p (click)=\"securityDialog('suspend')\">Suspend</p>\n          <p (click)=\"securityDialog('resume')\">Resume</p>\n          <!-- <p (click)=\"messageDialog()\">Send message</p> -->\n          <p (click)=\"cloneDialog('Migrate')\">Migrate agent</p>\n          <p (click)=\"cloneDialog('Clone')\">Clone agent</p>\n          <p>Load agent</p>\n          <p>Save agent</p>\n          <p>Freeze agent</p>\n          <p>Thaw agent</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Tools\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p routerLink=\"/sniffer\">Start sniffer</p>\n          <p>Start dummy agent</p>\n          <p>Show the DF GUI</p>\n          <p routerLink=\"/introspector\">Start introspector agent</p>\n          <p routerLink=\"/logmanager\">Start log manager agent</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Remote Platforms\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>Add platform via AMS AID</p>\n          <p>Add platform via URL</p>\n          <p>View AP description</p>\n          <p>Refresh AP description</p>\n          <p>Remove remote platform</p>\n          <p>Refresh agent list</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Help\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>About Jade</p>\n     </mat-expansion-panel>\n</mat-accordion>"
+module.exports = "<mat-accordion>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    File\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>Close RMA agent</p>\n          <p>Exit this container</p>\n          <p>Shut down AgentPlatform</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Actions\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p (click)=\"startDialog()\">Start new agent</p>\n          <p (click)=\"securityDialog('kill')\">Kill</p>\n          <p (click)=\"securityDialog('suspend')\">Suspend</p>\n          <p (click)=\"securityDialog('resume')\">Resume</p>\n          <!-- <p (click)=\"messageDialog()\">Send message</p> -->\n          <p (click)=\"cloneDialog('Migrate')\">Migrate agent</p>\n          <p (click)=\"cloneDialog('Clone')\">Clone agent</p>\n          <p>Load agent</p>\n          <p (click)=\"securityDialog('save')\">Save agent</p>\n          <p (click)=\"securityDialog('freeze')\">Freeze agent</p>\n          <!-- FIXME: THAW need a container as input, maybe cloneDialog can be used -->\n          <p>Thaw agent</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Tools\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p routerLink=\"/sniffer\">Start sniffer</p>\n          <p>Start dummy agent</p>\n          <p>Show the DF GUI</p>\n          <p routerLink=\"/introspector\">Start introspector agent</p>\n          <p routerLink=\"/logmanager\">Start log manager agent</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Remote Platforms\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>Add platform via AMS AID</p>\n          <p>Add platform via URL</p>\n          <p>View AP description</p>\n          <p>Refresh AP description</p>\n          <p>Remove remote platform</p>\n          <p>Refresh agent list</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Help\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>About Jade</p>\n     </mat-expansion-panel>\n</mat-accordion>"
 
 /***/ }),
 
@@ -404,6 +411,7 @@ var MainMenuComponent = /** @class */ (function () {
     function MainMenuComponent(dialog, snackBar) {
         this.dialog = dialog;
         this.snackBar = snackBar;
+        this.selection = '';
     }
     MainMenuComponent.prototype.ngOnInit = function () { };
     MainMenuComponent.prototype.startDialog = function () {
@@ -411,7 +419,10 @@ var MainMenuComponent = /** @class */ (function () {
     };
     MainMenuComponent.prototype.cloneDialog = function (title) {
         this.cloneDialogRef = this.dialog.open(_clone_dialog_clone_dialog_component__WEBPACK_IMPORTED_MODULE_4__["CloneDialogComponent"], {
-            data: title
+            data: {
+                1: title,
+                2: this.selection
+            }
         });
         this.snackBar.open("Warning: Some agents might not be able to migrate or be cloned because of lack of serialization support in their implementation. If you are not sure about the  implemementation of this agent, Cancel this operation.", "Dismiss", {
             duration: 16000,
@@ -419,9 +430,16 @@ var MainMenuComponent = /** @class */ (function () {
     };
     MainMenuComponent.prototype.securityDialog = function (title) {
         this.securityDialogRef = this.dialog.open(_security_dialog_security_dialog_component__WEBPACK_IMPORTED_MODULE_5__["SecurityDialogComponent"], {
-            data: title
+            data: {
+                1: title,
+                2: this.selection
+            }
         });
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], MainMenuComponent.prototype, "selection", void 0);
     MainMenuComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-main-menu',
@@ -486,19 +504,31 @@ var SecurityDialogComponent = /** @class */ (function () {
     }
     SecurityDialogComponent.prototype.ngOnInit = function () {
         console.log(this.data);
-        this.title = this.data;
+        this.title = this.data[1];
+        this.selection = this.data[2];
     };
     SecurityDialogComponent.prototype.send = function () {
-        // let params = new HttpParams();
+        console.log(this.selection);
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]().set("name", this.selection);
         if (this.title == 'kill') {
-            this.http.get('http://localhost:2020/kill').subscribe(function (data) { return console.log(data); });
+            this.http.get('http://localhost:2020/kill', { params: params }).subscribe(function (data) { return console.log(data); });
         }
         else if (this.title == 'suspend') {
-            this.http.get('http://localhost:2020/suspend').subscribe(function (data) { return console.log(data); });
+            this.http.get('http://localhost:2020/suspend', { params: params }).subscribe(function (data) { return console.log(data); });
         }
         else if (this.title == 'resume') {
-            this.http.get('http://localhost:2020/resume').subscribe(function (data) { return console.log(data); });
+            this.http.get('http://localhost:2020/resume', { params: params }).subscribe(function (data) { return console.log(data); });
         }
+        else if (this.title == 'freeze') {
+            this.http.get('http://localhost:2020/freeze', { params: params }).subscribe(function (data) { return console.log(data); });
+        }
+        else if (this.title == 'thaw') {
+            this.http.get('http://localhost:2020/thaw', { params: params }).subscribe(function (data) { return console.log(data); });
+        }
+        else if (this.title == 'save') {
+            this.http.get('http://localhost:2020/save', { params: params }).subscribe(function (data) { return console.log(data); });
+        }
+        this.dialogRef.close();
     };
     SecurityDialogComponent.prototype.cancel = function () {
         this.dialogRef.close();
@@ -659,7 +689,7 @@ var TestComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-tree-invisible {\n    display: none;\n  }\n  \n  .example-tree ul,\n  .example-tree li {\n    margin-top: 0;\n    margin-bottom: 0;\n    list-style-type: none;\n  }\n  \n  .example-tree-node {\n    display: block;\n  }\n  \n  .example-tree-node .example-tree-node {\n    padding-left: 40px;\n  }\n  \n  .example-tree-progress-bar {\n    margin-left: 30px;\n  }\n  \n  .example-tree-nested-node {\n    padding-left: 30px;\n  }\n  \n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdHJlZS90cmVlLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0VBQ2Y7O0VBRUE7O0lBRUUsYUFBYTtJQUNiLGdCQUFnQjtJQUNoQixxQkFBcUI7RUFDdkI7O0VBQ0E7SUFDRSxjQUFjO0VBQ2hCOztFQUVBO0lBQ0Usa0JBQWtCO0VBQ3BCOztFQUVBO0lBQ0UsaUJBQWlCO0VBQ25COztFQUVBO0lBQ0Usa0JBQWtCO0VBQ3BCIiwiZmlsZSI6InNyYy9hcHAvdHJlZS90cmVlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZXhhbXBsZS10cmVlLWludmlzaWJsZSB7XG4gICAgZGlzcGxheTogbm9uZTtcbiAgfVxuICBcbiAgLmV4YW1wbGUtdHJlZSB1bCxcbiAgLmV4YW1wbGUtdHJlZSBsaSB7XG4gICAgbWFyZ2luLXRvcDogMDtcbiAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIGxpc3Qtc3R5bGUtdHlwZTogbm9uZTtcbiAgfVxuICAuZXhhbXBsZS10cmVlLW5vZGUge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG4gIFxuICAuZXhhbXBsZS10cmVlLW5vZGUgLmV4YW1wbGUtdHJlZS1ub2RlIHtcbiAgICBwYWRkaW5nLWxlZnQ6IDQwcHg7XG4gIH1cblxuICAuZXhhbXBsZS10cmVlLXByb2dyZXNzLWJhciB7XG4gICAgbWFyZ2luLWxlZnQ6IDMwcHg7XG4gIH1cbiAgXG4gIC5leGFtcGxlLXRyZWUtbmVzdGVkLW5vZGUge1xuICAgIHBhZGRpbmctbGVmdDogMzBweDtcbiAgfVxuICAiXX0= */"
+module.exports = ".example-tree-invisible {\n    display: none;\n  }\n  \n  .example-tree ul,\n  .example-tree li {\n    margin-top: 0;\n    margin-bottom: 0;\n    list-style-type: none;\n  }\n  \n  .example-tree-node {\n    display: block;\n  }\n  \n  .example-tree-node .example-tree-node {\n    padding-left: 40px;\n  }\n  \n  .example-tree-progress-bar {\n    margin-left: 30px;\n  }\n  \n  .example-tree-nested-node {\n    padding-left: 30px;\n  }\n  \n  span:focus{\n      outline: none;\n  }\n  \n  span{\n      cursor: pointer;\n  }\n  \n  .focusClass{\n    background-color: rgb(92, 116, 221);\n    color: white;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdHJlZS90cmVlLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0VBQ2Y7O0VBRUE7O0lBRUUsYUFBYTtJQUNiLGdCQUFnQjtJQUNoQixxQkFBcUI7RUFDdkI7O0VBQ0E7SUFDRSxjQUFjO0VBQ2hCOztFQUVBO0lBQ0Usa0JBQWtCO0VBQ3BCOztFQUVBO0lBQ0UsaUJBQWlCO0VBQ25COztFQUVBO0lBQ0Usa0JBQWtCO0VBQ3BCOztFQUVBO01BQ0ksYUFBYTtFQUNqQjs7RUFDQTtNQUNJLGVBQWU7RUFDbkI7O0VBQ0E7SUFDRSxtQ0FBbUM7SUFDbkMsWUFBWTtFQUNkIiwiZmlsZSI6InNyYy9hcHAvdHJlZS90cmVlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZXhhbXBsZS10cmVlLWludmlzaWJsZSB7XG4gICAgZGlzcGxheTogbm9uZTtcbiAgfVxuICBcbiAgLmV4YW1wbGUtdHJlZSB1bCxcbiAgLmV4YW1wbGUtdHJlZSBsaSB7XG4gICAgbWFyZ2luLXRvcDogMDtcbiAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIGxpc3Qtc3R5bGUtdHlwZTogbm9uZTtcbiAgfVxuICAuZXhhbXBsZS10cmVlLW5vZGUge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG4gIFxuICAuZXhhbXBsZS10cmVlLW5vZGUgLmV4YW1wbGUtdHJlZS1ub2RlIHtcbiAgICBwYWRkaW5nLWxlZnQ6IDQwcHg7XG4gIH1cblxuICAuZXhhbXBsZS10cmVlLXByb2dyZXNzLWJhciB7XG4gICAgbWFyZ2luLWxlZnQ6IDMwcHg7XG4gIH1cbiAgXG4gIC5leGFtcGxlLXRyZWUtbmVzdGVkLW5vZGUge1xuICAgIHBhZGRpbmctbGVmdDogMzBweDtcbiAgfVxuXG4gIHNwYW46Zm9jdXN7XG4gICAgICBvdXRsaW5lOiBub25lO1xuICB9XG4gIHNwYW57XG4gICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gIH1cbiAgLmZvY3VzQ2xhc3N7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDkyLCAxMTYsIDIyMSk7XG4gICAgY29sb3I6IHdoaXRlO1xuICB9Il19 */"
 
 /***/ }),
 
@@ -670,7 +700,7 @@ module.exports = ".example-tree-invisible {\n    display: none;\n  }\n  \n  .exa
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<!-- <button (click)='platformName()'>platformName</button> -->\n\n<cdk-tree #tree [dataSource]=\"dataSource\" [treeControl]=\"treeControl\">\n    <!-- This is the tree node template for leaf nodes -->\n    <cdk-nested-tree-node *cdkTreeNodeDef=\"let node\" class=\"example-tree-node\">\n        <!-- use a disabled button to provide padding for tree leaf -->\n        <button mat-icon-button disabled *ngIf='node.name;else other_content'></button>\n        {{node.name}}\n        <ng-template #other_content>Qui se non esiste il nome della cartella ma solo gli agenti</ng-template>\n        <!-- {{node.agents.name}} -->\n    </cdk-nested-tree-node>\n    <!-- This is the tree node template for expandable nodes -->\n    <cdk-nested-tree-node *cdkTreeNodeDef=\"let node; when: hasChild\" class=\"example-tree-node\">\n        <button mat-icon-button [attr.aria-label]=\"'toggle ' + node.name\" cdkTreeNodeToggle>\n            <mat-icon class=\"mat-icon-rtl-mirror\">\n                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}\n            </mat-icon>\n        </button>\n        {{node.name}}\n        <div [class.example-tree-invisible]=\"!treeControl.isExpanded(node)\">\n            <ng-container cdkTreeNodeOutlet></ng-container>\n        </div>\n    </cdk-nested-tree-node>\n</cdk-tree>\n\n<button (click)='addContainer()'>Add container test button</button>"
+module.exports = "\n\n<!-- <button (click)='platformName()'>platformName</button> -->\n\n<cdk-tree #tree [dataSource]=\"dataSource\" [treeControl]=\"treeControl\">\n    <!-- This is the tree node template for leaf nodes -->\n    <cdk-nested-tree-node *cdkTreeNodeDef=\"let node\" class=\"example-tree-node\">\n        <!-- use a disabled button to provide padding for tree leaf -->\n        <button mat-icon-button disabled *ngIf='node.name;else other_content'></button>\n        <span tabindex=\"1\" (click)=\"focus(node.name)\" [ngClass]=\"{focusClass: selected == node.name}\">\n            {{node.name}}\n        </span>\n        <ng-template #other_content>Qui se non esiste il nome della cartella ma solo gli agenti</ng-template>\n        <!-- {{node.agents.name}} -->\n    </cdk-nested-tree-node>\n    <!-- This is the tree node template for expandable nodes -->\n    \n\n\n    <cdk-nested-tree-node *cdkTreeNodeDef=\"let node; when: hasChild\" class=\"example-tree-node\">\n        <button mat-icon-button [attr.aria-label]=\"'toggle ' + node.name\" cdkTreeNodeToggle>\n            <mat-icon class=\"mat-icon-rtl-mirror\">\n                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}\n            </mat-icon>\n        </button>\n        <span tabindex=\"1\" (click)=\"focus(node.name)\" [ngClass]=\"{focusClass: selected == node.name}\">\n            {{node.name}}\n        </span>\n        <div [class.example-tree-invisible]=\"!treeControl.isExpanded(node)\">\n            <ng-container cdkTreeNodeOutlet></ng-container>\n        </div>\n    </cdk-nested-tree-node>\n</cdk-tree>\n\n<button (click)='addContainer()'>Add container test button</button>"
 
 /***/ }),
 
@@ -694,6 +724,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var TreeComponent = /** @class */ (function () {
     function TreeComponent(http) {
         this.http = http;
@@ -701,33 +732,60 @@ var TreeComponent = /** @class */ (function () {
         this.TREE_DATA = [];
         this.treeControl = new _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_3__["NestedTreeControl"](function (node) { return node.childNode; });
         this.dataSource = new _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_2__["ArrayDataSource"](this.TREE_DATA);
-        this.name = '';
+        this.platform = '';
+        this.container = '';
+        this.agents = [];
+        this.selected = '';
+        this.emitter = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.hasChild = function (_, node) { return !!node.childNode && node.childNode.length > 0; };
     }
     TreeComponent.prototype.ngOnInit = function () {
-        var agentlist = [{
-                name: '1'
-            }, {
-                name: '2'
-            }];
-        var maincontainer = [{
-                name: 'MainContainer',
-                childNode: agentlist
-            }];
-        var ip = [{
-                name: '192.168.x.y',
-                childNode: maincontainer
-            }];
-        this.TREE_DATA.push({
-            name: 'Agent Platforms',
-            childNode: ip
+        this.populateTree();
+    };
+    TreeComponent.prototype.focus = function (selected_) {
+        this.selected = selected_;
+        // any time there is a click on the tree, the event is sent to parent component
+        this.emitter.emit(this.selected);
+        // FIXME: also on every click the tree is updated
+    };
+    TreeComponent.prototype.populateTree = function () {
+        var _this = this;
+        this.http.get('http://localhost:2020/containerName', {
+            responseType: 'text'
+        }).subscribe(function (data) {
+            _this.container = data;
+            console.log(_this.container);
+            _this.http.get('http://localhost:2020/platformName', {
+                responseType: 'text'
+            }).subscribe(function (data) {
+                _this.platform = data;
+                console.log(_this.platform);
+                _this.http.get('http://localhost:2020/agentsName').subscribe(function (data) {
+                    console.log(data);
+                    console.log(typeof data);
+                    var agentlist = [];
+                    for (var i in data) {
+                        _this.agents.push(data[i]);
+                        var ag = new Node(_this.agents[i]);
+                        agentlist.push(ag);
+                    }
+                    var maincontainer = [{
+                            name: _this.container,
+                            childNode: agentlist
+                        }];
+                    var ip = [{
+                            name: _this.platform,
+                            childNode: maincontainer
+                        }];
+                    _this.TREE_DATA.push({
+                        name: 'Agent Platforms',
+                        childNode: ip
+                    });
+                    _this.tree.renderNodeChanges(_this.TREE_DATA);
+                });
+            });
         });
     };
-    // private platformName() :any{
-    //     this.http.get('http://localhost:2020/platformName', {
-    //         responseType: 'text'
-    //     }).subscribe(data => {this.name = data; console.log(this.name); return this.name;});
-    // }
     TreeComponent.prototype.addContainer = function () {
         // METODO DI PROVA PER VERIFICARE LA POSSIBILITA DI AGGIORNARE L'ALBERO
         var agentlist = [{
@@ -749,6 +807,10 @@ var TreeComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('tree'),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], TreeComponent.prototype, "tree", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], TreeComponent.prototype, "emitter", void 0);
     TreeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-tree',
@@ -761,8 +823,10 @@ var TreeComponent = /** @class */ (function () {
 }());
 
 var Node = /** @class */ (function () {
-    function Node() {
+    function Node(name_, childnode_) {
         this.name = '';
+        this.name = name_;
+        this.childNode = childnode_;
     }
     return Node;
 }());

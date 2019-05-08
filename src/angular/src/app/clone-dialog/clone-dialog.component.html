@@ -3,10 +3,10 @@
 </section>
 
 <mat-list role="list">
-  <mat-list-item role="listitem">
+  <mat-list-item role="listitem" *ngIf="title=='Clone'">
     <form>
       <mat-form-field>
-        <input matInput type="text" placeholder="Agent name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+        <input matInput type="text" placeholder="Agent new name" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
     </form>
   </mat-list-item>

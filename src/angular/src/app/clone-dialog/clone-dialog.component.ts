@@ -25,24 +25,29 @@ export class CloneDialogComponent implements OnInit {
     name = '';
     cont = '';
 
+    selection :string;
+
     constructor(private dialogRef: MatDialogRef < CloneDialogComponent > , @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient) {}
 
     ngOnInit() {
         console.log(this.data)
-        this.title = this.data;
+        this.title = this.data[1];
+        this.selection = this.data[2];
     }
 
     private send(): void {
-        let params = new HttpParams().set("name", this.name).set("container", this.cont);
         if (this.title == 'Clone') {
+            let params = new HttpParams().set("name", this.selection).set("container", this.cont).set("newname", this.name);
             this.http.get('http://localhost:2020/clone', {
                 params: params
             }).subscribe(data => console.log(data));
         } else if (this.title == 'Migrate') {
+            let params = new HttpParams().set("name", this.selection).set("container", this.cont);
             this.http.get('http://localhost:2020/migrate', {
                 params: params
             }).subscribe(data => console.log(data));
         }
+        this.dialogRef.close();
     }
 
     private cancel(): void {

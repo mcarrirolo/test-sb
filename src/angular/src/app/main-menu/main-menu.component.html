@@ -23,8 +23,9 @@
           <p (click)="cloneDialog('Migrate')">Migrate agent</p>
           <p (click)="cloneDialog('Clone')">Clone agent</p>
           <p>Load agent</p>
-          <p>Save agent</p>
-          <p>Freeze agent</p>
+          <p (click)="securityDialog('save')">Save agent</p>
+          <p (click)="securityDialog('freeze')">Freeze agent</p>
+          <!-- FIXME: THAW need a container as input, maybe cloneDialog can be used -->
           <p>Thaw agent</p>
      </mat-expansion-panel>
      <mat-expansion-panel>

@@ -88,4 +88,188 @@ public class TestController {
         }
     }
 
+    @GetMapping("/containerName")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public String containerName(){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return "not working";
+            }
+            else{
+                return gam.containerNameRequest();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return "not working";
+        }
+    }
+
+    @GetMapping("/agentsName")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public String[] agentsName(){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return null;
+            }
+            else{
+                return gam.agentsNameRequest();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @GetMapping("/kill")
+    @ResponseStatus(HttpStatus.OK)
+    // @ResponseBody
+    public void kill(@RequestParam String name){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+            }
+            else{
+                gam.killRequest(name);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/suspend")
+    @ResponseStatus(HttpStatus.OK)
+    // @ResponseBody
+    public void suspend(@RequestParam String name){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+            }
+            else{
+                gam.suspendRequest(name);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/resume")
+    @ResponseStatus(HttpStatus.OK)
+    // @ResponseBody
+    public void resume(@RequestParam String name){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+            }
+            else{
+                gam.resumeRequest(name);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/clone")
+    @ResponseStatus(HttpStatus.OK)
+    // @ResponseBody
+    public void clone(@RequestParam String name, @RequestParam String container, @RequestParam String newname){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+            }
+            else{
+                gam.cloneRequest(name, container, newname);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/migrate")
+    @ResponseStatus(HttpStatus.OK)
+    // @ResponseBody
+    public void migrate(@RequestParam String name, @RequestParam String container){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+            }
+            else{
+                gam.migrateRequest(name, container);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/freeze")
+    @ResponseStatus(HttpStatus.OK)
+    // @ResponseBody
+    public void freeze(@RequestParam String name){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+            }
+            else{
+                gam.freezeRequest(name);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/thaw")
+    @ResponseStatus(HttpStatus.OK)
+    // @ResponseBody
+    public void thaw(@RequestParam String name){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+            }
+            else{
+                gam.thawRequest(name);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/save")
+    @ResponseStatus(HttpStatus.OK)
+    // @ResponseBody
+    public void save(@RequestParam String name){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+            }
+            else{
+                gam.saveRequest(name);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

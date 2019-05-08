@@ -59,4 +59,10 @@ export class AppComponent {
         // return false;
     }
 
+
+    selection = '';
+    eventListener($event){
+        this.selection = $event;
+    }
+
 }

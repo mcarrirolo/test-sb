@@ -23,4 +23,14 @@
   .example-tree-nested-node {
     padding-left: 30px;
   }
-  
+
+  span:focus{
+      outline: none;
+  }
+  span{
+      cursor: pointer;
+  }
+  .focusClass{
+    background-color: rgb(92, 116, 221);
+    color: white;
+  }
