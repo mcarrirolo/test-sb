@@ -23,6 +23,11 @@ import jade.wrapper.ControllerException;
  */
 public class TestAgent extends Agent implements ITestAgent {
 
+    static int snifferCounter = 0;
+    static int dummyCounter = 0;
+    static int logCounter = 0;
+    static int introspectorCounter = 0;
+
     /*
      * Il setup è il primo metodo ad essere eseguito quando l'agente viene creato.
      * Quindi è il posto adatto per eventuali inizializzazioni e per la definizione
@@ -228,22 +233,20 @@ public class TestAgent extends Agent implements ITestAgent {
         }
     }
 
-    public void thawRequest(String name) {
-
-        // FIXME: Differ from freeze, need a container 
-
-        // if (name == null) {
-        //     System.out.println("Invalid parameters");
-        // } else {
-        //     ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
-        //     req.addReceiver(getAMS());
-        //     req.setContent("((action " + getAMS() + " (modify (ams-agent-description  :name (agent-identifier :name " + name + ") :state active))))");
-        //     req.setOntology("FIPA-Agent-Management");
-        //     req.setLanguage("fipa-sl0");
-        //     req.setProtocol("fipa-request");
-        //     send(req);
-        //     System.out.println("Agent " + name + " thawed");
-        // }
+    public void thawRequest(String name, String container) {
+        if (name == null || container == null){
+            System.out.println("Invalid parameters");
+        } else {
+            ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+            req.addReceiver(getAMS());
+            req.setContent("((action " + getAMS() + " (thaw-agent :agent (agent-identifier :name " + name 
+                    + ") :repository JADE-DB :new-container (container-ID :name " + container + " :protocol JADE-IMTP :address \"<Unknown Host>\"))))");
+            req.setOntology("JADE-Persistence");
+            req.setLanguage("fipa-sl0");
+            req.setProtocol("fipa-request");
+            send(req);
+            System.out.println("Agent " + name + " thawed");
+        }
     }
 
     public void saveRequest(String name) {
@@ -259,6 +262,82 @@ public class TestAgent extends Agent implements ITestAgent {
             send(req);
             System.out.println("Agent " + name + " saved");
         }
+    }
+
+    public void snifferRequest(String container) {
+        snifferCounter++;
+        if (container == null) {
+            System.out.println("Invalid parameters");
+        } else {
+            ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+            req.addReceiver(getAMS());
+            req.setContent("((action " + getAMS() + " (create-agent :agent-name sniffer" + snifferCounter + " :class-name jade.tools.sniffer.Sniffer :container (container-ID :name " + container
+                    + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP))))");
+            req.setOntology("JADE-Agent-Management");
+            req.setLanguage("fipa-sl0");
+            req.setProtocol("fipa-request");
+            send(req);
+            System.out.println("Sniffer agent " + snifferCounter + " started on container " + container);
+        }
+        // l'evento subscribe successivo alla richiesta di creazione dell'agente sniffer, viene eseguito automaticamente
+        // pertanto non è necessario implementarlo qui
+    }
+
+    public void dummyRequest(String container) {
+        dummyCounter++;
+        if (container == null) {
+            System.out.println("Invalid parameters");
+        } else {
+            ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+            req.addReceiver(getAMS());
+            req.setContent("((action " + getAMS() + " (create-agent :agent-name da" + dummyCounter + " :class-name jade.tools.DummyAgent.DummyAgent :container (container-ID :name " + container
+                    + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP))))");
+            req.setOntology("JADE-Agent-Management");
+            req.setLanguage("fipa-sl0");
+            req.setProtocol("fipa-request");
+            send(req);
+            System.out.println("Dummy agent " + dummyCounter + " started on container " + container);
+        }
+        // l'evento subscribe successivo alla richiesta di creazione dell'agente dummy, viene eseguito automaticamente
+        // pertanto non è necessario implementarlo qui
+    }
+
+    public void logRequest(String container) {
+        logCounter++;
+        if (container == null) {
+            System.out.println("Invalid parameters");
+        } else {
+            ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+            req.addReceiver(getAMS());
+            req.setContent("((action " + getAMS() + " (create-agent :agent-name log" + logCounter + " :class-name jade.tools.logging.LogManagerAgent :container (container-ID :name " + container
+                    + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP))))");
+            req.setOntology("JADE-Agent-Management");
+            req.setLanguage("fipa-sl0");
+            req.setProtocol("fipa-request");
+            send(req);
+            System.out.println("Log agent " + logCounter + " started on container " + container);
+        }
+        // l'evento subscribe successivo alla richiesta di creazione dell'agente log, viene eseguito automaticamente
+        // pertanto non è necessario implementarlo qui
+    }
+
+    public void introspectorRequest(String container) {
+        introspectorCounter++;
+        if (container == null) {
+            System.out.println("Invalid parameters");
+        } else {
+            ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+            req.addReceiver(getAMS());
+            req.setContent("((action " + getAMS() + " (create-agent :agent-name introspector" + introspectorCounter + " :class-name jade.tools.introspector.Introspector  :container (container-ID :name " + container
+                    + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP))))");
+            req.setOntology("JADE-Agent-Management");
+            req.setLanguage("fipa-sl0");
+            req.setProtocol("fipa-request");
+            send(req);
+            System.out.println("Introspector agent " + introspectorCounter + " started on container " + container);
+        }
+        // l'evento subscribe successivo alla richiesta di creazione dell'agente introspector, viene eseguito automaticamente
+        // pertanto non è necessario implementarlo qui
     }
 	
 

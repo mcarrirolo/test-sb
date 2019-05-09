@@ -342,6 +342,12 @@ var CloneDialogComponent = /** @class */ (function () {
                 params: params
             }).subscribe(function (data) { return console.log(data); });
         }
+        else if (this.title == 'Thaw') {
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]().set("name", this.selection).set("container", this.cont);
+            this.http.get('http://localhost:2020/thaw', {
+                params: params
+            }).subscribe(function (data) { return console.log(data); });
+        }
         this.dialogRef.close();
     };
     CloneDialogComponent.prototype.cancel = function () {
@@ -381,7 +387,7 @@ module.exports = "\nmat-expansion-panel p{\n    cursor: pointer;\n}\nmat-expansi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-accordion>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    File\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>Close RMA agent</p>\n          <p>Exit this container</p>\n          <p>Shut down AgentPlatform</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Actions\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p (click)=\"startDialog()\">Start new agent</p>\n          <p (click)=\"securityDialog('kill')\">Kill</p>\n          <p (click)=\"securityDialog('suspend')\">Suspend</p>\n          <p (click)=\"securityDialog('resume')\">Resume</p>\n          <!-- <p (click)=\"messageDialog()\">Send message</p> -->\n          <p (click)=\"cloneDialog('Migrate')\">Migrate agent</p>\n          <p (click)=\"cloneDialog('Clone')\">Clone agent</p>\n          <p>Load agent</p>\n          <p (click)=\"securityDialog('save')\">Save agent</p>\n          <p (click)=\"securityDialog('freeze')\">Freeze agent</p>\n          <!-- FIXME: THAW need a container as input, maybe cloneDialog can be used -->\n          <p>Thaw agent</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Tools\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p routerLink=\"/sniffer\">Start sniffer</p>\n          <p>Start dummy agent</p>\n          <p>Show the DF GUI</p>\n          <p routerLink=\"/introspector\">Start introspector agent</p>\n          <p routerLink=\"/logmanager\">Start log manager agent</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Remote Platforms\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>Add platform via AMS AID</p>\n          <p>Add platform via URL</p>\n          <p>View AP description</p>\n          <p>Refresh AP description</p>\n          <p>Remove remote platform</p>\n          <p>Refresh agent list</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Help\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>About Jade</p>\n     </mat-expansion-panel>\n</mat-accordion>"
+module.exports = "<mat-accordion>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    File\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>Close RMA agent</p>\n          <p>Exit this container</p>\n          <p>Shut down AgentPlatform</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Actions\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p (click)=\"startDialog()\">Start new agent</p>\n          <p (click)=\"securityDialog('kill')\">Kill</p>\n          <p (click)=\"securityDialog('suspend')\">Suspend</p>\n          <p (click)=\"securityDialog('resume')\">Resume</p>\n          <!-- <p (click)=\"messageDialog()\">Send message</p> -->\n          <p (click)=\"cloneDialog('Migrate')\">Migrate agent</p>\n          <p (click)=\"cloneDialog('Clone')\">Clone agent</p>\n          <p>Load agent</p>\n          <p (click)=\"securityDialog('save')\">Save agent</p>\n          <p (click)=\"securityDialog('freeze')\">Freeze agent</p>\n          <!-- FIXME: THAW need a container as input, maybe cloneDialog can be used -->\n          <p (click)=\"cloneDialog('Thaw')\">Thaw agent</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Tools\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <!-- WARNING sniffer router need a different name from the sniffer endpoint; snifferRouter is suggested \n               (routerLinking inside typescript) -->\n          <p (click)=\"startSniffer()\">Start sniffer</p>\n          <p (click)=\"startDummy()\">Start dummy agent</p>\n          <p>Show the DF GUI</p>\n          <p (click)=\"startIntrospector()\">Start introspector agent</p>\n          <p (click)=\"startLog()\">Start log manager agent</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Remote Platforms\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>Add platform via AMS AID</p>\n          <p>Add platform via URL</p>\n          <p>View AP description</p>\n          <p>Refresh AP description</p>\n          <p>Remove remote platform</p>\n          <p>Refresh agent list</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Help\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>About Jade</p>\n     </mat-expansion-panel>\n</mat-accordion>"
 
 /***/ }),
 
@@ -401,6 +407,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _start_dialog_start_dialog_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../start-dialog/start-dialog.component */ "./src/app/start-dialog/start-dialog.component.ts");
 /* harmony import */ var _clone_dialog_clone_dialog_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../clone-dialog/clone-dialog.component */ "./src/app/clone-dialog/clone-dialog.component.ts");
 /* harmony import */ var _security_dialog_security_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../security-dialog/security-dialog.component */ "./src/app/security-dialog/security-dialog.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
 
 
 
@@ -408,9 +418,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MainMenuComponent = /** @class */ (function () {
-    function MainMenuComponent(dialog, snackBar) {
+    function MainMenuComponent(dialog, snackBar, http, router) {
         this.dialog = dialog;
         this.snackBar = snackBar;
+        this.http = http;
+        this.router = router;
+        this.shouldRouterLink = false;
         this.selection = '';
     }
     MainMenuComponent.prototype.ngOnInit = function () { };
@@ -436,6 +449,61 @@ var MainMenuComponent = /** @class */ (function () {
             }
         });
     };
+    MainMenuComponent.prototype.startSniffer = function () {
+        if (this.selection.indexOf('@') == -1 && this.selection != '') {
+            console.log("Starting sniffer on " + this.selection);
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]().set("container", this.selection);
+            this.http.get('http://localhost:2020/sniffer', { params: params }).subscribe(function (data) { return console.log(data); });
+            this.router.navigate(['/test']);
+        }
+        else {
+            this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
+                duration: 4000,
+            });
+        }
+    };
+    MainMenuComponent.prototype.startDummy = function () {
+        if (this.selection.indexOf('@') == -1 && this.selection != '') {
+            this.shouldRouterLink = true;
+            console.log("Starting dummy on " + this.selection);
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]().set("container", this.selection);
+            this.http.get('http://localhost:2020/dummy', { params: params }).subscribe(function (data) { return console.log(data); });
+            this.router.navigate(['/test']);
+        }
+        else {
+            this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
+                duration: 4000,
+            });
+        }
+    };
+    MainMenuComponent.prototype.startIntrospector = function () {
+        if (this.selection.indexOf('@') == -1 && this.selection != '') {
+            this.shouldRouterLink = true;
+            console.log("Starting introspector on " + this.selection);
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]().set("container", this.selection);
+            this.http.get('http://localhost:2020/introspector', { params: params }).subscribe(function (data) { return console.log(data); });
+            this.router.navigate(['/test']);
+        }
+        else {
+            this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
+                duration: 4000,
+            });
+        }
+    };
+    MainMenuComponent.prototype.startLog = function () {
+        if (this.selection.indexOf('@') == -1 && this.selection != '') {
+            this.shouldRouterLink = true;
+            console.log("Starting log-manager on " + this.selection);
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]().set("container", this.selection);
+            this.http.get('http://localhost:2020/log', { params: params }).subscribe(function (data) { return console.log(data); });
+            this.router.navigate(['/test']);
+        }
+        else {
+            this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
+                duration: 4000,
+            });
+        }
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
@@ -446,7 +514,7 @@ var MainMenuComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./main-menu.component.html */ "./src/app/main-menu/main-menu.component.html"),
             styles: [__webpack_require__(/*! ./main-menu.component.css */ "./src/app/main-menu/main-menu.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"], _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]])
     ], MainMenuComponent);
     return MainMenuComponent;
 }());
@@ -689,7 +757,7 @@ var TestComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-tree-invisible {\n    display: none;\n  }\n  \n  .example-tree ul,\n  .example-tree li {\n    margin-top: 0;\n    margin-bottom: 0;\n    list-style-type: none;\n  }\n  \n  .example-tree-node {\n    display: block;\n  }\n  \n  .example-tree-node .example-tree-node {\n    padding-left: 40px;\n  }\n  \n  .example-tree-progress-bar {\n    margin-left: 30px;\n  }\n  \n  .example-tree-nested-node {\n    padding-left: 30px;\n  }\n  \n  span:focus{\n      outline: none;\n  }\n  \n  span{\n      cursor: pointer;\n  }\n  \n  .focusClass{\n    background-color: rgb(92, 116, 221);\n    color: white;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdHJlZS90cmVlLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0VBQ2Y7O0VBRUE7O0lBRUUsYUFBYTtJQUNiLGdCQUFnQjtJQUNoQixxQkFBcUI7RUFDdkI7O0VBQ0E7SUFDRSxjQUFjO0VBQ2hCOztFQUVBO0lBQ0Usa0JBQWtCO0VBQ3BCOztFQUVBO0lBQ0UsaUJBQWlCO0VBQ25COztFQUVBO0lBQ0Usa0JBQWtCO0VBQ3BCOztFQUVBO01BQ0ksYUFBYTtFQUNqQjs7RUFDQTtNQUNJLGVBQWU7RUFDbkI7O0VBQ0E7SUFDRSxtQ0FBbUM7SUFDbkMsWUFBWTtFQUNkIiwiZmlsZSI6InNyYy9hcHAvdHJlZS90cmVlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZXhhbXBsZS10cmVlLWludmlzaWJsZSB7XG4gICAgZGlzcGxheTogbm9uZTtcbiAgfVxuICBcbiAgLmV4YW1wbGUtdHJlZSB1bCxcbiAgLmV4YW1wbGUtdHJlZSBsaSB7XG4gICAgbWFyZ2luLXRvcDogMDtcbiAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIGxpc3Qtc3R5bGUtdHlwZTogbm9uZTtcbiAgfVxuICAuZXhhbXBsZS10cmVlLW5vZGUge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG4gIFxuICAuZXhhbXBsZS10cmVlLW5vZGUgLmV4YW1wbGUtdHJlZS1ub2RlIHtcbiAgICBwYWRkaW5nLWxlZnQ6IDQwcHg7XG4gIH1cblxuICAuZXhhbXBsZS10cmVlLXByb2dyZXNzLWJhciB7XG4gICAgbWFyZ2luLWxlZnQ6IDMwcHg7XG4gIH1cbiAgXG4gIC5leGFtcGxlLXRyZWUtbmVzdGVkLW5vZGUge1xuICAgIHBhZGRpbmctbGVmdDogMzBweDtcbiAgfVxuXG4gIHNwYW46Zm9jdXN7XG4gICAgICBvdXRsaW5lOiBub25lO1xuICB9XG4gIHNwYW57XG4gICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gIH1cbiAgLmZvY3VzQ2xhc3N7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDkyLCAxMTYsIDIyMSk7XG4gICAgY29sb3I6IHdoaXRlO1xuICB9Il19 */"
+module.exports = ".example-tree-invisible {\n    display: none;\n  }\n  \n  .example-tree ul,\n  .example-tree li {\n    margin-top: 0;\n    margin-bottom: 0;\n    list-style-type: none;\n  }\n  \n  .example-tree-node {\n    display: block;\n  }\n  \n  .example-tree-node .example-tree-node {\n    padding-left: 40px;\n  }\n  \n  .example-tree-progress-bar {\n    margin-left: 30px;\n  }\n  \n  .example-tree-nested-node {\n    padding-left: 30px;\n  }\n  \n  /* span:focus{\n      outline: none;\n  } */\n  \n  span{\n      cursor: pointer;\n      border: 5px solid transparent;\n      padding-right: 3px;\n  }\n  \n  .focusClass{\n    background-color: rgb(92, 116, 221);\n    color: white;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdHJlZS90cmVlLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0VBQ2Y7O0VBRUE7O0lBRUUsYUFBYTtJQUNiLGdCQUFnQjtJQUNoQixxQkFBcUI7RUFDdkI7O0VBQ0E7SUFDRSxjQUFjO0VBQ2hCOztFQUVBO0lBQ0Usa0JBQWtCO0VBQ3BCOztFQUVBO0lBQ0UsaUJBQWlCO0VBQ25COztFQUVBO0lBQ0Usa0JBQWtCO0VBQ3BCOztFQUVBOztLQUVHOztFQUNIO01BQ0ksZUFBZTtNQUNmLDZCQUE2QjtNQUM3QixrQkFBa0I7RUFDdEI7O0VBQ0E7SUFDRSxtQ0FBbUM7SUFDbkMsWUFBWTtFQUNkIiwiZmlsZSI6InNyYy9hcHAvdHJlZS90cmVlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZXhhbXBsZS10cmVlLWludmlzaWJsZSB7XG4gICAgZGlzcGxheTogbm9uZTtcbiAgfVxuICBcbiAgLmV4YW1wbGUtdHJlZSB1bCxcbiAgLmV4YW1wbGUtdHJlZSBsaSB7XG4gICAgbWFyZ2luLXRvcDogMDtcbiAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIGxpc3Qtc3R5bGUtdHlwZTogbm9uZTtcbiAgfVxuICAuZXhhbXBsZS10cmVlLW5vZGUge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG4gIFxuICAuZXhhbXBsZS10cmVlLW5vZGUgLmV4YW1wbGUtdHJlZS1ub2RlIHtcbiAgICBwYWRkaW5nLWxlZnQ6IDQwcHg7XG4gIH1cblxuICAuZXhhbXBsZS10cmVlLXByb2dyZXNzLWJhciB7XG4gICAgbWFyZ2luLWxlZnQ6IDMwcHg7XG4gIH1cbiAgXG4gIC5leGFtcGxlLXRyZWUtbmVzdGVkLW5vZGUge1xuICAgIHBhZGRpbmctbGVmdDogMzBweDtcbiAgfVxuXG4gIC8qIHNwYW46Zm9jdXN7XG4gICAgICBvdXRsaW5lOiBub25lO1xuICB9ICovXG4gIHNwYW57XG4gICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgICBib3JkZXI6IDVweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICAgIHBhZGRpbmctcmlnaHQ6IDNweDtcbiAgfVxuICAuZm9jdXNDbGFzc3tcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoOTIsIDExNiwgMjIxKTtcbiAgICBjb2xvcjogd2hpdGU7XG4gIH0iXX0= */"
 
 /***/ }),
 

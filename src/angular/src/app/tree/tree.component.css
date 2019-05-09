@@ -24,11 +24,13 @@
     padding-left: 30px;
   }
 
-  span:focus{
+  /* span:focus{
       outline: none;
-  }
+  } */
   span{
       cursor: pointer;
+      border: 5px solid transparent;
+      padding-right: 3px;
   }
   .focusClass{
     background-color: rgb(92, 116, 221);

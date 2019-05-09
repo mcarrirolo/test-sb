@@ -46,6 +46,11 @@ export class CloneDialogComponent implements OnInit {
             this.http.get('http://localhost:2020/migrate', {
                 params: params
             }).subscribe(data => console.log(data));
+        } else if (this.title == 'Thaw') {
+            let params = new HttpParams().set("name", this.selection).set("container", this.cont);
+            this.http.get('http://localhost:2020/thaw', {
+                params: params
+            }).subscribe(data => console.log(data));
         }
         this.dialogRef.close();
     }

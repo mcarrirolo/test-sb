@@ -26,7 +26,7 @@
           <p (click)="securityDialog('save')">Save agent</p>
           <p (click)="securityDialog('freeze')">Freeze agent</p>
           <!-- FIXME: THAW need a container as input, maybe cloneDialog can be used -->
-          <p>Thaw agent</p>
+          <p (click)="cloneDialog('Thaw')">Thaw agent</p>
      </mat-expansion-panel>
      <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -34,11 +34,13 @@
                     Tools
                </mat-panel-title>
           </mat-expansion-panel-header>
-          <p routerLink="/sniffer">Start sniffer</p>
-          <p>Start dummy agent</p>
+          <!-- WARNING sniffer router need a different name from the sniffer endpoint; snifferRouter is suggested 
+               (routerLinking inside typescript) -->
+          <p (click)="startSniffer()">Start sniffer</p>
+          <p (click)="startDummy()">Start dummy agent</p>
           <p>Show the DF GUI</p>
-          <p routerLink="/introspector">Start introspector agent</p>
-          <p routerLink="/logmanager">Start log manager agent</p>
+          <p (click)="startIntrospector()">Start introspector agent</p>
+          <p (click)="startLog()">Start log manager agent</p>
      </mat-expansion-panel>
      <mat-expansion-panel>
           <mat-expansion-panel-header>

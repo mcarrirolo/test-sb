@@ -17,6 +17,8 @@ import {
 import {
     SecurityDialogComponent
 } from '../security-dialog/security-dialog.component'
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-main-menu',
@@ -27,13 +29,14 @@ export class MainMenuComponent implements OnInit {
 
     ngOnInit() {}
 
+    shouldRouterLink = false;
     @Input() selection = '';
 
     startDialogRef: MatDialogRef < StartDialogComponent > ;
     cloneDialogRef: MatDialogRef < CloneDialogComponent > ;
     securityDialogRef: MatDialogRef < SecurityDialogComponent > ;
 
-    constructor(private dialog: MatDialog, private snackBar: MatSnackBar) {}
+    constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private http: HttpClient, private router: Router) {}
 
 
     startDialog() {
@@ -59,6 +62,61 @@ export class MainMenuComponent implements OnInit {
                 2: this.selection
             }
         });
+    }
+
+    startSniffer() {
+        if (this.selection.indexOf('@') == -1 && this.selection != ''){
+            console.log("Starting sniffer on " + this.selection);
+            let params = new HttpParams().set("container", this.selection);
+            this.http.get('http://localhost:2020/sniffer', {params: params}).subscribe(data => console.log(data));
+            this.router.navigate(['/test']);
+        } else {
+            this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
+                duration: 4000,
+            });
+        }
+    }
+
+    startDummy() {
+        if (this.selection.indexOf('@') == -1 && this.selection != ''){
+            this.shouldRouterLink = true;
+            console.log("Starting dummy on " + this.selection);
+            let params = new HttpParams().set("container", this.selection);
+            this.http.get('http://localhost:2020/dummy', {params: params}).subscribe(data => console.log(data));
+            this.router.navigate(['/test']);
+        } else {
+            this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
+                duration: 4000,
+            });
+        }
+    }
+
+    startIntrospector() {
+        if (this.selection.indexOf('@') == -1 && this.selection != ''){
+            this.shouldRouterLink = true;
+            console.log("Starting introspector on " + this.selection);
+            let params = new HttpParams().set("container", this.selection);
+            this.http.get('http://localhost:2020/introspector', {params: params}).subscribe(data => console.log(data));
+            this.router.navigate(['/test']);
+        } else {
+            this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
+                duration: 4000,
+            });
+        }
+    }
+
+    startLog() {
+        if (this.selection.indexOf('@') == -1 && this.selection != ''){
+            this.shouldRouterLink = true;
+            console.log("Starting log-manager on " + this.selection);
+            let params = new HttpParams().set("container", this.selection);
+            this.http.get('http://localhost:2020/log', {params: params}).subscribe(data => console.log(data));
+            this.router.navigate(['/test']);
+        } else {
+            this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
+                duration: 4000,
+            });
+        }
     }
 
 }
