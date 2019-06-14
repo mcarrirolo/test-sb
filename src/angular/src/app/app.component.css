@@ -1,6 +1,7 @@
 
 .drawer{
     height: 100vh;
+    background-color: white;
 }
 button{
     padding-left: 6px;
@@ -11,4 +12,19 @@ button{
 mat-toolbar button{
     background-color: rgb(92, 116, 221);
     color: white;
+}
+div{
+    font-family: 'Roboto', monospace;
+}
+.tree{
+    width: 40%;
+    display: inline-table;
+}
+.view{
+    width: calc(60% - 20px);
+    display: inline-table;
+    margin: 0 10px;
+}
+router-outlet{
+    display: none;
 }

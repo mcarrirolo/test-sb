@@ -46,8 +46,8 @@ public class Launcher {
             gamCtrl = mcc.createNewAgent("GAM", "controller.TestAgent", null);
             gamCtrl.start();
             
-            System.out.println("Creating agent2 in container");
-            acc.createNewAgent("agent2", "controller.TestAgent", null).start();
+            // System.out.println("Creating agent2 in container");
+            // acc.createNewAgent("agent2", "jade.core.Agent", null).start();
         } catch (StaleProxyException e) {
             e.printStackTrace();
         }

@@ -344,4 +344,23 @@ public class TestController {
         }
     }
 
+    @GetMapping("/update")
+    @ResponseBody
+    public String[] update(){
+        try{
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return null;
+            }
+            else{
+                return gam.updateRequest();
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

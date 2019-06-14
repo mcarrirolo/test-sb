@@ -3,14 +3,15 @@ import {
 } from '@angular/core';
 import {
     HttpClient,
-    HttpParams,
-    HttpResponse
+    HttpParams
 } from '@angular/common/http';
+import { DataTransferService } from './data-transfer.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.css'],
+    providers: [DataTransferService]
 })
 export class AppComponent {
 
@@ -46,23 +47,8 @@ export class AppComponent {
     //   return this.http.post('http://localhost:2020/changeName', {params: params}).subscribe(data => console.log(data));
     // }
 
-    private expand(): void {
-        this.gridlayout = '33.3% 33.4% 33.3%';
-    }
-
-    private unexpand(): void {
-        this.gridlayout = '50% 50%';
-    }
-
     rightClick() {
         console.log("right click");
         // return false;
     }
-
-
-    selection = '';
-    eventListener($event){
-        this.selection = $event;
-    }
-
 }

@@ -3,17 +3,31 @@
  */
 package controller;
 
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Vector;
+
 import jade.content.lang.sl.SLCodec;
 import jade.core.AID;
 import jade.core.Agent;
+import jade.core.ContainerID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.AMSService;
 import jade.domain.FIPAException;
 import jade.domain.FIPANames;
 import jade.domain.FIPAAgentManagement.AMSAgentDescription;
 import jade.domain.FIPAAgentManagement.SearchConstraints;
+import jade.domain.introspection.AMSSubscriber;
+import jade.domain.introspection.AddedContainer;
+import jade.domain.introspection.BornAgent;
+import jade.domain.introspection.DeadAgent;
+import jade.domain.introspection.Event;
+import jade.domain.introspection.IntrospectionVocabulary;
+import jade.domain.introspection.RemovedContainer;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
+import jade.proto.SimpleAchieveREInitiator;
+import jade.tools.ToolAgent;
 import jade.wrapper.ControllerException;
 
 /**
@@ -21,7 +35,7 @@ import jade.wrapper.ControllerException;
  *         agente in grado di ricevere ed inviare messaggi. Gli agenti agiscono
  *         tramite i behaiors che possono essere di vari tipi.
  */
-public class TestAgent extends Agent implements ITestAgent {
+public class TestAgent extends ToolAgent implements ITestAgent {
 
     static int snifferCounter = 0;
     static int dummyCounter = 0;
@@ -32,14 +46,25 @@ public class TestAgent extends Agent implements ITestAgent {
      * Il setup è il primo metodo ad essere eseguito quando l'agente viene creato.
      * Quindi è il posto adatto per eventuali inizializzazioni e per la definizione
      * dei behavior fondamentali
+     * 
+     * Estendendo la classe ToolAgent: setup() -> toolSetup()
+     * 
      */
     @Override
-    protected void setup() {
-        super.setup();
+    protected void toolSetup() {
+
+        // Serve per ricevere notifica degli eventi da parte di AMS
+        AMSSubscriber subscriber = new AMSSubscriber(){
+            protected void installHandlers(Map handlers){
+            }
+        };
+        addBehaviour(subscriber);
+
+        
+        // super.setup();
         System.out.println(this.getLocalName() + " was born");
 
         registerO2AInterface(ITestAgent.class, this);
-        System.out.println("Hello from " + this.getLocalName());
         getContentManager().registerLanguage(new SLCodec(), FIPANames.ContentLanguage.FIPA_SL0);
         // getContentManager().registerOntology(EventOntology.getInstance());
 
@@ -47,17 +72,36 @@ public class TestAgent extends Agent implements ITestAgent {
         // semplificando, viene eseguito in continuazione)
         addBehaviour(new CyclicBehaviour() {
 
+            EventHandler Eh = new EventHandler(){
+            public void handle(Event ev) {
+                DeadAgent da = (DeadAgent)ev;
+                ContainerID cid = da.getWhere();
+                // ContainerID is null in case of foreign agents registered with the local AMS or virtual agents
+                if (cid != null) {
+                    String container = cid.getName();
+                    AID agent = da.getAgent();
+                    System.out.println("\"\n" + "\"\n" + container + agent.toString() +  "\"\n" + "\"\n");
+                    // myGUI.removeAgent(container, agent);
+                }
+            }};
             MessageTemplate tmpl = MessageTemplate.MatchPerformative(ACLMessage.INFORM);
 
+
+
+            // FIXME: quando è lui a richiedere l'esecuzione di un comando
+            // non è in grado di ricevere il messaggio proveniente da AMSSubscriber
+            //
             // il metodo action di CyclicBehaviour indica quale logica viene eseguita
             // nello specifico l'agente controlla la coda di messaggi e se trova un
-            // messaggio
-            // lo stampa e risponde
+            // messaggio lo stampa e risponde
             @Override
             public void action() {
+
                 ACLMessage msg = myAgent.receive(tmpl);
                 if (msg != null) {
                     System.out.println(myAgent.getLocalName() + " received\n" + msg);
+
+                    parse(msg);
 
                     // Come creare un messaggio in generale
                     // creando il messaggio si passa come argomento una performativa che indica lo
@@ -84,6 +128,100 @@ public class TestAgent extends Agent implements ITestAgent {
         });
     }
 
+
+    private Vector<String[]> changedAgents = new Vector<String[]>();
+    // Il parser determina il contenuto del messaggio ricevuto tramite l'AMSSubscriber
+    // tiene dunque conto della creazione/distruzione degli ultimi agenti in un vector
+    private void parse(ACLMessage msg){
+        String[] lastAgent = new String[4]; // name, container, addedd/removed, ip
+        String content = msg.getContent();
+        if(content.contains("occurred")){
+            if(content.contains("born-agent")){
+                Integer i = 0;
+                Integer n = content.indexOf(":name") + 6;
+                String name = "";
+                String container = "";
+                while(i!=2){
+                    name = name + content.charAt(n);
+                    n++;
+                    if(content.charAt(n+1) == ':' || content.charAt(n) == ')'){
+                        i++;
+                    }
+                }
+                i = 0;
+                n = content.indexOf("container-ID :name") + 19;
+                while(i!=1){
+                    container = container + content.charAt(n);
+                    n++;
+                    if(content.charAt(n+1) == ':'){
+                        i++;
+                    }
+                }
+                lastAgent[0] = name;
+                lastAgent[1] = container;
+                lastAgent[2] = "addedd";
+                lastAgent[3] = "";
+                changedAgents.addElement(lastAgent);
+            }
+            else if(content.contains("dead-agent")){
+                Integer i = 0;
+                Integer n = content.indexOf(":name") + 6;
+                String name = "";
+                String container = "";
+                while(i!=2){
+                    name = name + content.charAt(n);
+                    n++;
+                    if(content.charAt(n+1) == ':' || content.charAt(n) == ')'){
+                        i++;
+                    }
+                }
+                i = 0;
+                n = content.indexOf("container-ID :name") + 19;
+                while(i!=1){
+                    container = container + content.charAt(n);
+                    n++;
+                    if(content.charAt(n+1) == ':'){
+                        i++;
+                    }
+                }
+                lastAgent[0] = name;
+                lastAgent[1] = container;
+                lastAgent[2] = "removed";
+                lastAgent[3] = "";
+                changedAgents.addElement(lastAgent);
+            }
+            else if(content.contains("added-container")){
+                Integer i = 0;
+                Integer n = content.indexOf("container-ID :name") + 19;
+                String name = null;
+                String container = "";
+                String ip = "";
+                while(i!=1){
+                    container = container + content.charAt(n);
+                    n++;
+                    if(content.charAt(n+1) == ':'){
+                        i++;
+                    }
+                }
+                n = n + 11;
+                i = 0;
+                while(i!=1){
+                    ip = ip + content.charAt(n);
+                    n++;
+                    if(content.charAt(n+1) == '"'){
+                        i++;
+                    }
+                }
+                lastAgent[0] = name;
+                lastAgent[1] = container;
+                lastAgent[2] = "addedd";
+                lastAgent[3] = ip;
+                changedAgents.addElement(lastAgent);
+            }
+        }
+
+    }
+
     public String platformNameRequest() {
         return getContainerController().getName();
     }
@@ -100,10 +238,8 @@ public class TestAgent extends Agent implements ITestAgent {
 
     public String[] agentsNameRequest() {
 
-        // FIXME Only able to retrive all the agents, not the ones of a precise container
-
+        // FIXME: Only able to retrive all the agents, not the ones of a precise container
         AMSAgentDescription[] agents = null;
-
         SearchConstraints c = new SearchConstraints();
         c.setMaxResults(new Long(-1));
         try {
@@ -117,10 +253,7 @@ public class TestAgent extends Agent implements ITestAgent {
             AID agentID = agents[i].getName();
             agentsNames[i] = agentID.getName();
             // System.out.println(agentID.getLocalName());
-       }
-
-
-
+        }
         return agentsNames;
     }
 
@@ -339,7 +472,20 @@ public class TestAgent extends Agent implements ITestAgent {
         // l'evento subscribe successivo alla richiesta di creazione dell'agente introspector, viene eseguito automaticamente
         // pertanto non è necessario implementarlo qui
     }
-	
-
+    
+    public String[] updateRequest(){
+        String[] lastAgent = new String[4]; // name, container, addedd/removed, ip
+        if(changedAgents.size() != 0){
+            lastAgent = changedAgents.remove(changedAgents.size()-1);
+        }
+        else{
+            lastAgent[0] = "";
+            lastAgent[1] = "";
+            lastAgent[2] = "";
+            lastAgent[3] = "";
+        }
+        // System.out.println(lastAgent[0]+lastAgent[1]+lastAgent[2]+lastAgent[3]);
+        return lastAgent;
+    }
 	
 }

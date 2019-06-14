@@ -2,7 +2,7 @@
 
 <mat-drawer-container autosize class="drawer" (contextmenu)="rightClick()">
     <mat-drawer mode="side" opened>
-        <app-main-menu [selection]="selection"></app-main-menu>
+        <app-main-menu></app-main-menu>
     </mat-drawer>
 
 
@@ -24,22 +24,21 @@
         <button mat-button><i class="material-icons">bug_report</i></button> -->
         <button mat-button (click)="sayHello()">Say Hello</button>
         <button mat-button (click)="changeName()">Change name</button>
-        <button mat-button routerLink="/test" (click)="expand()">Router Test</button>
+        <button mat-button routerLink="/test">Router Test</button>
     </mat-toolbar>
 
-    <div style="display: grid; grid-template-rows: 100%; height: 90%;" [style.grid-template-columns]="gridlayout">
+    <div>
         <!-- FIXME: standard divs are preferred over mat-card -->
-        <mat-card class="card">
-            <app-tree (emitter)="eventListener($event)"></app-tree>
-        </mat-card>
+        <div class="tree">
+            <app-tree></app-tree>
+        </div>
 
-        <mat-card class="card">
+        <!-- <mat-card class="card">
             <p>{{return}}</p>
-        </mat-card>
+        </mat-card> -->
 
-        <div>
+        <div class="view">
             <router-outlet></router-outlet>
-            <button mat-button routerLink="/" (click)="unexpand()">Close</button>
         </div>
     </div>
 

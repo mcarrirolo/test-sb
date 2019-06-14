@@ -1,7 +1,104 @@
 
-<mat-card class="card">
-    <p>
-      test works!
+<div>
+    <mat-toolbar>
+        <button mat-button routerLink="/" id="close">Close</button>
+
+        <span *ngIf="isSniffer">
+            <button mat-button>Clear</button>
+            <button mat-button>Open</button>
+            <button mat-button>Save</button>
+            <button mat-button>Write</button>
+            <button mat-button (click)="addSniffed()">Do Sniff</button>
+            <button mat-button (click)="removeSniffed()">Don't Sniff</button>
+            <button mat-button (click)="addShowed()">Show only</button>
+        </span>
+
+        <span *ngIf="isLog">
+            <button mat-button>Set default logging</button>
+            <button mat-button>Start log</button>
+            <button mat-button>Stop log</button>
+        </span>
+
+        <span *ngIf="isDummy">
+            <button mat-button>Reset</button>
+            <button mat-button>Send</button>
+            <button mat-button>Open</button>
+            <button mat-button>Save</button>
+            <button mat-button>Open queue</button>
+            <button mat-button>Save queue</button>
+            <button mat-button>Set as current</button>
+            <button mat-button>Reply</button>
+            <button mat-button>View</button>
+            <button mat-button>Delete</button>
+        </span>
+
+        <span *ngIf="isIntrospector">
+            <button mat-button>Debug On</button>
+            <button mat-button>Debug Off</button>
+            <button mat-button>Step</button>
+            <button mat-button>Break</button>
+            <button mat-button>Slow</button>
+            <button mat-button>Go</button>
+        </span>
+
+                
+
+    </mat-toolbar>
+    <div *ngIf="isSniffer">
+        <div class="sniffed" id="other">
+            Other
+        </div>
+        <div class="sniffed" *ngFor="let agent of sniffed">
+            {{agent}}
+        </div>
+        <div class="showed" *ngFor="let agent of showed">
+            {{agent}}
+        </div>
+    </div>
+
+    <div *ngIf="isDummy">
+        <div class="dummyControl">
+            <div class="dualSelector">
+                ACL Message
+            </div>
+            <div class="dualSelector">
+                Envelope
+            </div>
+        </div>
+        <div class="dummyMessages">
+            <p>Testo di prova</p>
+        </div>
+    </div>
+
+    <p *ngIf="isLog">
+        Log works!
     </p>
-</mat-card>
+
+    <div *ngIf="isIntrospector" class="introspectorGrid">
+        <div class="intrGridElement" id="item1">
+            <p>Incoming Messages</p>
+            <div class="dualSelector">
+                Pending
+            </div>
+            <div class="dualSelector">
+                Received
+            </div>
+        </div>
+        <div class="intrGridElement" id="item2">
+            <p>Outgoing Messages</p>
+            <div class="dualSelector">
+                Pending
+            </div>
+            <div class="dualSelector">
+                Received
+            </div>
+        </div>
+        <div class="intrGridElement" id="item3">
+            Current State
+        </div>
+        <div class="intrGridElement" id="item4">
+            Behaviours
+        </div>
+    </div>
+</div>
 

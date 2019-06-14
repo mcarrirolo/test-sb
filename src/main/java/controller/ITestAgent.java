@@ -18,5 +18,6 @@ public interface ITestAgent {
     void dummyRequest(String container);
     void logRequest(String container);
     void introspectorRequest(String container);
+    String[] updateRequest();
 
 }

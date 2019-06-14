@@ -9,8 +9,7 @@ import {
 } from '@angular/material';
 import {
     HttpClient,
-    HttpParams,
-    HttpResponse
+    HttpParams
 } from '@angular/common/http';
 
 @Component({
@@ -25,7 +24,7 @@ export class CloneDialogComponent implements OnInit {
     name = '';
     cont = '';
 
-    selection :string;
+    selection: string;
 
     constructor(private dialogRef: MatDialogRef < CloneDialogComponent > , @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient) {}
 

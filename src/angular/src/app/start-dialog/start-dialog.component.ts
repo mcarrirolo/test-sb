@@ -9,9 +9,11 @@ import {
 } from '@angular/material';
 import {
     HttpClient,
-    HttpParams,
-    HttpResponse
+    HttpParams
 } from '@angular/common/http';
+import {
+    DataTransferService
+} from '../data-transfer.service';
 
 @Component({
     selector: 'app-start-dialog',
@@ -26,16 +28,27 @@ export class StartDialogComponent implements OnInit {
     args = '';
     own = '';
     cont = 'MainContainer';
+    dataService: DataTransferService;
 
-    ngOnInit() {}
+    ngOnInit() {
+        console.log(this.data)
+        this.dataService = this.data[1];
+    }
 
     constructor(private dialogRef: MatDialogRef < StartDialogComponent > , @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient) {}
 
     private send(): void {
         let params = new HttpParams().set("name", this.name).set("clas", this.clas).set("args", this.args).set("owner", this.own).set("container", this.cont);
         this.http.get('http://localhost:2020/start', {
-            params: params
-        }).subscribe(data => console.log(data));
+            params: params, observe : 'response'
+        }).subscribe(data => {
+            console.log(data);
+            if(data.statusText == "OK"){
+                this.dataService.add(this.name, this.cont);
+                // this.dataService.updateFromRemote();
+                this.dataService.changeRefreshStatus(true);
+            };
+        });
         this.dialogRef.close();
     }
 

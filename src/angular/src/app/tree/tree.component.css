@@ -30,7 +30,7 @@
   span{
       cursor: pointer;
       border: 5px solid transparent;
-      padding-right: 3px;
+      padding-right: 8px;
   }
   .focusClass{
     background-color: rgb(92, 116, 221);

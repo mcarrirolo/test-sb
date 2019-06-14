@@ -42,7 +42,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [
-    { path: 'test', component: _test_test_component__WEBPACK_IMPORTED_MODULE_3__["TestComponent"] }
+    { path: 'test', component: _test_test_component__WEBPACK_IMPORTED_MODULE_3__["TestComponent"], data: { name: 'some value passed on route' } },
+    { path: 'sniffer', component: _test_test_component__WEBPACK_IMPORTED_MODULE_3__["TestComponent"], data: { name: 'sniffer' } },
+    { path: 'dummy', component: _test_test_component__WEBPACK_IMPORTED_MODULE_3__["TestComponent"], data: { name: 'dummy' } },
+    { path: 'introspector', component: _test_test_component__WEBPACK_IMPORTED_MODULE_3__["TestComponent"], data: { name: 'introspector' } },
+    { path: 'log', component: _test_test_component__WEBPACK_IMPORTED_MODULE_3__["TestComponent"], data: { name: 'log-manager' } }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -67,7 +71,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n.drawer{\n    height: 100vh;\n}\nbutton{\n    padding-left: 6px;\n    padding-right: 6px;\n    min-width: 0px;\n    margin: 0 6px;\n}\nmat-toolbar button{\n    background-color: rgb(92, 116, 221);\n    color: white;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBO0lBQ0ksYUFBYTtBQUNqQjtBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixjQUFjO0lBQ2QsYUFBYTtBQUNqQjtBQUNBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7QUFDaEIiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuLmRyYXdlcntcbiAgICBoZWlnaHQ6IDEwMHZoO1xufVxuYnV0dG9ue1xuICAgIHBhZGRpbmctbGVmdDogNnB4O1xuICAgIHBhZGRpbmctcmlnaHQ6IDZweDtcbiAgICBtaW4td2lkdGg6IDBweDtcbiAgICBtYXJnaW46IDAgNnB4O1xufVxubWF0LXRvb2xiYXIgYnV0dG9ue1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYig5MiwgMTE2LCAyMjEpO1xuICAgIGNvbG9yOiB3aGl0ZTtcbn1cbiJdfQ== */"
+module.exports = "\n.drawer{\n    height: 100vh;\n    background-color: white;\n}\nbutton{\n    padding-left: 6px;\n    padding-right: 6px;\n    min-width: 0px;\n    margin: 0 6px;\n}\nmat-toolbar button{\n    background-color: rgb(92, 116, 221);\n    color: white;\n}\ndiv{\n    font-family: 'Roboto', monospace;\n}\n.tree{\n    width: 40%;\n    display: inline-table;\n}\n.view{\n    width: calc(60% - 20px);\n    display: inline-table;\n    margin: 0 10px;\n}\nrouter-outlet{\n    display: none;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBO0lBQ0ksYUFBYTtJQUNiLHVCQUF1QjtBQUMzQjtBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixjQUFjO0lBQ2QsYUFBYTtBQUNqQjtBQUNBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7QUFDaEI7QUFDQTtJQUNJLGdDQUFnQztBQUNwQztBQUNBO0lBQ0ksVUFBVTtJQUNWLHFCQUFxQjtBQUN6QjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLHFCQUFxQjtJQUNyQixjQUFjO0FBQ2xCO0FBQ0E7SUFDSSxhQUFhO0FBQ2pCIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbi5kcmF3ZXJ7XG4gICAgaGVpZ2h0OiAxMDB2aDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbn1cbmJ1dHRvbntcbiAgICBwYWRkaW5nLWxlZnQ6IDZweDtcbiAgICBwYWRkaW5nLXJpZ2h0OiA2cHg7XG4gICAgbWluLXdpZHRoOiAwcHg7XG4gICAgbWFyZ2luOiAwIDZweDtcbn1cbm1hdC10b29sYmFyIGJ1dHRvbntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoOTIsIDExNiwgMjIxKTtcbiAgICBjb2xvcjogd2hpdGU7XG59XG5kaXZ7XG4gICAgZm9udC1mYW1pbHk6ICdSb2JvdG8nLCBtb25vc3BhY2U7XG59XG4udHJlZXtcbiAgICB3aWR0aDogNDAlO1xuICAgIGRpc3BsYXk6IGlubGluZS10YWJsZTtcbn1cbi52aWV3e1xuICAgIHdpZHRoOiBjYWxjKDYwJSAtIDIwcHgpO1xuICAgIGRpc3BsYXk6IGlubGluZS10YWJsZTtcbiAgICBtYXJnaW46IDAgMTBweDtcbn1cbnJvdXRlci1vdXRsZXR7XG4gICAgZGlzcGxheTogbm9uZTtcbn1cbiJdfQ== */"
 
 /***/ }),
 
@@ -78,7 +82,7 @@ module.exports = "\n.drawer{\n    height: 100vh;\n}\nbutton{\n    padding-left: 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\n\n<mat-drawer-container autosize class=\"drawer\" (contextmenu)=\"rightClick()\">\n    <mat-drawer mode=\"side\" opened>\n        <app-main-menu [selection]=\"selection\"></app-main-menu>\n    </mat-drawer>\n\n\n    <mat-toolbar>\n        <!-- <button mat-button><i class=\"material-icons\">add_circle</i></button>\n        <button mat-button><i class=\"material-icons\">cancel</i></button>\n        <button mat-button><i class=\"material-icons\">pause_circle_filled</i></button>\n        <button mat-button><i class=\"material-icons\">play_circle_filled</i></button>\n        <button mat-button><i class=\"material-icons\">drafts</i></button>\n        <button mat-button><i class=\"material-icons\">swap_vertical_circle</i></button>\n        <button mat-button><i class=\"material-icons\">supervised_user_circle</i></button>\n        <button mat-button><i class=\"material-icons\">description</i></button>\n        <button mat-button><i class=\"material-icons\">save</i></button>\n        <button mat-button><i class=\"material-icons\">ac_unit</i></button>\n        <button mat-button><i class=\"material-icons\">whatshot</i></button>\n        <button mat-button><i class=\"material-icons\">visibility</i></button>\n        <button mat-button><i class=\"material-icons\">face</i></button>\n        <button mat-button><i class=\"material-icons\">receipt</i></button>\n        <button mat-button><i class=\"material-icons\">bug_report</i></button> -->\n        <button mat-button (click)=\"sayHello()\">Say Hello</button>\n        <button mat-button (click)=\"changeName()\">Change name</button>\n        <button mat-button routerLink=\"/test\" (click)=\"expand()\">Router Test</button>\n    </mat-toolbar>\n\n    <div style=\"display: grid; grid-template-rows: 100%; height: 90%;\" [style.grid-template-columns]=\"gridlayout\">\n        <!-- FIXME: standard divs are preferred over mat-card -->\n        <mat-card class=\"card\">\n            <app-tree (emitter)=\"eventListener($event)\"></app-tree>\n        </mat-card>\n\n        <mat-card class=\"card\">\n            <p>{{return}}</p>\n        </mat-card>\n\n        <div>\n            <router-outlet></router-outlet>\n            <button mat-button routerLink=\"/\" (click)=\"unexpand()\">Close</button>\n        </div>\n    </div>\n\n\n\n\n\n</mat-drawer-container>"
+module.exports = "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\n\n<mat-drawer-container autosize class=\"drawer\" (contextmenu)=\"rightClick()\">\n    <mat-drawer mode=\"side\" opened>\n        <app-main-menu></app-main-menu>\n    </mat-drawer>\n\n\n    <mat-toolbar>\n        <!-- <button mat-button><i class=\"material-icons\">add_circle</i></button>\n        <button mat-button><i class=\"material-icons\">cancel</i></button>\n        <button mat-button><i class=\"material-icons\">pause_circle_filled</i></button>\n        <button mat-button><i class=\"material-icons\">play_circle_filled</i></button>\n        <button mat-button><i class=\"material-icons\">drafts</i></button>\n        <button mat-button><i class=\"material-icons\">swap_vertical_circle</i></button>\n        <button mat-button><i class=\"material-icons\">supervised_user_circle</i></button>\n        <button mat-button><i class=\"material-icons\">description</i></button>\n        <button mat-button><i class=\"material-icons\">save</i></button>\n        <button mat-button><i class=\"material-icons\">ac_unit</i></button>\n        <button mat-button><i class=\"material-icons\">whatshot</i></button>\n        <button mat-button><i class=\"material-icons\">visibility</i></button>\n        <button mat-button><i class=\"material-icons\">face</i></button>\n        <button mat-button><i class=\"material-icons\">receipt</i></button>\n        <button mat-button><i class=\"material-icons\">bug_report</i></button> -->\n        <button mat-button (click)=\"sayHello()\">Say Hello</button>\n        <button mat-button (click)=\"changeName()\">Change name</button>\n        <button mat-button routerLink=\"/test\">Router Test</button>\n    </mat-toolbar>\n\n    <div>\n        <!-- FIXME: standard divs are preferred over mat-card -->\n        <div class=\"tree\">\n            <app-tree></app-tree>\n        </div>\n\n        <!-- <mat-card class=\"card\">\n            <p>{{return}}</p>\n        </mat-card> -->\n\n        <div class=\"view\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n\n\n\n\n\n</mat-drawer-container>"
 
 /***/ }),
 
@@ -95,6 +99,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _data_transfer_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./data-transfer.service */ "./src/app/data-transfer.service.ts");
+
 
 
 
@@ -104,7 +110,6 @@ var AppComponent = /** @class */ (function () {
         this.title = 'Test-sb';
         this.return = '';
         this.gridlayout = '50% 50%';
-        this.selection = '';
     }
     AppComponent.prototype.sayHello = function () {
         var _this = this;
@@ -129,23 +134,15 @@ var AppComponent = /** @class */ (function () {
     //   let params = new HttpParams().set("name",'Matteo'); //Create new HttpParams
     //   return this.http.post('http://localhost:2020/changeName', {params: params}).subscribe(data => console.log(data));
     // }
-    AppComponent.prototype.expand = function () {
-        this.gridlayout = '33.3% 33.4% 33.3%';
-    };
-    AppComponent.prototype.unexpand = function () {
-        this.gridlayout = '50% 50%';
-    };
     AppComponent.prototype.rightClick = function () {
         console.log("right click");
         // return false;
-    };
-    AppComponent.prototype.eventListener = function ($event) {
-        this.selection = $event;
     };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-root',
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
+            providers: [_data_transfer_service__WEBPACK_IMPORTED_MODULE_3__["DataTransferService"]],
             styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
@@ -369,6 +366,229 @@ var CloneDialogComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/data-transfer.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/data-transfer.service.ts ***!
+  \******************************************/
+/*! exports provided: DataTransferService, Node */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DataTransferService", function() { return DataTransferService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Node", function() { return Node; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
+
+
+
+var DataTransferService = /** @class */ (function () {
+    function DataTransferService(http) {
+        this.http = http;
+        // selected node name
+        this.selection = '';
+        // last agent that changed status
+        this.name = '';
+        this.container = '';
+        this.state = '';
+        this.TREE_DATA = [];
+        this.needRefresh = new rxjs__WEBPACK_IMPORTED_MODULE_3__["BehaviorSubject"](false);
+        this.refreshStatus = this.needRefresh.asObservable();
+    }
+    DataTransferService.prototype.changeRefreshStatus = function (tf) {
+        this.needRefresh.next(tf);
+    };
+    // Retrive the initial tree, shouldn't be used after initialization
+    // Add or remove nodes from TREE_DATA and use changeRefreshStatus(true)
+    // instead
+    DataTransferService.prototype.getTree = function () {
+        var _this = this;
+        var platform = '';
+        var container = '';
+        var agents = [];
+        return this.http.get('http://localhost:2020/containerName', {
+            responseType: 'text'
+        }).toPromise().then(function (data) {
+            container = data;
+            // console.log(container);
+            return _this.http.get('http://localhost:2020/platformName', {
+                responseType: 'text'
+            }).toPromise().then(function (data) {
+                platform = data;
+                _this.ip = platform;
+                // console.log(platform);
+                return _this.http.get('http://localhost:2020/agentsName').toPromise().then(function (data) {
+                    // console.log(data);
+                    // console.log(typeof data);
+                    var agentlist = [];
+                    for (var i in data) {
+                        agents.push(data[i]);
+                        var ag = new Node(agents[i]);
+                        agentlist.push(ag);
+                    }
+                    var maincontainer = [{
+                            name: container,
+                            childNode: agentlist
+                        }];
+                    var ip = [{
+                            name: platform,
+                            childNode: maincontainer
+                        }];
+                    _this.TREE_DATA.push({
+                        name: 'Agent Platforms',
+                        childNode: ip
+                    });
+                    console.log(_this.TREE_DATA);
+                    return _this.TREE_DATA;
+                    // this.tree.renderNodeChanges(this.TREE_DATA);
+                });
+            });
+        });
+    };
+    DataTransferService.prototype.remove = function () {
+        var _this = this;
+        var i = 0;
+        var j = 0;
+        var m = 0;
+        var n = 0;
+        this.TREE_DATA.forEach(function (node) {
+            _this.TREE_DATA[i].childNode.forEach(function (subnode) {
+                _this.TREE_DATA[i].childNode[j].childNode.forEach(function (subsubnode) {
+                    _this.TREE_DATA[i].childNode[j].childNode[m].childNode.forEach(function (subsubsubnode) {
+                        if (subsubsubnode.name == _this.selection) {
+                            _this.TREE_DATA[i].childNode[j].childNode[m].childNode.splice(n, 1);
+                        }
+                        n++;
+                    });
+                    m++;
+                });
+                j++;
+            });
+            i++;
+        });
+        // console.log(this.TREE_DATA);
+    };
+    DataTransferService.prototype.add = function (name, container) {
+        var _this = this;
+        var i = 0;
+        var j = 0;
+        var m = 0;
+        var existing = false;
+        this.TREE_DATA.forEach(function (node) {
+            _this.TREE_DATA[i].childNode.forEach(function (subnode) {
+                _this.TREE_DATA[i].childNode[j].childNode.forEach(function (subsubnode) {
+                    if (subsubnode.name == container) {
+                        _this.TREE_DATA[i].childNode[j].childNode[m].childNode.forEach(function (subsubsubnode) {
+                            if (subsubsubnode.name.indexOf(name) !== -1) {
+                                existing = true;
+                            }
+                        });
+                        if (existing == false) {
+                            _this.TREE_DATA[i].childNode[j].childNode[m].childNode.push(new Node(name + '@' + _this.ip));
+                        }
+                    }
+                });
+                m++;
+            });
+            j++;
+        });
+        i++;
+    };
+    DataTransferService.prototype.updateFromRemote = function () {
+        var _this = this;
+        this.http.get('http://localhost:2020/update', {
+            responseType: 'text'
+        }).subscribe(function (data) {
+            var n = 0;
+            var value = String(data);
+            var name = '';
+            var container = '';
+            var state = '';
+            while (value.charAt(n) != '?') {
+                name = name.concat(value.charAt(n));
+                n++;
+            }
+            ;
+            n++;
+            while (value.charAt(n) != '?') {
+                container = container.concat(value.charAt(n));
+                n++;
+            }
+            ;
+            n++;
+            while (value.length >= n) {
+                state = state.concat(value.charAt(n));
+                n++;
+            }
+            if (_this.name != name || _this.container != container || _this.state != state) {
+                if (state == "addedd") {
+                    var i = 0;
+                    var j = 0;
+                    var m = 0;
+                    _this.TREE_DATA.forEach(function (node) {
+                        _this.TREE_DATA[i].childNode.forEach(function (subnode) {
+                            _this.TREE_DATA[i].childNode[j].childNode.forEach(function (subsubnode) {
+                                if (subsubnode.name == container) {
+                                    _this.TREE_DATA[i].childNode[j].childNode[m].childNode.push(new Node(name));
+                                }
+                                m++;
+                            });
+                            j++;
+                        });
+                        i++;
+                    });
+                }
+                if (state == "removed") {
+                    var i = 0;
+                    var j = 0;
+                    var m = 0;
+                    n = 0;
+                    _this.TREE_DATA.forEach(function (node) {
+                        _this.TREE_DATA[i].childNode.forEach(function (subnode) {
+                            _this.TREE_DATA[i].childNode[j].childNode.forEach(function (subsubnode) {
+                                _this.TREE_DATA[i].childNode[j].childNode[m].childNode.forEach(function (subsubsubnode) {
+                                    if (subsubsubnode.name == name) {
+                                        _this.TREE_DATA[i].childNode[j].childNode[m].childNode.splice(n, 1);
+                                    }
+                                    n++;
+                                });
+                                m++;
+                            });
+                            j++;
+                        });
+                        i++;
+                    });
+                }
+                _this.name = name;
+                _this.container = container;
+                _this.state = state;
+                _this.changeRefreshStatus(true);
+            }
+        });
+    };
+    DataTransferService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], DataTransferService);
+    return DataTransferService;
+}());
+
+var Node = /** @class */ (function () {
+    function Node(name_, childnode_) {
+        this.name = '';
+        this.name = name_;
+        this.childNode = childnode_;
+    }
+    return Node;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/main-menu/main-menu.component.css":
 /*!***************************************************!*\
   !*** ./src/app/main-menu/main-menu.component.css ***!
@@ -376,7 +596,7 @@ var CloneDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\nmat-expansion-panel p{\n    cursor: pointer;\n}\nmat-expansion-panel p:hover{\n    color: rgb(92, 116, 221);\n    background-color: rgba(1, 1, 1, 0.1);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbWFpbi1tZW51L21haW4tbWVudS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtJQUNJLGVBQWU7QUFDbkI7QUFDQTtJQUNJLHdCQUF3QjtJQUN4QixvQ0FBb0M7QUFDeEMiLCJmaWxlIjoic3JjL2FwcC9tYWluLW1lbnUvbWFpbi1tZW51LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcbm1hdC1leHBhbnNpb24tcGFuZWwgcHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5tYXQtZXhwYW5zaW9uLXBhbmVsIHA6aG92ZXJ7XG4gICAgY29sb3I6IHJnYig5MiwgMTE2LCAyMjEpO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMSwgMSwgMSwgMC4xKTtcbn0iXX0= */"
+module.exports = "mat-expansion-panel{\n    margin:0;\n    border-radius: 0;\n}\nmat-expansion-panel p{\n    cursor: pointer;\n}\nmat-expansion-panel p:hover{\n    color: rgb(92, 116, 221);\n    background-color: rgba(1, 1, 1, 0.1);\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbWFpbi1tZW51L21haW4tbWVudS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksUUFBUTtJQUNSLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0ksZUFBZTtBQUNuQjtBQUNBO0lBQ0ksd0JBQXdCO0lBQ3hCLG9DQUFvQztBQUN4QyIsImZpbGUiOiJzcmMvYXBwL21haW4tbWVudS9tYWluLW1lbnUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIm1hdC1leHBhbnNpb24tcGFuZWx7XG4gICAgbWFyZ2luOjA7XG4gICAgYm9yZGVyLXJhZGl1czogMDtcbn1cbm1hdC1leHBhbnNpb24tcGFuZWwgcHtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG59XG5tYXQtZXhwYW5zaW9uLXBhbmVsIHA6aG92ZXJ7XG4gICAgY29sb3I6IHJnYig5MiwgMTE2LCAyMjEpO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMSwgMSwgMSwgMC4xKTtcbn0iXX0= */"
 
 /***/ }),
 
@@ -387,7 +607,7 @@ module.exports = "\nmat-expansion-panel p{\n    cursor: pointer;\n}\nmat-expansi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-accordion>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    File\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>Close RMA agent</p>\n          <p>Exit this container</p>\n          <p>Shut down AgentPlatform</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Actions\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p (click)=\"startDialog()\">Start new agent</p>\n          <p (click)=\"securityDialog('kill')\">Kill</p>\n          <p (click)=\"securityDialog('suspend')\">Suspend</p>\n          <p (click)=\"securityDialog('resume')\">Resume</p>\n          <!-- <p (click)=\"messageDialog()\">Send message</p> -->\n          <p (click)=\"cloneDialog('Migrate')\">Migrate agent</p>\n          <p (click)=\"cloneDialog('Clone')\">Clone agent</p>\n          <p>Load agent</p>\n          <p (click)=\"securityDialog('save')\">Save agent</p>\n          <p (click)=\"securityDialog('freeze')\">Freeze agent</p>\n          <!-- FIXME: THAW need a container as input, maybe cloneDialog can be used -->\n          <p (click)=\"cloneDialog('Thaw')\">Thaw agent</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Tools\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <!-- WARNING sniffer router need a different name from the sniffer endpoint; snifferRouter is suggested \n               (routerLinking inside typescript) -->\n          <p (click)=\"startSniffer()\">Start sniffer</p>\n          <p (click)=\"startDummy()\">Start dummy agent</p>\n          <p>Show the DF GUI</p>\n          <p (click)=\"startIntrospector()\">Start introspector agent</p>\n          <p (click)=\"startLog()\">Start log manager agent</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Remote Platforms\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>Add platform via AMS AID</p>\n          <p>Add platform via URL</p>\n          <p>View AP description</p>\n          <p>Refresh AP description</p>\n          <p>Remove remote platform</p>\n          <p>Refresh agent list</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Help\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>About Jade</p>\n     </mat-expansion-panel>\n</mat-accordion>"
+module.exports = "<mat-accordion [multi]=\"true\">\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    File\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>Close RMA agent</p>\n          <p>Exit this container</p>\n          <p>Shut down AgentPlatform</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Actions\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p (click)=\"startDialog()\">Start new agent</p>\n          <p (click)=\"securityDialog('kill')\">Kill</p>\n          <p (click)=\"securityDialog('suspend')\">Suspend</p>\n          <p (click)=\"securityDialog('resume')\">Resume</p>\n          <!-- <p (click)=\"messageDialog()\">Send message</p> -->\n          <p (click)=\"cloneDialog('Migrate')\">Migrate agent</p>\n          <p (click)=\"cloneDialog('Clone')\">Clone agent</p>\n          <p>Load agent</p>\n          <p (click)=\"securityDialog('save')\">Save agent</p>\n          <p (click)=\"securityDialog('freeze')\">Freeze agent</p>\n          <!-- FIXME: THAW need a container as input, maybe cloneDialog can be used -->\n          <p (click)=\"cloneDialog('Thaw')\">Thaw agent</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Tools\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <!-- WARNING sniffer router need a different name from the sniffer endpoint; snifferRouter is suggested \n               (routerLinking inside typescript) -->\n          <p (click)=\"startSniffer()\">Start sniffer</p>\n          <p (click)=\"startDummy()\">Start dummy agent</p>\n          <p>Show the DF GUI</p>\n          <p (click)=\"startIntrospector()\">Start introspector agent</p>\n          <p (click)=\"startLog()\">Start log manager agent</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Remote Platforms\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>Add platform via AMS AID</p>\n          <p>Add platform via URL</p>\n          <p>View AP description</p>\n          <p>Refresh AP description</p>\n          <p>Remove remote platform</p>\n          <p>Refresh agent list</p>\n     </mat-expansion-panel>\n     <mat-expansion-panel>\n          <mat-expansion-panel-header>\n               <mat-panel-title>\n                    Help\n               </mat-panel-title>\n          </mat-expansion-panel-header>\n          <p>About Jade</p>\n     </mat-expansion-panel>\n</mat-accordion>"
 
 /***/ }),
 
@@ -409,6 +629,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _security_dialog_security_dialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../security-dialog/security-dialog.component */ "./src/app/security-dialog/security-dialog.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _data_transfer_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../data-transfer.service */ "./src/app/data-transfer.service.ts");
+
 
 
 
@@ -418,43 +640,63 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var MainMenuComponent = /** @class */ (function () {
-    function MainMenuComponent(dialog, snackBar, http, router) {
+    function MainMenuComponent(dialog, snackBar, http, router, dataService) {
         this.dialog = dialog;
         this.snackBar = snackBar;
         this.http = http;
         this.router = router;
-        this.shouldRouterLink = false;
+        this.dataService = dataService;
         this.selection = '';
     }
     MainMenuComponent.prototype.ngOnInit = function () { };
-    MainMenuComponent.prototype.startDialog = function () {
-        this.startDialogRef = this.dialog.open(_start_dialog_start_dialog_component__WEBPACK_IMPORTED_MODULE_3__["StartDialogComponent"]);
+    MainMenuComponent.prototype.checkSelection = function () {
+        this.selection = this.dataService.selection;
     };
-    MainMenuComponent.prototype.cloneDialog = function (title) {
-        this.cloneDialogRef = this.dialog.open(_clone_dialog_clone_dialog_component__WEBPACK_IMPORTED_MODULE_4__["CloneDialogComponent"], {
+    MainMenuComponent.prototype.startDialog = function () {
+        this.startDialogRef = this.dialog.open(_start_dialog_start_dialog_component__WEBPACK_IMPORTED_MODULE_3__["StartDialogComponent"], {
             data: {
-                1: title,
-                2: this.selection
+                1: this.dataService
             }
         });
-        this.snackBar.open("Warning: Some agents might not be able to migrate or be cloned because of lack of serialization support in their implementation. If you are not sure about the  implemementation of this agent, Cancel this operation.", "Dismiss", {
-            duration: 16000,
-        });
+    };
+    MainMenuComponent.prototype.cloneDialog = function (title) {
+        this.checkSelection();
+        if (this.selection.indexOf('@') !== -1 && this.selection != '') {
+            this.cloneDialogRef = this.dialog.open(_clone_dialog_clone_dialog_component__WEBPACK_IMPORTED_MODULE_4__["CloneDialogComponent"], {
+                data: {
+                    1: title,
+                    2: this.selection
+                }
+            });
+            this.snackBar.open("Warning: Some agents might not be able to migrate or be cloned because of lack of serialization support in their implementation. If you are not sure about the  implemementation of this agent, Cancel this operation.", "Dismiss", {
+                duration: 16000,
+            });
+        }
+        else {
+            this.snackBar.open("You must select an agent in the tree", "Dismiss", {
+                duration: 2000,
+            });
+        }
     };
     MainMenuComponent.prototype.securityDialog = function (title) {
+        this.checkSelection();
         this.securityDialogRef = this.dialog.open(_security_dialog_security_dialog_component__WEBPACK_IMPORTED_MODULE_5__["SecurityDialogComponent"], {
             data: {
                 1: title,
-                2: this.selection
+                2: this.selection,
+                3: this.dataService
             }
         });
     };
     MainMenuComponent.prototype.startSniffer = function () {
+        this.checkSelection();
         if (this.selection.indexOf('@') == -1 && this.selection != '') {
             console.log("Starting sniffer on " + this.selection);
             var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]().set("container", this.selection);
-            this.http.get('http://localhost:2020/sniffer', { params: params }).subscribe(function (data) { return console.log(data); });
-            this.router.navigate(['/test']);
+            this.http.get('http://localhost:2020/sniffer', {
+                params: params
+            }).subscribe(function (data) { return console.log(data); });
+            this.router.navigate(['/sniffer']);
         }
         else {
             this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
@@ -463,12 +705,14 @@ var MainMenuComponent = /** @class */ (function () {
         }
     };
     MainMenuComponent.prototype.startDummy = function () {
+        this.checkSelection();
         if (this.selection.indexOf('@') == -1 && this.selection != '') {
-            this.shouldRouterLink = true;
             console.log("Starting dummy on " + this.selection);
             var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]().set("container", this.selection);
-            this.http.get('http://localhost:2020/dummy', { params: params }).subscribe(function (data) { return console.log(data); });
-            this.router.navigate(['/test']);
+            this.http.get('http://localhost:2020/dummy', {
+                params: params
+            }).subscribe(function (data) { return console.log(data); });
+            this.router.navigate(['/dummy']);
         }
         else {
             this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
@@ -477,12 +721,14 @@ var MainMenuComponent = /** @class */ (function () {
         }
     };
     MainMenuComponent.prototype.startIntrospector = function () {
+        this.checkSelection();
         if (this.selection.indexOf('@') == -1 && this.selection != '') {
-            this.shouldRouterLink = true;
             console.log("Starting introspector on " + this.selection);
             var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]().set("container", this.selection);
-            this.http.get('http://localhost:2020/introspector', { params: params }).subscribe(function (data) { return console.log(data); });
-            this.router.navigate(['/test']);
+            this.http.get('http://localhost:2020/introspector', {
+                params: params
+            }).subscribe(function (data) { return console.log(data); });
+            this.router.navigate(['/introspector']);
         }
         else {
             this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
@@ -491,12 +737,14 @@ var MainMenuComponent = /** @class */ (function () {
         }
     };
     MainMenuComponent.prototype.startLog = function () {
+        this.checkSelection();
         if (this.selection.indexOf('@') == -1 && this.selection != '') {
-            this.shouldRouterLink = true;
             console.log("Starting log-manager on " + this.selection);
             var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]().set("container", this.selection);
-            this.http.get('http://localhost:2020/log', { params: params }).subscribe(function (data) { return console.log(data); });
-            this.router.navigate(['/test']);
+            this.http.get('http://localhost:2020/log', {
+                params: params
+            }).subscribe(function (data) { return console.log(data); });
+            this.router.navigate(['/log']);
         }
         else {
             this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
@@ -504,17 +752,13 @@ var MainMenuComponent = /** @class */ (function () {
             });
         }
     };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], MainMenuComponent.prototype, "selection", void 0);
     MainMenuComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-main-menu',
             template: __webpack_require__(/*! ./main-menu.component.html */ "./src/app/main-menu/main-menu.component.html"),
             styles: [__webpack_require__(/*! ./main-menu.component.css */ "./src/app/main-menu/main-menu.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"], _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSnackBar"], _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"], _data_transfer_service__WEBPACK_IMPORTED_MODULE_8__["DataTransferService"]])
     ], MainMenuComponent);
     return MainMenuComponent;
 }());
@@ -574,27 +818,48 @@ var SecurityDialogComponent = /** @class */ (function () {
         console.log(this.data);
         this.title = this.data[1];
         this.selection = this.data[2];
+        this.dataService = this.data[3];
     };
     SecurityDialogComponent.prototype.send = function () {
+        var _this = this;
         console.log(this.selection);
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]().set("name", this.selection);
         if (this.title == 'kill') {
-            this.http.get('http://localhost:2020/kill', { params: params }).subscribe(function (data) { return console.log(data); });
+            this.http.get('http://localhost:2020/kill', {
+                params: params, observe: 'response'
+            }).subscribe(function (data) {
+                console.log(data);
+                if (data.statusText == "OK") {
+                    _this.dataService.remove();
+                    _this.dataService.changeRefreshStatus(true);
+                }
+                ;
+            });
         }
         else if (this.title == 'suspend') {
-            this.http.get('http://localhost:2020/suspend', { params: params }).subscribe(function (data) { return console.log(data); });
+            this.http.get('http://localhost:2020/suspend', {
+                params: params
+            }).subscribe(function (data) { return console.log(data); });
         }
         else if (this.title == 'resume') {
-            this.http.get('http://localhost:2020/resume', { params: params }).subscribe(function (data) { return console.log(data); });
+            this.http.get('http://localhost:2020/resume', {
+                params: params
+            }).subscribe(function (data) { return console.log(data); });
         }
         else if (this.title == 'freeze') {
-            this.http.get('http://localhost:2020/freeze', { params: params }).subscribe(function (data) { return console.log(data); });
+            this.http.get('http://localhost:2020/freeze', {
+                params: params
+            }).subscribe(function (data) { return console.log(data); });
         }
         else if (this.title == 'thaw') {
-            this.http.get('http://localhost:2020/thaw', { params: params }).subscribe(function (data) { return console.log(data); });
+            this.http.get('http://localhost:2020/thaw', {
+                params: params
+            }).subscribe(function (data) { return console.log(data); });
         }
         else if (this.title == 'save') {
-            this.http.get('http://localhost:2020/save', { params: params }).subscribe(function (data) { return console.log(data); });
+            this.http.get('http://localhost:2020/save', {
+                params: params
+            }).subscribe(function (data) { return console.log(data); });
         }
         this.dialogRef.close();
     };
@@ -668,12 +933,24 @@ var StartDialogComponent = /** @class */ (function () {
         this.own = '';
         this.cont = 'MainContainer';
     }
-    StartDialogComponent.prototype.ngOnInit = function () { };
+    StartDialogComponent.prototype.ngOnInit = function () {
+        console.log(this.data);
+        this.dataService = this.data[1];
+    };
     StartDialogComponent.prototype.send = function () {
+        var _this = this;
         var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpParams"]().set("name", this.name).set("clas", this.clas).set("args", this.args).set("owner", this.own).set("container", this.cont);
         this.http.get('http://localhost:2020/start', {
-            params: params
-        }).subscribe(function (data) { return console.log(data); });
+            params: params, observe: 'response'
+        }).subscribe(function (data) {
+            console.log(data);
+            if (data.statusText == "OK") {
+                // this.dataService.add();
+                _this.dataService.add(_this.name, _this.cont);
+                _this.dataService.changeRefreshStatus(true);
+            }
+            ;
+        });
         this.dialogRef.close();
     };
     StartDialogComponent.prototype.cancel = function () {
@@ -702,7 +979,7 @@ var StartDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Rlc3QvdGVzdC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "mat-toolbar{\n    position: absolute;\n    top: 0;\n}\nbutton{\n    padding-left: 6px;\n    padding-right: 6px;\n    min-width: 0px;\n    margin: 0 6px;\n}\nmat-toolbar button{\n    background-color: rgb(92, 116, 221);\n    color: white;\n}\n#close{\n    background-color: rgba(255, 0, 0, 0.6);\n    color: white;\n}\n#other{\n    border: 3px solid black;\n}\n.sniffed{\n    padding: 8px;\n    background-color: gray;\n    color: white;\n    margin: 12px;\n    display: inline-flex;\n    border: 3px solid deeppink;\n}\n.showed{\n    padding: 8px;\n    background-color: gray;\n    color: white;\n    margin: 12px;\n    display: inline-flex;\n    border: 3px solid orange;\n}\n.dummyControl{\n    width: 40%;\n    border: 1px solid black;\n    display: inline-block;\n    text-align: center;\n    min-height: 800px;\n}\n.dummyMessages{\n    width: calc(60% - 22px);\n    border: 1px solid black;\n    display: inline-block;\n    min-height: 800px;\n}\n.dualSelector{\n    display: inline;\n    border: 1px solid gray;\n    text-align: center;\n    padding: 0 6px;\n}\n.introspectorGrid{\n    display: grid;\n    grid-template-areas:\n      'in in in out out out'\n      'st be be be  be  be';\n    grid-gap: 10px;\n    min-height: 800px;\n}\n.intrGridElement{\n    border: 2px solid gray;\n}\n#item1{\n    text-align: center;\n    grid-area: in;\n}\n#item2{\n    text-align: center;\n    grid-area: out;\n}\n#item3{\n    text-align: center;\n    grid-area: st;\n}\n#item4{\n    text-align: center;\n    grid-area: be;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGVzdC90ZXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxrQkFBa0I7SUFDbEIsTUFBTTtBQUNWO0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsa0JBQWtCO0lBQ2xCLGNBQWM7SUFDZCxhQUFhO0FBQ2pCO0FBQ0E7SUFDSSxtQ0FBbUM7SUFDbkMsWUFBWTtBQUNoQjtBQUNBO0lBQ0ksc0NBQXNDO0lBQ3RDLFlBQVk7QUFDaEI7QUFHQTtJQUNJLHVCQUF1QjtBQUMzQjtBQUNBO0lBQ0ksWUFBWTtJQUNaLHNCQUFzQjtJQUN0QixZQUFZO0lBQ1osWUFBWTtJQUNaLG9CQUFvQjtJQUNwQiwwQkFBMEI7QUFDOUI7QUFDQTtJQUNJLFlBQVk7SUFDWixzQkFBc0I7SUFDdEIsWUFBWTtJQUNaLFlBQVk7SUFDWixvQkFBb0I7SUFDcEIsd0JBQXdCO0FBQzVCO0FBSUE7SUFDSSxVQUFVO0lBQ1YsdUJBQXVCO0lBQ3ZCLHFCQUFxQjtJQUNyQixrQkFBa0I7SUFDbEIsaUJBQWlCO0FBQ3JCO0FBQ0E7SUFDSSx1QkFBdUI7SUFDdkIsdUJBQXVCO0lBQ3ZCLHFCQUFxQjtJQUNyQixpQkFBaUI7QUFDckI7QUFDQTtJQUNJLGVBQWU7SUFDZixzQkFBc0I7SUFDdEIsa0JBQWtCO0lBQ2xCLGNBQWM7QUFDbEI7QUFJQTtJQUNJLGFBQWE7SUFDYjs7MkJBRXVCO0lBQ3ZCLGNBQWM7SUFDZCxpQkFBaUI7QUFDckI7QUFDQTtJQUNJLHNCQUFzQjtBQUMxQjtBQUNBO0lBQ0ksa0JBQWtCO0lBQ2xCLGFBQWE7QUFDakI7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixjQUFjO0FBQ2xCO0FBQ0E7SUFDSSxrQkFBa0I7SUFDbEIsYUFBYTtBQUNqQjtBQUNBO0lBQ0ksa0JBQWtCO0lBQ2xCLGFBQWE7QUFDakIiLCJmaWxlIjoic3JjL2FwcC90ZXN0L3Rlc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIm1hdC10b29sYmFye1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB0b3A6IDA7XG59XG5idXR0b257XG4gICAgcGFkZGluZy1sZWZ0OiA2cHg7XG4gICAgcGFkZGluZy1yaWdodDogNnB4O1xuICAgIG1pbi13aWR0aDogMHB4O1xuICAgIG1hcmdpbjogMCA2cHg7XG59XG5tYXQtdG9vbGJhciBidXR0b257XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDkyLCAxMTYsIDIyMSk7XG4gICAgY29sb3I6IHdoaXRlO1xufVxuI2Nsb3Nle1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAwLCAwLCAwLjYpO1xuICAgIGNvbG9yOiB3aGl0ZTtcbn1cblxuXG4jb3RoZXJ7XG4gICAgYm9yZGVyOiAzcHggc29saWQgYmxhY2s7XG59XG4uc25pZmZlZHtcbiAgICBwYWRkaW5nOiA4cHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZ3JheTtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgbWFyZ2luOiAxMnB4O1xuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xuICAgIGJvcmRlcjogM3B4IHNvbGlkIGRlZXBwaW5rO1xufVxuLnNob3dlZHtcbiAgICBwYWRkaW5nOiA4cHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogZ3JheTtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgbWFyZ2luOiAxMnB4O1xuICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xuICAgIGJvcmRlcjogM3B4IHNvbGlkIG9yYW5nZTtcbn1cblxuXG5cbi5kdW1teUNvbnRyb2x7XG4gICAgd2lkdGg6IDQwJTtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIG1pbi1oZWlnaHQ6IDgwMHB4O1xufVxuLmR1bW15TWVzc2FnZXN7XG4gICAgd2lkdGg6IGNhbGMoNjAlIC0gMjJweCk7XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIG1pbi1oZWlnaHQ6IDgwMHB4O1xufVxuLmR1YWxTZWxlY3RvcntcbiAgICBkaXNwbGF5OiBpbmxpbmU7XG4gICAgYm9yZGVyOiAxcHggc29saWQgZ3JheTtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgcGFkZGluZzogMCA2cHg7XG59XG5cblxuXG4uaW50cm9zcGVjdG9yR3JpZHtcbiAgICBkaXNwbGF5OiBncmlkO1xuICAgIGdyaWQtdGVtcGxhdGUtYXJlYXM6XG4gICAgICAnaW4gaW4gaW4gb3V0IG91dCBvdXQnXG4gICAgICAnc3QgYmUgYmUgYmUgIGJlICBiZSc7XG4gICAgZ3JpZC1nYXA6IDEwcHg7XG4gICAgbWluLWhlaWdodDogODAwcHg7XG59XG4uaW50ckdyaWRFbGVtZW50e1xuICAgIGJvcmRlcjogMnB4IHNvbGlkIGdyYXk7XG59XG4jaXRlbTF7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGdyaWQtYXJlYTogaW47XG59XG4jaXRlbTJ7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIGdyaWQtYXJlYTogb3V0O1xufVxuI2l0ZW0ze1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBncmlkLWFyZWE6IHN0O1xufVxuI2l0ZW00e1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBncmlkLWFyZWE6IGJlO1xufVxuIl19 */"
 
 /***/ }),
 
@@ -713,7 +990,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<mat-card class=\"card\">\n    <p>\n      test works!\n    </p>\n</mat-card>\n\n"
+module.exports = "\n<div>\n    <mat-toolbar>\n        <button mat-button routerLink=\"/\" id=\"close\">Close</button>\n\n        <span *ngIf=\"isSniffer\">\n            <button mat-button>Clear</button>\n            <button mat-button>Open</button>\n            <button mat-button>Save</button>\n            <button mat-button>Write</button>\n            <button mat-button (click)=\"addSniffed()\">Do Sniff</button>\n            <button mat-button (click)=\"removeSniffed()\">Don't Sniff</button>\n            <button mat-button (click)=\"addShowed()\">Show only</button>\n        </span>\n\n        <span *ngIf=\"isLog\">\n            <button mat-button>Set default logging</button>\n            <button mat-button>Start log</button>\n            <button mat-button>Stop log</button>\n        </span>\n\n        <span *ngIf=\"isDummy\">\n            <button mat-button>Reset</button>\n            <button mat-button>Send</button>\n            <button mat-button>Open</button>\n            <button mat-button>Save</button>\n            <button mat-button>Open queue</button>\n            <button mat-button>Save queue</button>\n            <button mat-button>Set as current</button>\n            <button mat-button>Reply</button>\n            <button mat-button>View</button>\n            <button mat-button>Delete</button>\n        </span>\n\n        <span *ngIf=\"isIntrospector\">\n            <button mat-button>Debug On</button>\n            <button mat-button>Debug Off</button>\n            <button mat-button>Step</button>\n            <button mat-button>Break</button>\n            <button mat-button>Slow</button>\n            <button mat-button>Go</button>\n        </span>\n\n                \n\n    </mat-toolbar>\n    <div *ngIf=\"isSniffer\">\n        <div class=\"sniffed\" id=\"other\">\n            Other\n        </div>\n        <div class=\"sniffed\" *ngFor=\"let agent of sniffed\">\n            {{agent}}\n        </div>\n        <div class=\"showed\" *ngFor=\"let agent of showed\">\n            {{agent}}\n        </div>\n    </div>\n\n    <div *ngIf=\"isDummy\">\n        <div class=\"dummyControl\">\n            <div class=\"dualSelector\">\n                ACL Message\n            </div>\n            <div class=\"dualSelector\">\n                Envelope\n            </div>\n        </div>\n        <div class=\"dummyMessages\">\n            <p>Testo di prova</p>\n        </div>\n    </div>\n\n    <p *ngIf=\"isLog\">\n        Log works!\n    </p>\n\n    <div *ngIf=\"isIntrospector\" class=\"introspectorGrid\">\n        <div class=\"intrGridElement\" id=\"item1\">\n            <p>Incoming Messages</p>\n            <div class=\"dualSelector\">\n                Pending\n            </div>\n            <div class=\"dualSelector\">\n                Received\n            </div>\n        </div>\n        <div class=\"intrGridElement\" id=\"item2\">\n            <p>Outgoing Messages</p>\n            <div class=\"dualSelector\">\n                Pending\n            </div>\n            <div class=\"dualSelector\">\n                Received\n            </div>\n        </div>\n        <div class=\"intrGridElement\" id=\"item3\">\n            Current State\n        </div>\n        <div class=\"intrGridElement\" id=\"item4\">\n            Behaviours\n        </div>\n    </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -729,19 +1006,108 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TestComponent", function() { return TestComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _data_transfer_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data-transfer.service */ "./src/app/data-transfer.service.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+
+
+
 
 
 var TestComponent = /** @class */ (function () {
-    function TestComponent() {
+    function TestComponent(route, dataService, snackBar) {
+        this.route = route;
+        this.dataService = dataService;
+        this.snackBar = snackBar;
+        this.isSniffer = false;
+        this.isDummy = false;
+        this.isIntrospector = false;
+        this.isLog = false;
+        this.sniffed = [];
+        this.showed = [];
     }
-    TestComponent.prototype.ngOnInit = function () { };
+    TestComponent.prototype.ngOnInit = function () {
+        var name;
+        this.route.data.subscribe(function (data) { return name = data['name']; });
+        console.log(name);
+        if (name == 'sniffer') {
+            this.isSniffer = true;
+            this.isDummy = false;
+            this.isIntrospector = false;
+            this.isLog = false;
+        }
+        else if (name == 'dummy') {
+            this.isDummy = true;
+            this.isSniffer = false;
+            this.isIntrospector = false;
+            this.isLog = false;
+        }
+        else if (name == 'introspector') {
+            this.isIntrospector = true;
+            this.isSniffer = false;
+            this.isDummy = false;
+            this.isLog = false;
+        }
+        else if (name == 'log-manager') {
+            this.isLog = true;
+            this.isSniffer = false;
+            this.isDummy = false;
+            this.isIntrospector = false;
+        }
+    };
+    TestComponent.prototype.addSniffed = function () {
+        var selection = '';
+        var index = this.dataService.selection.indexOf('@');
+        if (index != -1) {
+            for (var i = 0; i < index; i++) {
+                selection = selection.concat(this.dataService.selection.charAt(i));
+            }
+            this.sniffed.push(selection);
+        }
+        else {
+            this.snackBar.open("You must select an agent from the tree", "Dismiss", {
+                duration: 4000,
+            });
+        }
+    };
+    TestComponent.prototype.removeSniffed = function () {
+        var selection = '';
+        var index = this.dataService.selection.indexOf('@');
+        if (index != -1) {
+            for (var i = 0; i < index; i++) {
+                selection = selection.concat(this.dataService.selection.charAt(i));
+            }
+            this.showed = this.showed.filter(function (obj) { return obj !== selection; });
+            this.sniffed = this.sniffed.filter(function (obj) { return obj !== selection; });
+        }
+        else {
+            this.snackBar.open("You must select an agent from the tree", "Dismiss", {
+                duration: 4000,
+            });
+        }
+    };
+    TestComponent.prototype.addShowed = function () {
+        var selection = '';
+        var index = this.dataService.selection.indexOf('@');
+        if (index != -1) {
+            for (var i = 0; i < index; i++) {
+                selection = selection.concat(this.dataService.selection.charAt(i));
+            }
+            this.showed.push(selection);
+        }
+        else {
+            this.snackBar.open("You must select an agent from the tree", "Dismiss", {
+                duration: 4000,
+            });
+        }
+    };
     TestComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-test',
             template: __webpack_require__(/*! ./test.component.html */ "./src/app/test/test.component.html"),
             styles: [__webpack_require__(/*! ./test.component.css */ "./src/app/test/test.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"], _data_transfer_service__WEBPACK_IMPORTED_MODULE_3__["DataTransferService"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSnackBar"]])
     ], TestComponent);
     return TestComponent;
 }());
@@ -757,7 +1123,7 @@ var TestComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".example-tree-invisible {\n    display: none;\n  }\n  \n  .example-tree ul,\n  .example-tree li {\n    margin-top: 0;\n    margin-bottom: 0;\n    list-style-type: none;\n  }\n  \n  .example-tree-node {\n    display: block;\n  }\n  \n  .example-tree-node .example-tree-node {\n    padding-left: 40px;\n  }\n  \n  .example-tree-progress-bar {\n    margin-left: 30px;\n  }\n  \n  .example-tree-nested-node {\n    padding-left: 30px;\n  }\n  \n  /* span:focus{\n      outline: none;\n  } */\n  \n  span{\n      cursor: pointer;\n      border: 5px solid transparent;\n      padding-right: 3px;\n  }\n  \n  .focusClass{\n    background-color: rgb(92, 116, 221);\n    color: white;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdHJlZS90cmVlLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0VBQ2Y7O0VBRUE7O0lBRUUsYUFBYTtJQUNiLGdCQUFnQjtJQUNoQixxQkFBcUI7RUFDdkI7O0VBQ0E7SUFDRSxjQUFjO0VBQ2hCOztFQUVBO0lBQ0Usa0JBQWtCO0VBQ3BCOztFQUVBO0lBQ0UsaUJBQWlCO0VBQ25COztFQUVBO0lBQ0Usa0JBQWtCO0VBQ3BCOztFQUVBOztLQUVHOztFQUNIO01BQ0ksZUFBZTtNQUNmLDZCQUE2QjtNQUM3QixrQkFBa0I7RUFDdEI7O0VBQ0E7SUFDRSxtQ0FBbUM7SUFDbkMsWUFBWTtFQUNkIiwiZmlsZSI6InNyYy9hcHAvdHJlZS90cmVlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZXhhbXBsZS10cmVlLWludmlzaWJsZSB7XG4gICAgZGlzcGxheTogbm9uZTtcbiAgfVxuICBcbiAgLmV4YW1wbGUtdHJlZSB1bCxcbiAgLmV4YW1wbGUtdHJlZSBsaSB7XG4gICAgbWFyZ2luLXRvcDogMDtcbiAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIGxpc3Qtc3R5bGUtdHlwZTogbm9uZTtcbiAgfVxuICAuZXhhbXBsZS10cmVlLW5vZGUge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG4gIFxuICAuZXhhbXBsZS10cmVlLW5vZGUgLmV4YW1wbGUtdHJlZS1ub2RlIHtcbiAgICBwYWRkaW5nLWxlZnQ6IDQwcHg7XG4gIH1cblxuICAuZXhhbXBsZS10cmVlLXByb2dyZXNzLWJhciB7XG4gICAgbWFyZ2luLWxlZnQ6IDMwcHg7XG4gIH1cbiAgXG4gIC5leGFtcGxlLXRyZWUtbmVzdGVkLW5vZGUge1xuICAgIHBhZGRpbmctbGVmdDogMzBweDtcbiAgfVxuXG4gIC8qIHNwYW46Zm9jdXN7XG4gICAgICBvdXRsaW5lOiBub25lO1xuICB9ICovXG4gIHNwYW57XG4gICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgICBib3JkZXI6IDVweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICAgIHBhZGRpbmctcmlnaHQ6IDNweDtcbiAgfVxuICAuZm9jdXNDbGFzc3tcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoOTIsIDExNiwgMjIxKTtcbiAgICBjb2xvcjogd2hpdGU7XG4gIH0iXX0= */"
+module.exports = ".example-tree-invisible {\n    display: none;\n  }\n  \n  .example-tree ul,\n  .example-tree li {\n    margin-top: 0;\n    margin-bottom: 0;\n    list-style-type: none;\n  }\n  \n  .example-tree-node {\n    display: block;\n  }\n  \n  .example-tree-node .example-tree-node {\n    padding-left: 40px;\n  }\n  \n  .example-tree-progress-bar {\n    margin-left: 30px;\n  }\n  \n  .example-tree-nested-node {\n    padding-left: 30px;\n  }\n  \n  /* span:focus{\n      outline: none;\n  } */\n  \n  span{\n      cursor: pointer;\n      border: 5px solid transparent;\n      padding-right: 8px;\n  }\n  \n  .focusClass{\n    background-color: rgb(92, 116, 221);\n    color: white;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdHJlZS90cmVlLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxhQUFhO0VBQ2Y7O0VBRUE7O0lBRUUsYUFBYTtJQUNiLGdCQUFnQjtJQUNoQixxQkFBcUI7RUFDdkI7O0VBQ0E7SUFDRSxjQUFjO0VBQ2hCOztFQUVBO0lBQ0Usa0JBQWtCO0VBQ3BCOztFQUVBO0lBQ0UsaUJBQWlCO0VBQ25COztFQUVBO0lBQ0Usa0JBQWtCO0VBQ3BCOztFQUVBOztLQUVHOztFQUNIO01BQ0ksZUFBZTtNQUNmLDZCQUE2QjtNQUM3QixrQkFBa0I7RUFDdEI7O0VBQ0E7SUFDRSxtQ0FBbUM7SUFDbkMsWUFBWTtFQUNkIiwiZmlsZSI6InNyYy9hcHAvdHJlZS90cmVlLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuZXhhbXBsZS10cmVlLWludmlzaWJsZSB7XG4gICAgZGlzcGxheTogbm9uZTtcbiAgfVxuICBcbiAgLmV4YW1wbGUtdHJlZSB1bCxcbiAgLmV4YW1wbGUtdHJlZSBsaSB7XG4gICAgbWFyZ2luLXRvcDogMDtcbiAgICBtYXJnaW4tYm90dG9tOiAwO1xuICAgIGxpc3Qtc3R5bGUtdHlwZTogbm9uZTtcbiAgfVxuICAuZXhhbXBsZS10cmVlLW5vZGUge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG4gIFxuICAuZXhhbXBsZS10cmVlLW5vZGUgLmV4YW1wbGUtdHJlZS1ub2RlIHtcbiAgICBwYWRkaW5nLWxlZnQ6IDQwcHg7XG4gIH1cblxuICAuZXhhbXBsZS10cmVlLXByb2dyZXNzLWJhciB7XG4gICAgbWFyZ2luLWxlZnQ6IDMwcHg7XG4gIH1cbiAgXG4gIC5leGFtcGxlLXRyZWUtbmVzdGVkLW5vZGUge1xuICAgIHBhZGRpbmctbGVmdDogMzBweDtcbiAgfVxuXG4gIC8qIHNwYW46Zm9jdXN7XG4gICAgICBvdXRsaW5lOiBub25lO1xuICB9ICovXG4gIHNwYW57XG4gICAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgICBib3JkZXI6IDVweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICAgIHBhZGRpbmctcmlnaHQ6IDhweDtcbiAgfVxuICAuZm9jdXNDbGFzc3tcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoOTIsIDExNiwgMjIxKTtcbiAgICBjb2xvcjogd2hpdGU7XG4gIH0iXX0= */"
 
 /***/ }),
 
@@ -786,7 +1152,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/cdk/collections */ "./node_modules/@angular/cdk/esm5/collections.es5.js");
 /* harmony import */ var _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/cdk/tree */ "./node_modules/@angular/cdk/esm5/tree.es5.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _data_transfer_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../data-transfer.service */ "./src/app/data-transfer.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 
 
 
@@ -794,110 +1161,67 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var TreeComponent = /** @class */ (function () {
-    function TreeComponent(http) {
+    function TreeComponent(dataService, http) {
+        this.dataService = dataService;
         this.http = http;
         this.VOID_DATA = [];
-        this.TREE_DATA = [];
         this.treeControl = new _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_3__["NestedTreeControl"](function (node) { return node.childNode; });
-        this.dataSource = new _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_2__["ArrayDataSource"](this.TREE_DATA);
-        this.platform = '';
-        this.container = '';
-        this.agents = [];
+        this.dataSource = new _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_2__["ArrayDataSource"](this.dataService.TREE_DATA);
+        this.TREE_DATA = [];
+        // FIXME: unecessary
         this.selected = '';
-        this.emitter = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.hasChild = function (_, node) { return !!node.childNode && node.childNode.length > 0; };
     }
     TreeComponent.prototype.ngOnInit = function () {
-        this.populateTree();
+        var _this = this;
+        this.dataService.getTree().then(function (protoTree) {
+            _this.TREE_DATA = protoTree;
+            _this.tree.renderNodeChanges(_this.TREE_DATA);
+        });
+        this.dataService.refreshStatus.subscribe(function (status) {
+            if (status == true) {
+                _this.tree.renderNodeChanges(_this.VOID_DATA);
+                _this.tree.renderNodeChanges(_this.dataService.TREE_DATA);
+            }
+        });
+        this.interval = setInterval(function () {
+            _this.dataService.updateFromRemote();
+        }, 5000);
     };
     TreeComponent.prototype.focus = function (selected_) {
         this.selected = selected_;
-        // any time there is a click on the tree, the event is sent to parent component
-        this.emitter.emit(this.selected);
-        // FIXME: also on every click the tree is updated
-    };
-    TreeComponent.prototype.populateTree = function () {
-        var _this = this;
-        this.http.get('http://localhost:2020/containerName', {
-            responseType: 'text'
-        }).subscribe(function (data) {
-            _this.container = data;
-            console.log(_this.container);
-            _this.http.get('http://localhost:2020/platformName', {
-                responseType: 'text'
-            }).subscribe(function (data) {
-                _this.platform = data;
-                console.log(_this.platform);
-                _this.http.get('http://localhost:2020/agentsName').subscribe(function (data) {
-                    console.log(data);
-                    console.log(typeof data);
-                    var agentlist = [];
-                    for (var i in data) {
-                        _this.agents.push(data[i]);
-                        var ag = new Node(_this.agents[i]);
-                        agentlist.push(ag);
-                    }
-                    var maincontainer = [{
-                            name: _this.container,
-                            childNode: agentlist
-                        }];
-                    var ip = [{
-                            name: _this.platform,
-                            childNode: maincontainer
-                        }];
-                    _this.TREE_DATA.push({
-                        name: 'Agent Platforms',
-                        childNode: ip
-                    });
-                    _this.tree.renderNodeChanges(_this.TREE_DATA);
-                });
-            });
-        });
+        // any time there is a click on the tree, the selected element is stored in a DataTransferService
+        this.dataService.selection = this.selected;
     };
     TreeComponent.prototype.addContainer = function () {
+        this.dataService.updateFromRemote();
         // METODO DI PROVA PER VERIFICARE LA POSSIBILITA DI AGGIORNARE L'ALBERO
-        var agentlist = [{
-                name: '3'
-            }, {
-                name: '4'
-            }];
-        var newcontainer = {
-            name: 'Second Container',
-            childNode: agentlist
-        };
-        this.TREE_DATA[0].childNode[0].childNode.push(newcontainer);
-        // rendering VOID_DATA is necessary to actually render the modified TREE_DATA
-        this.tree.renderNodeChanges(this.VOID_DATA);
-        this.tree.renderNodeChanges(this.TREE_DATA);
-        console.log(this.TREE_DATA);
+        // let agentlist: Node[] = [{
+        //     name: '3'
+        // }, {
+        //     name: '4'
+        // }];
+        // let newcontainer: Node = {
+        //     name: 'Second Container',
+        //     childNode: agentlist
+        // };
+        // this.dataService.TREE_DATA[0].childNode[0].childNode.push(newcontainer);
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('tree'),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], TreeComponent.prototype, "tree", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], TreeComponent.prototype, "emitter", void 0);
     TreeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-tree',
             template: __webpack_require__(/*! ./tree.component.html */ "./src/app/tree/tree.component.html"),
             styles: [__webpack_require__(/*! ./tree.component.css */ "./src/app/tree/tree.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_data_transfer_service__WEBPACK_IMPORTED_MODULE_4__["DataTransferService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"]])
     ], TreeComponent);
     return TreeComponent;
 }());
 
-var Node = /** @class */ (function () {
-    function Node(name_, childnode_) {
-        this.name = '';
-        this.name = name_;
-        this.childNode = childnode_;
-    }
-    return Node;
-}());
 
 
 /***/ }),
