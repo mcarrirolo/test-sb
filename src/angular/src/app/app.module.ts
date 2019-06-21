@@ -10,9 +10,10 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
 import { StartDialogComponent } from './start-dialog/start-dialog.component'
 import { CloneDialogComponent } from './clone-dialog/clone-dialog.component'; 
 import { SecurityDialogComponent } from './security-dialog/security-dialog.component';
+import { TreeComponent } from './tree/tree.component'; 
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material';
+import {MatButtonModule, MatTooltipModule} from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 import {MatSidenavModule} from '@angular/material/sidenav'; 
 import {MatExpansionModule} from '@angular/material/expansion'; 
@@ -24,8 +25,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {CdkTreeModule} from '@angular/cdk/tree';
-import { TreeComponent } from './tree/tree.component'; 
 import {MatIconModule} from '@angular/material/icon'; 
+import {MatSelectModule} from '@angular/material/select'; 
 
 
 @NgModule({
@@ -57,6 +58,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatSnackBarModule,
     CdkTreeModule,
     MatIconModule,
+    MatTooltipModule,
+    MatSelectModule,
   ],
   entryComponents: [StartDialogComponent,
                     CloneDialogComponent,

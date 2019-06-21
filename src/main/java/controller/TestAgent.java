@@ -3,31 +3,32 @@
  */
 package controller;
 
-import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Vector;
 
 import jade.content.lang.sl.SLCodec;
 import jade.core.AID;
-import jade.core.Agent;
 import jade.core.ContainerID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.AMSService;
+import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPANames;
 import jade.domain.FIPAAgentManagement.AMSAgentDescription;
+import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.SearchConstraints;
+import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.introspection.AMSSubscriber;
-import jade.domain.introspection.AddedContainer;
-import jade.domain.introspection.BornAgent;
 import jade.domain.introspection.DeadAgent;
 import jade.domain.introspection.Event;
-import jade.domain.introspection.IntrospectionVocabulary;
-import jade.domain.introspection.RemovedContainer;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import jade.proto.SimpleAchieveREInitiator;
 import jade.tools.ToolAgent;
+import jade.tools.logging.JavaLoggingLogManagerImpl;
+import jade.tools.logging.LogManager;
+import jade.tools.logging.ontology.LoggerInfo;
+import jade.util.leap.List;
 import jade.wrapper.ControllerException;
 
 /**
@@ -37,10 +38,16 @@ import jade.wrapper.ControllerException;
  */
 public class TestAgent extends ToolAgent implements ITestAgent {
 
-    static int snifferCounter = 0;
-    static int dummyCounter = 0;
-    static int logCounter = 0;
-    static int introspectorCounter = 0;
+    int snifferCounter = 0;
+    int dummyCounter = 0;
+    int logCounter = 0;
+    int introspectorCounter = 0;
+
+    // Sniffer message list
+    static public Vector<String> ml = new Vector<String>();
+
+    // Log Manager log list
+    static public Vector<Object> ll = new Vector<Object>();
 
     /*
      * Il setup è il primo metodo ad essere eseguito quando l'agente viene creato.
@@ -53,14 +60,33 @@ public class TestAgent extends ToolAgent implements ITestAgent {
     @Override
     protected void toolSetup() {
 
+
+
+        DFAgentDescription dfd = new DFAgentDescription();
+        ServiceDescription sd = new ServiceDescription();
+        dfd.setName(getAID());
+        sd.setName("Graphic User Interface Managing Service");
+        sd.setType("A service capable of managing the interactions with the GUI");
+        dfd.addServices(sd);
+        try{
+            DFService.register(this, dfd);
+        }
+        catch(FIPAException fe){
+            fe.printStackTrace();
+        }
+
+
+
+
+
         // Serve per ricevere notifica degli eventi da parte di AMS
-        AMSSubscriber subscriber = new AMSSubscriber(){
-            protected void installHandlers(Map handlers){
+        AMSSubscriber subscriber = new AMSSubscriber() {
+            protected void installHandlers(Map handlers) {
             }
         };
         addBehaviour(subscriber);
 
-        
+
         // super.setup();
         System.out.println(this.getLocalName() + " was born");
 
@@ -72,21 +98,21 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         // semplificando, viene eseguito in continuazione)
         addBehaviour(new CyclicBehaviour() {
 
-            EventHandler Eh = new EventHandler(){
-            public void handle(Event ev) {
-                DeadAgent da = (DeadAgent)ev;
-                ContainerID cid = da.getWhere();
-                // ContainerID is null in case of foreign agents registered with the local AMS or virtual agents
-                if (cid != null) {
-                    String container = cid.getName();
-                    AID agent = da.getAgent();
-                    System.out.println("\"\n" + "\"\n" + container + agent.toString() +  "\"\n" + "\"\n");
-                    // myGUI.removeAgent(container, agent);
+            EventHandler Eh = new EventHandler() {
+                public void handle(Event ev) {
+                    DeadAgent da = (DeadAgent) ev;
+                    ContainerID cid = da.getWhere();
+                    // ContainerID is null in case of foreign agents registered with the local AMS
+                    // or virtual agents
+                    if (cid != null) {
+                        String container = cid.getName();
+                        AID agent = da.getAgent();
+                        System.out.println("\"\n" + "\"\n" + container + agent.toString() + "\"\n" + "\"\n");
+                        // myGUI.removeAgent(container, agent);
+                    }
                 }
-            }};
+            };
             MessageTemplate tmpl = MessageTemplate.MatchPerformative(ACLMessage.INFORM);
-
-
 
             // FIXME: quando è lui a richiedere l'esecuzione di un comando
             // non è in grado di ricevere il messaggio proveniente da AMSSubscriber
@@ -128,32 +154,34 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         });
     }
 
-
     private Vector<String[]> changedAgents = new Vector<String[]>();
-    // Il parser determina il contenuto del messaggio ricevuto tramite l'AMSSubscriber
-    // tiene dunque conto della creazione/distruzione degli ultimi agenti in un vector
-    private void parse(ACLMessage msg){
+
+    // Il parser determina il contenuto del messaggio ricevuto tramite
+    // l'AMSSubscriber
+    // tiene dunque conto della creazione/distruzione degli ultimi agenti in un
+    // vector
+    private void parse(ACLMessage msg) {
         String[] lastAgent = new String[4]; // name, container, addedd/removed, ip
         String content = msg.getContent();
-        if(content.contains("occurred")){
-            if(content.contains("born-agent")){
+        if (content.contains("occurred")) {
+            if (content.contains("born-agent")) {
                 Integer i = 0;
                 Integer n = content.indexOf(":name") + 6;
                 String name = "";
                 String container = "";
-                while(i!=2){
+                while (i != 2) {
                     name = name + content.charAt(n);
                     n++;
-                    if(content.charAt(n+1) == ':' || content.charAt(n) == ')'){
+                    if (content.charAt(n + 1) == ':' || content.charAt(n) == ')') {
                         i++;
                     }
                 }
                 i = 0;
                 n = content.indexOf("container-ID :name") + 19;
-                while(i!=1){
+                while (i != 1) {
                     container = container + content.charAt(n);
                     n++;
-                    if(content.charAt(n+1) == ':'){
+                    if (content.charAt(n + 1) == ':') {
                         i++;
                     }
                 }
@@ -161,26 +189,25 @@ public class TestAgent extends ToolAgent implements ITestAgent {
                 lastAgent[1] = container;
                 lastAgent[2] = "addedd";
                 lastAgent[3] = "";
-                changedAgents.addElement(lastAgent);
-            }
-            else if(content.contains("dead-agent")){
+                changedAgents.add(lastAgent);
+            } else if (content.contains("dead-agent")) {
                 Integer i = 0;
                 Integer n = content.indexOf(":name") + 6;
                 String name = "";
                 String container = "";
-                while(i!=2){
+                while (i != 2) {
                     name = name + content.charAt(n);
                     n++;
-                    if(content.charAt(n+1) == ':' || content.charAt(n) == ')'){
+                    if (content.charAt(n + 1) == ':' || content.charAt(n) == ')') {
                         i++;
                     }
                 }
                 i = 0;
                 n = content.indexOf("container-ID :name") + 19;
-                while(i!=1){
+                while (i != 1) {
                     container = container + content.charAt(n);
                     n++;
-                    if(content.charAt(n+1) == ':'){
+                    if (content.charAt(n + 1) == ':') {
                         i++;
                     }
                 }
@@ -188,27 +215,26 @@ public class TestAgent extends ToolAgent implements ITestAgent {
                 lastAgent[1] = container;
                 lastAgent[2] = "removed";
                 lastAgent[3] = "";
-                changedAgents.addElement(lastAgent);
-            }
-            else if(content.contains("added-container")){
+                changedAgents.add(lastAgent);
+            } else if (content.contains("added-container")) {
                 Integer i = 0;
                 Integer n = content.indexOf("container-ID :name") + 19;
                 String name = null;
                 String container = "";
                 String ip = "";
-                while(i!=1){
+                while (i != 1) {
                     container = container + content.charAt(n);
                     n++;
-                    if(content.charAt(n+1) == ':'){
+                    if (content.charAt(n + 1) == ':') {
                         i++;
                     }
                 }
                 n = n + 11;
                 i = 0;
-                while(i!=1){
+                while (i != 1) {
                     ip = ip + content.charAt(n);
                     n++;
-                    if(content.charAt(n+1) == '"'){
+                    if (content.charAt(n + 1) == '"') {
                         i++;
                     }
                 }
@@ -216,7 +242,7 @@ public class TestAgent extends ToolAgent implements ITestAgent {
                 lastAgent[1] = container;
                 lastAgent[2] = "addedd";
                 lastAgent[3] = ip;
-                changedAgents.addElement(lastAgent);
+                changedAgents.add(lastAgent);
             }
         }
 
@@ -236,9 +262,9 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         }
     }
 
-    public String[] agentsNameRequest() {
-
-        // FIXME: Only able to retrive all the agents, not the ones of a precise container
+    private AMSAgentDescription[] agentsRequest() {
+        // FIXME: Only able to retrive all the agents, not the ones of a precise
+        // container
         AMSAgentDescription[] agents = null;
         SearchConstraints c = new SearchConstraints();
         c.setMaxResults(new Long(-1));
@@ -248,8 +274,13 @@ public class TestAgent extends ToolAgent implements ITestAgent {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return agents;
+    }
+
+    public String[] agentsNameRequest() {
+        AMSAgentDescription[] agents = agentsRequest();
         String agentsNames[] = new String[agents.length];
-        for (int i=0; i<agents.length;i++){
+        for (int i = 0; i < agents.length; i++) {
             AID agentID = agents[i].getName();
             agentsNames[i] = agentID.getName();
             // System.out.println(agentID.getLocalName());
@@ -295,7 +326,8 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         } else {
             ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
             req.addReceiver(getAMS());
-            req.setContent("((action " + getAMS() + " (modify (ams-agent-description  :name (agent-identifier :name " + name + ") :state suspended))))");
+            req.setContent("((action " + getAMS() + " (modify (ams-agent-description  :name (agent-identifier :name "
+                    + name + ") :state suspended))))");
             req.setOntology("FIPA-Agent-Management");
             req.setLanguage("fipa-sl0");
             req.setProtocol("fipa-request");
@@ -310,7 +342,8 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         } else {
             ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
             req.addReceiver(getAMS());
-            req.setContent("((action " + getAMS() + " (modify (ams-agent-description  :name (agent-identifier :name " + name + ") :state active))))");
+            req.setContent("((action " + getAMS() + " (modify (ams-agent-description  :name (agent-identifier :name "
+                    + name + ") :state active))))");
             req.setOntology("FIPA-Agent-Management");
             req.setLanguage("fipa-sl0");
             req.setProtocol("fipa-request");
@@ -325,8 +358,11 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         } else {
             ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
             req.addReceiver(getAMS());
-            req.setContent("((action " + getAMS() + " (clone-agent :mobile-agent-description (mobile-agent-description :name (agent-identifier :name " + name 
-                    + ") :destination (container-ID :name " + container + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP)) :new-name " + newname + ")))");
+            req.setContent("((action " + getAMS()
+                    + " (clone-agent :mobile-agent-description (mobile-agent-description :name (agent-identifier :name "
+                    + name + ") :destination (container-ID :name " + container
+                    + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP)) :new-name " + newname
+                    + ")))");
             req.setOntology("jade-mobility-ontology");
             req.setLanguage("fipa-sl0");
             req.setProtocol("fipa-request");
@@ -341,8 +377,10 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         } else {
             ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
             req.addReceiver(getAMS());
-            req.setContent("((action " + getAMS() + " (move-agent :mobile-agent-description (mobile-agent-description :name (agent-identifier :name " + name 
-                    + ") :destination (container-ID :name " + container + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP)))))");
+            req.setContent("((action " + getAMS()
+                    + " (move-agent :mobile-agent-description (mobile-agent-description :name (agent-identifier :name "
+                    + name + ") :destination (container-ID :name " + container
+                    + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP)))))");
             req.setOntology("jade-mobility-ontology");
             req.setLanguage("fipa-sl0");
             req.setProtocol("fipa-request");
@@ -357,7 +395,8 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         } else {
             ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
             req.addReceiver(getAMS());
-            req.setContent("((action " + getAMS() + " (freeze-agent :agent (agent-identifier :name " + name + ") :repository JADE-DB)))");
+            req.setContent("((action " + getAMS() + " (freeze-agent :agent (agent-identifier :name " + name
+                    + ") :repository JADE-DB)))");
             req.setOntology("JADE-Persistence");
             req.setLanguage("fipa-sl0");
             req.setProtocol("fipa-request");
@@ -367,13 +406,14 @@ public class TestAgent extends ToolAgent implements ITestAgent {
     }
 
     public void thawRequest(String name, String container) {
-        if (name == null || container == null){
+        if (name == null || container == null) {
             System.out.println("Invalid parameters");
         } else {
             ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
             req.addReceiver(getAMS());
-            req.setContent("((action " + getAMS() + " (thaw-agent :agent (agent-identifier :name " + name 
-                    + ") :repository JADE-DB :new-container (container-ID :name " + container + " :protocol JADE-IMTP :address \"<Unknown Host>\"))))");
+            req.setContent("((action " + getAMS() + " (thaw-agent :agent (agent-identifier :name " + name
+                    + ") :repository JADE-DB :new-container (container-ID :name " + container
+                    + " :protocol JADE-IMTP :address \"<Unknown Host>\"))))");
             req.setOntology("JADE-Persistence");
             req.setLanguage("fipa-sl0");
             req.setProtocol("fipa-request");
@@ -388,7 +428,8 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         } else {
             ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
             req.addReceiver(getAMS());
-            req.setContent("((action " + getAMS() + " (save-agent :agent (agent-identifier :name " + name + ") :repository JADE-DB)))");
+            req.setContent("((action " + getAMS() + " (save-agent :agent (agent-identifier :name " + name
+                    + ") :repository JADE-DB)))");
             req.setOntology("JADE-Persistence");
             req.setLanguage("fipa-sl0");
             req.setProtocol("fipa-request");
@@ -397,26 +438,86 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         }
     }
 
-    public void snifferRequest(String container) {
+    public int snifferRequest(String container) {
         snifferCounter++;
         if (container == null) {
             System.out.println("Invalid parameters");
         } else {
             ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
             req.addReceiver(getAMS());
-            req.setContent("((action " + getAMS() + " (create-agent :agent-name sniffer" + snifferCounter + " :class-name jade.tools.sniffer.Sniffer :container (container-ID :name " + container
+            req.setContent("((action " + getAMS() + " (create-agent :agent-name sniffer" + snifferCounter 
+                    + " :class-name controller.tools.Sniffer :container (container-ID :name " + container
                     + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP))))");
+            // req.setContent("((action " + getAMS() + " (create-agent :agent-name sniffer" + snifferCounter
+            //         + " :class-name jade.tools.sniffer.Sniffer :container (container-ID :name " + container
+            //         + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP))))");
             req.setOntology("JADE-Agent-Management");
             req.setLanguage("fipa-sl0");
             req.setProtocol("fipa-request");
             send(req);
             System.out.println("Sniffer agent " + snifferCounter + " started on container " + container);
         }
-        // l'evento subscribe successivo alla richiesta di creazione dell'agente sniffer, viene eseguito automaticamente
+        return snifferCounter;
+        // l'evento subscribe successivo alla richiesta di creazione dell'agente
+        // sniffer, viene eseguito automaticamente
         // pertanto non è necessario implementarlo qui
     }
+    
+    public void doSniffRequest(String name) {
+        AMSAgentDescription[] agents = agentsRequest();
+        AID sniffer = null;
+        AID target = null;
+        for (AMSAgentDescription i : agents) {
+            if(i.getName().toString().contains("sniffer" + String.valueOf(snifferCounter)) && i.getName().toString().indexOf("-on-") == -1){
+                sniffer = i.getName();
+            }
+            else if(i.getName().toString().contains(name)){
+                target = i.getName();
+            }
+        }
+        ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+        req.setSender(sniffer);
+        req.addReceiver(getAMS());
+        req.setContent("((action " + getAMS() + " (sniff-on :sniffer (agent-identifier :name " + sniffer.getName()
+                   + " :addresses (sequence " + getAMS().toString().substring(getAMS().toString().indexOf("http")) 
+                   + " :sniffed-agents (sequence (agent-identifier :name " + target.getName() + ")))))");
+        req.setOntology("JADE-Agent-Management");
+        req.setLanguage("fipa-sl0");
+        req.setProtocol("fipa-request");
+        send(req);
+    }
 
-    public void dummyRequest(String container) {
+    public void doNotSniffRequest(String name) {
+        AMSAgentDescription[] agents = agentsRequest();
+        AID sniffer = null;
+        AID target = null;
+        for (AMSAgentDescription i : agents) {
+            if(i.getName().toString().contains("sniffer" + String.valueOf(snifferCounter)) && i.getName().toString().indexOf("-on-") == -1){
+                sniffer = i.getName();
+            }
+            else if(i.getName().toString().contains(name)){
+                target = i.getName();
+            }
+        }
+        ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+        req.setSender(sniffer);
+        req.addReceiver(getAMS());
+        req.setContent("((action " + getAMS() + " (sniff-off :sniffer (agent-identifier :name " + sniffer.getName()
+                   + " :addresses (sequence " + getAMS().toString().substring(getAMS().toString().indexOf("http")) 
+                   + " :sniffed-agents (sequence (agent-identifier :name " + target.getName() + ")))))");
+        req.setOntology("JADE-Agent-Management");
+        req.setLanguage("fipa-sl0");
+        req.setProtocol("fipa-request");
+        send(req);
+    }
+
+    public Object[] getSniffedMsgRequest() {
+        Object[] tmp = ml.toArray().clone();
+        ml.clear();
+        return tmp;
+    }
+
+    public int dummyRequest(String container) {
         dummyCounter++;
         if (container == null) {
             System.out.println("Invalid parameters");
@@ -433,16 +534,39 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         }
         // l'evento subscribe successivo alla richiesta di creazione dell'agente dummy, viene eseguito automaticamente
         // pertanto non è necessario implementarlo qui
+        return dummyCounter;
     }
 
-    public void logRequest(String container) {
+    public void sendDummyRequest(String senderName, String receiverName, String content, String ontology, String language, String protocol){
+        AMSAgentDescription[] agents = agentsRequest();
+        AID sender = null;
+        AID receiver = null;
+        for (AMSAgentDescription i : agents) {
+            if(i.getName().toString().contains(senderName)){
+                sender = i.getName();
+            }
+            else if(i.getName().toString().contains(receiverName)){
+                receiver = i.getName();
+            }
+        }
+        ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+        req.setSender(sender);
+        req.addReceiver(receiver);
+        req.setContent(content);
+        req.setOntology(ontology);
+        req.setLanguage(language);
+        req.setProtocol(protocol);
+        send(req);
+    }
+
+    public int logRequest(String container) {
         logCounter++;
         if (container == null) {
             System.out.println("Invalid parameters");
         } else {
             ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
             req.addReceiver(getAMS());
-            req.setContent("((action " + getAMS() + " (create-agent :agent-name log" + logCounter + " :class-name jade.tools.logging.LogManagerAgent :container (container-ID :name " + container
+            req.setContent("((action " + getAMS() + " (create-agent :agent-name log" + logCounter + " :class-name controller.tools.Log :container (container-ID :name " + container
                     + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP))))");
             req.setOntology("JADE-Agent-Management");
             req.setLanguage("fipa-sl0");
@@ -452,6 +576,14 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         }
         // l'evento subscribe successivo alla richiesta di creazione dell'agente log, viene eseguito automaticamente
         // pertanto non è necessario implementarlo qui
+        return logCounter;
+    }
+
+    public Object[] startLoggingRequest(){
+        // System.out.println(ll.toString());
+        Object[] tmp = ll.toArray().clone();
+        ll.clear();
+        return tmp;
     }
 
     public void introspectorRequest(String container) {
@@ -484,8 +616,7 @@ public class TestAgent extends ToolAgent implements ITestAgent {
             lastAgent[2] = "";
             lastAgent[3] = "";
         }
-        // System.out.println(lastAgent[0]+lastAgent[1]+lastAgent[2]+lastAgent[3]);
         return lastAgent;
     }
-	
+
 }

@@ -7,6 +7,7 @@ import {
     MatDialogRef,
     MatSnackBar
 } from '@angular/material';
+import {MatTooltipModule} from '@angular/material/tooltip'; 
 import {
     StartDialogComponent
 } from '../start-dialog/start-dialog.component'
@@ -45,7 +46,7 @@ export class MainMenuComponent implements OnInit {
     constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private http: HttpClient, private router: Router, private dataService: DataTransferService) {}
 
 
-    checkSelection() {
+    updateSelection() {
         this.selection = this.dataService.selection;
     }
 
@@ -58,7 +59,7 @@ export class MainMenuComponent implements OnInit {
     }
 
     cloneDialog(title: string) {
-        this.checkSelection();
+        this.updateSelection();
         if (this.selection.indexOf('@') !== -1 && this.selection != '') {
             this.cloneDialogRef = this.dialog.open(CloneDialogComponent, {
                 data: {
@@ -77,7 +78,7 @@ export class MainMenuComponent implements OnInit {
     }
 
     securityDialog(title: string) {
-        this.checkSelection();
+        this.updateSelection();
         this.securityDialogRef = this.dialog.open(SecurityDialogComponent, {
             data: {
                 1: title,
@@ -88,13 +89,9 @@ export class MainMenuComponent implements OnInit {
     }
 
     startSniffer() {
-        this.checkSelection();
+        this.updateSelection();
         if (this.selection.indexOf('@') == -1 && this.selection != '') {
             console.log("Starting sniffer on " + this.selection);
-            let params = new HttpParams().set("container", this.selection);
-            this.http.get('http://localhost:2020/sniffer', {
-                params: params
-            }).subscribe(data => console.log(data));
             this.router.navigate(['/sniffer']);
         } else {
             this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
@@ -104,13 +101,9 @@ export class MainMenuComponent implements OnInit {
     }
 
     startDummy() {
-        this.checkSelection();
+        this.updateSelection();
         if (this.selection.indexOf('@') == -1 && this.selection != '') {
             console.log("Starting dummy on " + this.selection);
-            let params = new HttpParams().set("container", this.selection);
-            this.http.get('http://localhost:2020/dummy', {
-                params: params
-            }).subscribe(data => console.log(data));
             this.router.navigate(['/dummy']);
         } else {
             this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
@@ -120,7 +113,7 @@ export class MainMenuComponent implements OnInit {
     }
 
     startIntrospector() {
-        this.checkSelection();
+        this.updateSelection();
         if (this.selection.indexOf('@') == -1 && this.selection != '') {
             console.log("Starting introspector on " + this.selection);
             let params = new HttpParams().set("container", this.selection);
@@ -136,19 +129,19 @@ export class MainMenuComponent implements OnInit {
     }
 
     startLog() {
-        this.checkSelection();
+        this.updateSelection();
         if (this.selection.indexOf('@') == -1 && this.selection != '') {
             console.log("Starting log-manager on " + this.selection);
-            let params = new HttpParams().set("container", this.selection);
-            this.http.get('http://localhost:2020/log', {
-                params: params
-            }).subscribe(data => console.log(data));
             this.router.navigate(['/log']);
         } else {
             this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
                 duration: 4000,
             });
         }
+    }
+
+    goToLink(url: string){
+        window.open(url, "_blank");
     }
 
 }

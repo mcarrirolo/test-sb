@@ -14,7 +14,7 @@ export class DataTransferService{
     selection: string = '';
 
     // last agent that changed status
-    first: boolean = true;
+    ready: boolean = false;
     name: string = '';
     container: string = '';
     state: string = '';
@@ -94,6 +94,7 @@ export class DataTransferService{
             });
             i++;
         });
+        this.changeRefreshStatus(true);
     }
 
     public add(name: string, container: string): void{
@@ -120,10 +121,12 @@ export class DataTransferService{
             j++;
         });
         i++;
+        this.changeRefreshStatus(true);
     }
 
     public updateFromRemote(): void{
         this.http.get('http://localhost:2020/update').subscribe(data => {
+
             var name: string = '';
             var container: string = '';
             var state: string = '';
@@ -134,13 +137,14 @@ export class DataTransferService{
             state = data[2];
             ip = data[3];
             
-            if(this.first == true){
+            if(name == "" && container == "" && state == "" && this.ready == false){
                 this.name = name;
                 this.container = container;
                 this.state = state;
-                this.first = false;
+                this.ready = true;
+                console.log("this.ready -> " + true);
             }
-            else if((this.name != name || this.container != container || this.state != state)){
+            else if((this.name != name || this.container != container || this.state != state) && this.ready == true){
                 if(state == "addedd"){
                     // Agent added
                     if(name != ""){

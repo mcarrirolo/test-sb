@@ -1,11 +1,12 @@
 import {
-    Component
+    Component, ViewChild
 } from '@angular/core';
 import {
     HttpClient,
     HttpParams
 } from '@angular/common/http';
 import { DataTransferService } from './data-transfer.service';
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 @Component({
     selector: 'app-root',
@@ -17,7 +18,9 @@ export class AppComponent {
 
     title = 'Test-sb';
     return = '';
-    gridlayout = '50% 50%';
+    gridlayout = '55% 45%';
+
+    @ViewChild(MainMenuComponent) menu: MainMenuComponent;
 
     constructor(private http: HttpClient) {}
 

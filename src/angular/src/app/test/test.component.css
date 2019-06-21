@@ -46,12 +46,22 @@ mat-toolbar button{
     display: inline-block;
     text-align: center;
     min-height: 800px;
+    margin-top: 10px;
+}
+.msgOption{
+    display: inline-block;
+    width: 100%;
+}
+.msgOption mat-form-field{
+    width: 90%;
 }
 .dummyMessages{
-    width: calc(60% - 22px);
+    width: calc(55%);
+    float: right;
     border: 1px solid black;
     display: inline-block;
     min-height: 800px;
+    margin-top: 10px;
 }
 .dualSelector{
     display: inline;
@@ -88,4 +98,17 @@ mat-toolbar button{
 #item4{
     text-align: center;
     grid-area: be;
+}
+
+
+
+.logtable{
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: normal;
+    text-align: left;
+}
+.logtable tr:nth-child(even){
+    background-color: #a0c6ff42;
 }

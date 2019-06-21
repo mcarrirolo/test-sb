@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 
+import jade.wrapper.AgentController;
 import jade.wrapper.StaleProxyException;
 
 
@@ -273,16 +274,36 @@ public class TestController {
     }
 
     @GetMapping("/sniffer")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public int sniffer(@RequestParam String container){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return -1;
+            }
+            else{
+                return gam.snifferRequest(container);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @GetMapping("/doSniff")
     @ResponseStatus(HttpStatus.OK)
     // @ResponseBody
-    public void sniffer(@RequestParam String container){
+    public void doSniff(@RequestParam String name){
         try {
             ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
             if (gam == null) {
                 System.out.println("gam is null");
             }
             else{
-                gam.snifferRequest(container);
+                gam.doSniffRequest(name);
             }
         }
         catch (Exception e) {
@@ -290,17 +311,75 @@ public class TestController {
         }
     }
 
-    @GetMapping("/dummy")
+    @GetMapping("/doNotSniff")
     @ResponseStatus(HttpStatus.OK)
     // @ResponseBody
-    public void dummy(@RequestParam String container){
+    public void doNotSniff(@RequestParam String name){
         try {
             ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
             if (gam == null) {
                 System.out.println("gam is null");
             }
             else{
-                gam.dummyRequest(container);
+                gam.doNotSniffRequest(name);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/getSniffedMsg")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public Object[] getSniffedMsg(){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return null;
+            }
+            else{
+                return gam.getSniffedMsgRequest();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @GetMapping("/dummy")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public int dummy(@RequestParam String container){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return -1;
+            }
+            else{
+                return gam.dummyRequest(container);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @GetMapping("/sendDummy")
+    @ResponseStatus(HttpStatus.OK)
+    // @ResponseBody
+    public void sendDummy(@RequestParam String senderName, @RequestParam String receiverName, @RequestParam String content, @RequestParam String ontology, @RequestParam String language, @RequestParam String protocol){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+            }
+            else{
+                gam.sendDummyRequest(senderName, receiverName, content, ontology, language, protocol);
             }
         }
         catch (Exception e) {
@@ -309,20 +388,42 @@ public class TestController {
     }
 
     @GetMapping("/log")
-    @ResponseStatus(HttpStatus.OK)
-    // @ResponseBody
-    public void log(@RequestParam String container){
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public int log(@RequestParam String container){
         try {
             ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
             if (gam == null) {
                 System.out.println("gam is null");
+                return -1;
             }
             else{
-                gam.logRequest(container);
+                return gam.logRequest(container);
             }
         }
         catch (Exception e) {
             e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @GetMapping("/startLog")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public Object[] startLog(){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return null;
+            }
+            else{
+                return gam.startLoggingRequest();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -345,6 +446,7 @@ public class TestController {
     }
 
     @GetMapping("/update")
+    // @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public String[] update(){
         try{

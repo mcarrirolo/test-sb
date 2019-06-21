@@ -4,32 +4,32 @@
         <button mat-button routerLink="/" id="close">Close</button>
 
         <span *ngIf="isSniffer">
-            <button mat-button>Clear</button>
-            <button mat-button>Open</button>
+            <button mat-button (click)="clear()">Clear</button>
+            <!-- <button mat-button>Open</button>
             <button mat-button>Save</button>
-            <button mat-button>Write</button>
+            <button mat-button>Write</button> -->
             <button mat-button (click)="addSniffed()">Do Sniff</button>
             <button mat-button (click)="removeSniffed()">Don't Sniff</button>
-            <button mat-button (click)="addShowed()">Show only</button>
+            <!-- <button mat-button (click)="addShowed()">Show only</button> -->
         </span>
 
         <span *ngIf="isLog">
-            <button mat-button>Set default logging</button>
-            <button mat-button>Start log</button>
-            <button mat-button>Stop log</button>
+            <!-- <button mat-button>Set default logging</button> -->
+            <button mat-button (click)="startLog()">Start log</button>
+            <!-- <button mat-button>Stop log</button> -->
         </span>
 
         <span *ngIf="isDummy">
-            <button mat-button>Reset</button>
-            <button mat-button>Send</button>
-            <button mat-button>Open</button>
+            <!-- <button mat-button>Reset</button> -->
+            <button mat-button (click)="sendDummy()">Send</button>
+            <!-- <button mat-button>Open</button>
             <button mat-button>Save</button>
             <button mat-button>Open queue</button>
             <button mat-button>Save queue</button>
             <button mat-button>Set as current</button>
             <button mat-button>Reply</button>
             <button mat-button>View</button>
-            <button mat-button>Delete</button>
+            <button mat-button>Delete</button> -->
         </span>
 
         <span *ngIf="isIntrospector">
@@ -44,7 +44,7 @@
                 
 
     </mat-toolbar>
-    <div *ngIf="isSniffer">
+    <div *ngIf="isSniffer" style="overflow-y: auto; max-height:92vh;">
         <div class="sniffed" id="other">
             Other
         </div>
@@ -54,6 +54,20 @@
         <div class="showed" *ngFor="let agent of showed">
             {{agent}}
         </div>
+        <table class="logtable">
+            <tr>
+                <th> Sender </th>
+                <th> Type </th>
+                <th> Receiver </th>
+                <th> Content </th>
+            </tr>
+            <tr *ngFor="let m of messagelist">
+                <th> {{ m.sender }} </th>
+                <th> {{ m.type }} </th>
+                <th> {{ m.receiver }} </th>
+                <th> {{ m.content }} </th>
+            </tr>
+        </table>
     </div>
 
     <div *ngIf="isDummy">
@@ -64,15 +78,122 @@
             <div class="dualSelector">
                 Envelope
             </div>
+            <div class="msgOption">
+                <form>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Sender" [(ngModel)]="sender"
+                        [ngModelOptions]="{standalone: true}" required=true>
+                    </mat-form-field>
+                </form>
+                <form>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Receiver" [(ngModel)]="receiver"
+                        [ngModelOptions]="{standalone: true}" required=false>
+                    </mat-form-field>
+                </form>
+                <mat-form-field>
+                    <mat-label>Communication type</mat-label>
+                    <mat-select [(value)]="comm">
+                        <mat-option value="accept-proposal">Accept proposal</mat-option>
+                        <mat-option value="agree">Agree</mat-option>
+                        <mat-option value="cancel">Cancel</mat-option>
+                        <mat-option value="cfp">Cfp</mat-option>
+                        <mat-option value="confirm">Confirm</mat-option>
+                        <mat-option value="disconfirm">Disconfirm</mat-option>
+                        <mat-option value="failure">Failure</mat-option>
+                        <mat-option value="inform">Inform</mat-option>
+                        <mat-option value="inform-if">Inform if</mat-option>
+                        <mat-option value="inform-ref">Inform ref</mat-option>
+                        <mat-option value="not-understood">Not undersood</mat-option>
+                        <mat-option value="purpose">Purpose</mat-option>
+                        <mat-option value="query-if">Query if</mat-option>
+                        <mat-option value="query-ref">Query ref</mat-option>
+                        <mat-option value="refuse">Refuse</mat-option>
+                        <mat-option value="reject-proposal">Reject proposal</mat-option>
+                        <mat-option value="request">Request</mat-option>
+                        <mat-option value="request-when">Request when</mat-option>
+                        <mat-option value="request-whenever">Request whenever</mat-option>
+                        <mat-option value="subscribe">Subscribe</mat-option>
+                        <mat-option value="proxy">Proxy</mat-option>
+                        <mat-option value="propagate">Propagate</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <form>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Content" [(ngModel)]="content"
+                        [ngModelOptions]="{standalone: true}" required=false>
+                    </mat-form-field>
+                </form>
+                <form>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Language" [(ngModel)]="language"
+                        [ngModelOptions]="{standalone: true}" required=false>
+                    </mat-form-field>
+                </form>
+                <form>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Encoding" [(ngModel)]="encoding"
+                        [ngModelOptions]="{standalone: true}" required=false>
+                    </mat-form-field>
+                </form>
+                <form>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Ontology" [(ngModel)]="ontology"
+                        [ngModelOptions]="{standalone: true}" required=false>
+                    </mat-form-field>
+                </form>
+                <mat-form-field>
+                    <mat-label>Protocol</mat-label>
+                    <mat-select [(value)]="protocol">
+                        <mat-option value="Null">Null</mat-option>
+                        <mat-option value="fipa-auction-english">Fipa-auction-english</mat-option>
+                        <mat-option value="fipa-auction-dutch">Fipa-auction-dutch</mat-option>
+                        <mat-option value="fipa-contract-net">Fipa-contract-net</mat-option>
+                        <mat-option value="fipa-iterated-contract-net">Fipa-iterated-contract-net</mat-option>
+                        <mat-option value="fipa-query">Fipa-query</mat-option>
+                        <mat-option value="fipa-request">Fipa-request</mat-option>
+                        <mat-option value="fipa-request-when">Fipa-request-when</mat-option>
+                        <mat-option value="fipa-purpose">Fipa-purpose</mat-option>
+                        <mat-option value="ADD USER-DEF PROTOCOL">Add user-def protocol</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <form>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Conversation" [(ngModel)]="conversation"
+                        [ngModelOptions]="{standalone: true}" required=false>
+                    </mat-form-field>
+                </form>
+                <form>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="In reply to" [(ngModel)]="repto"
+                        [ngModelOptions]="{standalone: true}" required=false>
+                    </mat-form-field>
+                </form>
+                <form>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Reply with" [(ngModel)]="repw"
+                        [ngModelOptions]="{standalone: true}" required=false>
+                    </mat-form-field>
+                </form>
+            </div>
         </div>
         <div class="dummyMessages">
             <p>Testo di prova</p>
         </div>
     </div>
-
-    <p *ngIf="isLog">
-        Log works!
-    </p>
+        
+        <div *ngIf="isLog" style="overflow-y: auto; max-height:92vh;">
+                <table class="logtable">
+            <tr>
+                <th> Name </th>
+                <th> Level </th>
+            </tr>
+            <tr *ngFor="let l of logs">
+                <th> {{ l.name }} </th>
+                <th> {{ l.level }} </th>
+            </tr>
+        </table>
+    </div>
 
     <div *ngIf="isIntrospector" class="introspectorGrid">
         <div class="intrGridElement" id="item1">

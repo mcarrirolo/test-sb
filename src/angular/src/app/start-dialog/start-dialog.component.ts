@@ -46,7 +46,6 @@ export class StartDialogComponent implements OnInit {
             if(data.statusText == "OK"){
                 this.dataService.add(this.name, this.cont);
                 // this.dataService.updateFromRemote();
-                this.dataService.changeRefreshStatus(true);
             };
         });
         this.dialogRef.close();

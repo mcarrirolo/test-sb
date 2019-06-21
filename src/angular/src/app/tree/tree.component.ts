@@ -29,7 +29,6 @@ export class TreeComponent implements OnInit {
     
     treeControl = new NestedTreeControl < Node > (node => node.childNode);
     dataSource = new ArrayDataSource(this.dataService.TREE_DATA);
-    TREE_DATA: Node[] = [];
     status: boolean;
 
 
@@ -44,8 +43,7 @@ export class TreeComponent implements OnInit {
     ngOnInit() {
         this.dataService.getTree().then(
             protoTree => {
-                this.TREE_DATA = protoTree;
-                this.tree.renderNodeChanges(this.TREE_DATA);
+                this.tree.renderNodeChanges(protoTree);
             }
         );
         this.dataService.refreshStatus.subscribe(status => {

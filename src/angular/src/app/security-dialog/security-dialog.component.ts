@@ -50,7 +50,6 @@ export class SecurityDialogComponent implements OnInit {
                 if(data.statusText == "OK"){
                     this.dataService.remove();
                     // this.dataService.updateFromRemote();
-                    this.dataService.changeRefreshStatus(true);
                 };
             });
         } else if (this.title == 'suspend') {

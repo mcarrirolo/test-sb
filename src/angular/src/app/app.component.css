@@ -24,6 +24,7 @@ div{
     width: calc(60% - 20px);
     display: inline-table;
     margin: 0 10px;
+    float: right;
 }
 router-outlet{
     display: none;
