@@ -372,18 +372,39 @@ public class TestController {
     @GetMapping("/sendDummy")
     @ResponseStatus(HttpStatus.OK)
     // @ResponseBody
-    public void sendDummy(@RequestParam String senderName, @RequestParam String receiverName, @RequestParam String content, @RequestParam String ontology, @RequestParam String language, @RequestParam String protocol){
+    public void sendDummy(@RequestParam String senderName, @RequestParam String receiverName, @RequestParam String commType, @RequestParam String content, @RequestParam String ontology, @RequestParam String language, @RequestParam String protocol, @RequestParam String conversation, @RequestParam String repTo, @RequestParam String repWith, @RequestParam String encoding){
         try {
             ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
             if (gam == null) {
                 System.out.println("gam is null");
             }
             else{
-                gam.sendDummyRequest(senderName, receiverName, content, ontology, language, protocol);
+                int commType_ = Integer.parseInt(commType);
+                gam.sendDummyRequest(senderName, receiverName, commType_, content, ontology, language, protocol, conversation, repTo, repWith, encoding);
             }
         }
         catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/getDummyMsg")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public Object[] getDummyMsg(){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return null;
+            }
+            else{
+                return gam.getDummyMsgRequest();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -428,20 +449,160 @@ public class TestController {
     }
 
     @GetMapping("/introspector")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public int introspector(@RequestParam String container){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return -1;
+            }
+            else{
+                return gam.introspectorRequest(container);
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @GetMapping("/debugOn")
     @ResponseStatus(HttpStatus.OK)
     // @ResponseBody
-    public void introspector(@RequestParam String container){
+    public void debugOn(@RequestParam String name){
         try {
             ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
             if (gam == null) {
                 System.out.println("gam is null");
             }
             else{
-                gam.introspectorRequest(container);
+                gam.debugOnRequest(name);
+                System.out.println("\nDebug on");
             }
         }
         catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/debugOff")
+    @ResponseStatus(HttpStatus.OK)
+    // @ResponseBody
+    public void debugOff(@RequestParam String name){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+            }
+            else{
+                gam.debugOffRequest(name);
+                System.out.println("\nDebug off");
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/getBehaviours")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public Object[] getBehaviours(){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return null;
+            }
+            else{
+                return gam.getBehavioursRequest();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @GetMapping("/getCurrentState")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public String getCurrentState(){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return null;
+            }
+            else{
+                return gam.getCurrentStateRequest();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @GetMapping("/getSentMsg")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public Object[] getSentMsg(){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return null;
+            }
+            else{
+                return gam.getSentMsgRequest();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @GetMapping("/getReceivedMsg")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public Object[] getReceivedMsg(){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return null;
+            }
+            else{
+                return gam.getReceivedMsgRequest();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @GetMapping("/getPostedMsg")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public Object[] getPostedMsg(){
+        try {
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return null;
+            }
+            else{
+                return gam.getPostedMsgRequest();
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

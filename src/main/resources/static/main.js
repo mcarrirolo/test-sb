@@ -71,7 +71,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n.drawer{\n    height: 100vh;\n    background-color: white;\n}\nbutton{\n    padding-left: 6px;\n    padding-right: 6px;\n    min-width: 0px;\n    margin: 0 6px;\n}\nmat-toolbar button{\n    background-color: rgb(92, 116, 221);\n    color: white;\n}\ndiv{\n    font-family: 'Roboto', monospace;\n}\n.tree{\n    width: 40%;\n    display: inline-table;\n}\n.view{\n    width: calc(60% - 20px);\n    display: inline-table;\n    margin: 0 10px;\n    float: right;\n}\nrouter-outlet{\n    display: none;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBO0lBQ0ksYUFBYTtJQUNiLHVCQUF1QjtBQUMzQjtBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixjQUFjO0lBQ2QsYUFBYTtBQUNqQjtBQUNBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7QUFDaEI7QUFDQTtJQUNJLGdDQUFnQztBQUNwQztBQUNBO0lBQ0ksVUFBVTtJQUNWLHFCQUFxQjtBQUN6QjtBQUNBO0lBQ0ksdUJBQXVCO0lBQ3ZCLHFCQUFxQjtJQUNyQixjQUFjO0lBQ2QsWUFBWTtBQUNoQjtBQUNBO0lBQ0ksYUFBYTtBQUNqQiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXG4uZHJhd2Vye1xuICAgIGhlaWdodDogMTAwdmg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG59XG5idXR0b257XG4gICAgcGFkZGluZy1sZWZ0OiA2cHg7XG4gICAgcGFkZGluZy1yaWdodDogNnB4O1xuICAgIG1pbi13aWR0aDogMHB4O1xuICAgIG1hcmdpbjogMCA2cHg7XG59XG5tYXQtdG9vbGJhciBidXR0b257XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDkyLCAxMTYsIDIyMSk7XG4gICAgY29sb3I6IHdoaXRlO1xufVxuZGl2e1xuICAgIGZvbnQtZmFtaWx5OiAnUm9ib3RvJywgbW9ub3NwYWNlO1xufVxuLnRyZWV7XG4gICAgd2lkdGg6IDQwJTtcbiAgICBkaXNwbGF5OiBpbmxpbmUtdGFibGU7XG59XG4udmlld3tcbiAgICB3aWR0aDogY2FsYyg2MCUgLSAyMHB4KTtcbiAgICBkaXNwbGF5OiBpbmxpbmUtdGFibGU7XG4gICAgbWFyZ2luOiAwIDEwcHg7XG4gICAgZmxvYXQ6IHJpZ2h0O1xufVxucm91dGVyLW91dGxldHtcbiAgICBkaXNwbGF5OiBub25lO1xufVxuIl19 */"
+module.exports = "\n.drawer{\n    height: 100vh;\n    background-color: white;\n}\nbutton{\n    padding-left: 6px;\n    padding-right: 6px;\n    min-width: 0px;\n    margin: 0 6px;\n}\nmat-drawer-content{\n    overflow: unset !important;\n}\n.mat-drawer-content{\n    overflow: unset !important;\n}\nmat-toolbar button{\n    background-color: rgb(92, 116, 221);\n    color: white;\n}\ndiv{\n    font-family: 'Roboto', monospace;\n}\n.split-grid{\n    display: grid;\n    /* min-height: calc(100vh - 64px); */\n    max-height: calc(100vh - 68px);\n    overflow: hidden;\n    padding: 0;\n    grid-gap: 4px;\n    grid-template: \n    \"tree view\" -webkit-min-content\n    \"tree view\" 1fr\n        / -webkit-min-content 1fr;\n    grid-template: \n    \"tree view\" min-content\n    \"tree view\" 1fr\n        / min-content 1fr;\n        \n}\n.tree{\n    grid-area: tree;\n    border-right: 1px solid gainsboro;\n    overflow: auto;\n    resize: horizontal;\n    min-height: calc(100vh - 68px);\n    max-height: calc(100vh - 68px);\n    min-width: 590px;\n    max-width: 70vw;\n}\n.view{\n    float: right;\n    grid-area: view;\n    overflow: auto;\n    min-height: calc(100vh - 68px);\n    max-height: calc(100vh - 68px);\n}\nrouter-outlet{\n    display: none;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBO0lBQ0ksYUFBYTtJQUNiLHVCQUF1QjtBQUMzQjtBQUNBO0lBQ0ksaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixjQUFjO0lBQ2QsYUFBYTtBQUNqQjtBQUNBO0lBQ0ksMEJBQTBCO0FBQzlCO0FBQ0E7SUFDSSwwQkFBMEI7QUFDOUI7QUFDQTtJQUNJLG1DQUFtQztJQUNuQyxZQUFZO0FBQ2hCO0FBQ0E7SUFDSSxnQ0FBZ0M7QUFDcEM7QUFJQTtJQUNJLGFBQWE7SUFDYixvQ0FBb0M7SUFDcEMsOEJBQThCO0lBQzlCLGdCQUFnQjtJQUNoQixVQUFVO0lBQ1YsYUFBYTtJQUNiOzs7aUNBR3FCO0lBSHJCOzs7eUJBR3FCOztBQUV6QjtBQUNBO0lBQ0ksZUFBZTtJQUNmLGlDQUFpQztJQUNqQyxjQUFjO0lBQ2Qsa0JBQWtCO0lBQ2xCLDhCQUE4QjtJQUM5Qiw4QkFBOEI7SUFDOUIsZ0JBQWdCO0lBQ2hCLGVBQWU7QUFDbkI7QUFDQTtJQUNJLFlBQVk7SUFDWixlQUFlO0lBQ2YsY0FBYztJQUNkLDhCQUE4QjtJQUM5Qiw4QkFBOEI7QUFDbEM7QUFDQTtJQUNJLGFBQWE7QUFDakIiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIlxuLmRyYXdlcntcbiAgICBoZWlnaHQ6IDEwMHZoO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xufVxuYnV0dG9ue1xuICAgIHBhZGRpbmctbGVmdDogNnB4O1xuICAgIHBhZGRpbmctcmlnaHQ6IDZweDtcbiAgICBtaW4td2lkdGg6IDBweDtcbiAgICBtYXJnaW46IDAgNnB4O1xufVxubWF0LWRyYXdlci1jb250ZW50e1xuICAgIG92ZXJmbG93OiB1bnNldCAhaW1wb3J0YW50O1xufVxuLm1hdC1kcmF3ZXItY29udGVudHtcbiAgICBvdmVyZmxvdzogdW5zZXQgIWltcG9ydGFudDtcbn1cbm1hdC10b29sYmFyIGJ1dHRvbntcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoOTIsIDExNiwgMjIxKTtcbiAgICBjb2xvcjogd2hpdGU7XG59XG5kaXZ7XG4gICAgZm9udC1mYW1pbHk6ICdSb2JvdG8nLCBtb25vc3BhY2U7XG59XG5cblxuXG4uc3BsaXQtZ3JpZHtcbiAgICBkaXNwbGF5OiBncmlkO1xuICAgIC8qIG1pbi1oZWlnaHQ6IGNhbGMoMTAwdmggLSA2NHB4KTsgKi9cbiAgICBtYXgtaGVpZ2h0OiBjYWxjKDEwMHZoIC0gNjhweCk7XG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgICBwYWRkaW5nOiAwO1xuICAgIGdyaWQtZ2FwOiA0cHg7XG4gICAgZ3JpZC10ZW1wbGF0ZTogXG4gICAgXCJ0cmVlIHZpZXdcIiBtaW4tY29udGVudFxuICAgIFwidHJlZSB2aWV3XCIgMWZyXG4gICAgICAgIC8gbWluLWNvbnRlbnQgMWZyO1xuICAgICAgICBcbn1cbi50cmVle1xuICAgIGdyaWQtYXJlYTogdHJlZTtcbiAgICBib3JkZXItcmlnaHQ6IDFweCBzb2xpZCBnYWluc2Jvcm87XG4gICAgb3ZlcmZsb3c6IGF1dG87XG4gICAgcmVzaXplOiBob3Jpem9udGFsO1xuICAgIG1pbi1oZWlnaHQ6IGNhbGMoMTAwdmggLSA2OHB4KTtcbiAgICBtYXgtaGVpZ2h0OiBjYWxjKDEwMHZoIC0gNjhweCk7XG4gICAgbWluLXdpZHRoOiA1OTBweDtcbiAgICBtYXgtd2lkdGg6IDcwdnc7XG59XG4udmlld3tcbiAgICBmbG9hdDogcmlnaHQ7XG4gICAgZ3JpZC1hcmVhOiB2aWV3O1xuICAgIG92ZXJmbG93OiBhdXRvO1xuICAgIG1pbi1oZWlnaHQ6IGNhbGMoMTAwdmggLSA2OHB4KTtcbiAgICBtYXgtaGVpZ2h0OiBjYWxjKDEwMHZoIC0gNjhweCk7XG59XG5yb3V0ZXItb3V0bGV0e1xuICAgIGRpc3BsYXk6IG5vbmU7XG59XG4iXX0= */"
 
 /***/ }),
 
@@ -82,7 +82,7 @@ module.exports = "\n.drawer{\n    height: 100vh;\n    background-color: white;\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\n\n<mat-drawer-container autosize class=\"drawer\" (contextmenu)=\"rightClick()\">\n    <mat-drawer mode=\"side\" opened>\n        <app-main-menu></app-main-menu>\n    </mat-drawer>\n\n\n    <mat-toolbar>\n        <button mat-button matTooltip=\"Start a new agent\" (click)=\"menu.startDialog()\"><i class=\"material-icons\">add_circle</i></button>\n        <button mat-button matTooltip=\"Kill\" (click)=\"menu.securityDialog('kill')\"><i class=\"material-icons\">cancel</i></button>\n        <button mat-button matTooltip=\"Suspend\" (click)=\"menu.securityDialog('suspend')\"><i class=\"material-icons\">pause_circle_filled</i></button>\n        <button mat-button matTooltip=\"Resume\" (click)=\"menusecurityDialog('resume')\"><i class=\"material-icons\">play_circle_filled</i></button>\n        <!-- <button mat-button><i class=\"material-icons\">drafts</i></button> -->\n        <button mat-button matTooltip=\"Move\" (click)=\"menu.cloneDialog('Migrate')\"><i class=\"material-icons\">swap_vertical_circle</i></button>\n        <button mat-button matTooltip=\"Clone\" (click)=\"menu.cloneDialog('Clone')\"><i class=\"material-icons\">supervised_user_circle</i></button>\n        <!-- <button mat-button><i class=\"material-icons\">description</i></button> -->\n        <!-- <button mat-button><i class=\"material-icons\">save</i></button> -->\n        <button mat-button matTooltip=\"Freeze\" (click)=\"menu.securityDialog('freeze')\"><i class=\"material-icons\">ac_unit</i></button>\n        <button mat-button matTooltip=\"Thaw the agent\" (click)=\"menu.cloneDialog('thaw')\"><i class=\"material-icons\">whatshot</i></button>\n        <button mat-button matTooltip=\"Start sniffer\" (click)=\"menu.startSniffer()\"><i class=\"material-icons\">visibility</i></button>\n        <button mat-button matTooltip=\"Start dummy agent\" (click)=\"menu.startDummy()\"><i class=\"material-icons\">face</i></button>\n        <button mat-button matTooltip=\"Start log manager\" (click)=\"menu.startLog()\"><i class=\"material-icons\">receipt</i></button>\n        <button mat-button matTooltip=\"Start introspector\" (click)=\"menu.startIntrospector()\"><i class=\"material-icons\">bug_report</i></button>\n        <!-- <button mat-button (click)=\"sayHello()\">Say Hello</button>\n        <button mat-button (click)=\"changeName()\">Change name</button>\n        <button mat-button routerLink=\"/test\">Router Test</button> -->\n    </mat-toolbar>\n\n    <div>\n        <!-- FIXME: standard divs are preferred over mat-card -->\n        <div class=\"tree\">\n            <app-tree></app-tree>\n        </div>\n\n        <!-- <mat-card class=\"card\">\n            <p>{{return}}</p>\n        </mat-card> -->\n\n        <div class=\"view\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n\n\n\n\n\n</mat-drawer-container>"
+module.exports = "<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\n\n<link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">\n\n<mat-drawer-container autosize class=\"drawer\" (contextmenu)=\"rightClick()\">\n    <mat-drawer mode=\"side\" opened>\n        <app-main-menu></app-main-menu>\n    </mat-drawer>\n\n\n    <mat-toolbar>\n        <button mat-button matTooltip=\"Start a new agent\" (click)=\"menu.startDialog()\"><i class=\"material-icons\">add_circle</i></button>\n        <button mat-button matTooltip=\"Kill\" (click)=\"menu.securityDialog('kill')\"><i class=\"material-icons\">cancel</i></button>\n        <button mat-button matTooltip=\"Suspend\" (click)=\"menu.securityDialog('suspend')\"><i class=\"material-icons\">pause_circle_filled</i></button>\n        <button mat-button matTooltip=\"Resume\" (click)=\"menusecurityDialog('resume')\"><i class=\"material-icons\">play_circle_filled</i></button>\n        <!-- <button mat-button><i class=\"material-icons\">drafts</i></button> -->\n        <button mat-button matTooltip=\"Move\" (click)=\"menu.cloneDialog('Migrate')\"><i class=\"material-icons\">swap_vertical_circle</i></button>\n        <button mat-button matTooltip=\"Clone\" (click)=\"menu.cloneDialog('Clone')\"><i class=\"material-icons\">supervised_user_circle</i></button>\n        <!-- <button mat-button><i class=\"material-icons\">description</i></button> -->\n        <!-- <button mat-button><i class=\"material-icons\">save</i></button> -->\n        <button mat-button matTooltip=\"Freeze\" (click)=\"menu.securityDialog('freeze')\"><i class=\"material-icons\">ac_unit</i></button>\n        <button mat-button matTooltip=\"Thaw the agent\" (click)=\"menu.cloneDialog('thaw')\"><i class=\"material-icons\">whatshot</i></button>\n        <button mat-button matTooltip=\"Start sniffer\" (click)=\"menu.startSniffer()\"><i class=\"material-icons\">visibility</i></button>\n        <button mat-button matTooltip=\"Start dummy agent\" (click)=\"menu.startDummy()\"><i class=\"material-icons\">face</i></button>\n        <button mat-button matTooltip=\"Start log manager\" (click)=\"menu.startLog()\"><i class=\"material-icons\">receipt</i></button>\n        <button mat-button matTooltip=\"Start introspector\" (click)=\"menu.startIntrospector()\"><i class=\"material-icons\">bug_report</i></button>\n        <!-- <button mat-button (click)=\"sayHello()\">Say Hello</button>\n        <button mat-button (click)=\"changeName()\">Change name</button>\n        <button mat-button routerLink=\"/test\">Router Test</button> -->\n    </mat-toolbar>\n\n\n    <div class=\"split-grid\">\n        <app-tree class=\"tree\"></app-tree>\n        <div class=\"view\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n\n\n\n\n\n</mat-drawer-container>"
 
 /***/ }),
 
@@ -106,12 +106,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import 'jquery-ui-dist/jquery-ui';
 var AppComponent = /** @class */ (function () {
     function AppComponent(http) {
         this.http = http;
         this.title = 'Test-sb';
         this.return = '';
-        this.gridlayout = '55% 45%';
     }
     AppComponent.prototype.sayHello = function () {
         var _this = this;
@@ -732,11 +732,7 @@ var MainMenuComponent = /** @class */ (function () {
     MainMenuComponent.prototype.startIntrospector = function () {
         this.updateSelection();
         if (this.selection.indexOf('@') == -1 && this.selection != '') {
-            console.log("Starting introspector on " + this.selection);
-            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpParams"]().set("container", this.selection);
-            this.http.get('http://localhost:2020/introspector', {
-                params: params
-            }).subscribe(function (data) { return console.log(data); });
+            console.log("Starting dummy on " + this.selection);
             this.router.navigate(['/introspector']);
         }
         else {
@@ -986,7 +982,7 @@ var StartDialogComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "mat-toolbar{\n    position: absolute;\n    top: 0;\n}\nbutton{\n    padding-left: 6px;\n    padding-right: 6px;\n    min-width: 0px;\n    margin: 0 6px;\n}\nmat-toolbar button{\n    background-color: rgb(92, 116, 221);\n    color: white;\n}\n#close{\n    background-color: rgba(255, 0, 0, 0.6);\n    color: white;\n}\n#other{\n    border: 3px solid black;\n}\n.sniffed{\n    padding: 8px;\n    background-color: gray;\n    color: white;\n    margin: 12px;\n    display: inline-flex;\n    border: 3px solid deeppink;\n}\n.showed{\n    padding: 8px;\n    background-color: gray;\n    color: white;\n    margin: 12px;\n    display: inline-flex;\n    border: 3px solid orange;\n}\n.dummyControl{\n    width: 40%;\n    border: 1px solid black;\n    display: inline-block;\n    text-align: center;\n    min-height: 800px;\n    margin-top: 10px;\n}\n.msgOption{\n    display: inline-block;\n    width: 100%;\n}\n.msgOption mat-form-field{\n    width: 90%;\n}\n.dummyMessages{\n    width: calc(55%);\n    float: right;\n    border: 1px solid black;\n    display: inline-block;\n    min-height: 800px;\n    margin-top: 10px;\n}\n.dualSelector{\n    display: inline;\n    border: 1px solid gray;\n    text-align: center;\n    padding: 0 6px;\n}\n.introspectorGrid{\n    display: grid;\n    grid-template-areas:\n      'in in in out out out'\n      'st be be be  be  be';\n    grid-gap: 10px;\n    min-height: 800px;\n}\n.intrGridElement{\n    border: 2px solid gray;\n}\n#item1{\n    text-align: center;\n    grid-area: in;\n}\n#item2{\n    text-align: center;\n    grid-area: out;\n}\n#item3{\n    text-align: center;\n    grid-area: st;\n}\n#item4{\n    text-align: center;\n    grid-area: be;\n}\n.logtable{\n    width: 100%;\n    font-family: inherit;\n    font-size: inherit;\n    font-style: normal;\n    text-align: left;\n}\n.logtable tr:nth-child(even){\n    background-color: #a0c6ff42;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGVzdC90ZXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxrQkFBa0I7SUFDbEIsTUFBTTtBQUNWO0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsa0JBQWtCO0lBQ2xCLGNBQWM7SUFDZCxhQUFhO0FBQ2pCO0FBQ0E7SUFDSSxtQ0FBbUM7SUFDbkMsWUFBWTtBQUNoQjtBQUNBO0lBQ0ksc0NBQXNDO0lBQ3RDLFlBQVk7QUFDaEI7QUFHQTtJQUNJLHVCQUF1QjtBQUMzQjtBQUNBO0lBQ0ksWUFBWTtJQUNaLHNCQUFzQjtJQUN0QixZQUFZO0lBQ1osWUFBWTtJQUNaLG9CQUFvQjtJQUNwQiwwQkFBMEI7QUFDOUI7QUFDQTtJQUNJLFlBQVk7SUFDWixzQkFBc0I7SUFDdEIsWUFBWTtJQUNaLFlBQVk7SUFDWixvQkFBb0I7SUFDcEIsd0JBQXdCO0FBQzVCO0FBSUE7SUFDSSxVQUFVO0lBQ1YsdUJBQXVCO0lBQ3ZCLHFCQUFxQjtJQUNyQixrQkFBa0I7SUFDbEIsaUJBQWlCO0lBQ2pCLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0kscUJBQXFCO0lBQ3JCLFdBQVc7QUFDZjtBQUNBO0lBQ0ksVUFBVTtBQUNkO0FBQ0E7SUFDSSxnQkFBZ0I7SUFDaEIsWUFBWTtJQUNaLHVCQUF1QjtJQUN2QixxQkFBcUI7SUFDckIsaUJBQWlCO0lBQ2pCLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0ksZUFBZTtJQUNmLHNCQUFzQjtJQUN0QixrQkFBa0I7SUFDbEIsY0FBYztBQUNsQjtBQUlBO0lBQ0ksYUFBYTtJQUNiOzsyQkFFdUI7SUFDdkIsY0FBYztJQUNkLGlCQUFpQjtBQUNyQjtBQUNBO0lBQ0ksc0JBQXNCO0FBQzFCO0FBQ0E7SUFDSSxrQkFBa0I7SUFDbEIsYUFBYTtBQUNqQjtBQUNBO0lBQ0ksa0JBQWtCO0lBQ2xCLGNBQWM7QUFDbEI7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixhQUFhO0FBQ2pCO0FBQ0E7SUFDSSxrQkFBa0I7SUFDbEIsYUFBYTtBQUNqQjtBQUlBO0lBQ0ksV0FBVztJQUNYLG9CQUFvQjtJQUNwQixrQkFBa0I7SUFDbEIsa0JBQWtCO0lBQ2xCLGdCQUFnQjtBQUNwQjtBQUNBO0lBQ0ksMkJBQTJCO0FBQy9CIiwiZmlsZSI6InNyYy9hcHAvdGVzdC90ZXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJtYXQtdG9vbGJhcntcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgdG9wOiAwO1xufVxuYnV0dG9ue1xuICAgIHBhZGRpbmctbGVmdDogNnB4O1xuICAgIHBhZGRpbmctcmlnaHQ6IDZweDtcbiAgICBtaW4td2lkdGg6IDBweDtcbiAgICBtYXJnaW46IDAgNnB4O1xufVxubWF0LXRvb2xiYXIgYnV0dG9ue1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYig5MiwgMTE2LCAyMjEpO1xuICAgIGNvbG9yOiB3aGl0ZTtcbn1cbiNjbG9zZXtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDI1NSwgMCwgMCwgMC42KTtcbiAgICBjb2xvcjogd2hpdGU7XG59XG5cblxuI290aGVye1xuICAgIGJvcmRlcjogM3B4IHNvbGlkIGJsYWNrO1xufVxuLnNuaWZmZWR7XG4gICAgcGFkZGluZzogOHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IGdyYXk7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIG1hcmdpbjogMTJweDtcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICBib3JkZXI6IDNweCBzb2xpZCBkZWVwcGluaztcbn1cbi5zaG93ZWR7XG4gICAgcGFkZGluZzogOHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IGdyYXk7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIG1hcmdpbjogMTJweDtcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICBib3JkZXI6IDNweCBzb2xpZCBvcmFuZ2U7XG59XG5cblxuXG4uZHVtbXlDb250cm9se1xuICAgIHdpZHRoOiA0MCU7XG4gICAgYm9yZGVyOiAxcHggc29saWQgYmxhY2s7XG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBtaW4taGVpZ2h0OiA4MDBweDtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xufVxuLm1zZ09wdGlvbntcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgd2lkdGg6IDEwMCU7XG59XG4ubXNnT3B0aW9uIG1hdC1mb3JtLWZpZWxke1xuICAgIHdpZHRoOiA5MCU7XG59XG4uZHVtbXlNZXNzYWdlc3tcbiAgICB3aWR0aDogY2FsYyg1NSUpO1xuICAgIGZsb2F0OiByaWdodDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgbWluLWhlaWdodDogODAwcHg7XG4gICAgbWFyZ2luLXRvcDogMTBweDtcbn1cbi5kdWFsU2VsZWN0b3J7XG4gICAgZGlzcGxheTogaW5saW5lO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIGdyYXk7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIHBhZGRpbmc6IDAgNnB4O1xufVxuXG5cblxuLmludHJvc3BlY3RvckdyaWR7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBncmlkLXRlbXBsYXRlLWFyZWFzOlxuICAgICAgJ2luIGluIGluIG91dCBvdXQgb3V0J1xuICAgICAgJ3N0IGJlIGJlIGJlICBiZSAgYmUnO1xuICAgIGdyaWQtZ2FwOiAxMHB4O1xuICAgIG1pbi1oZWlnaHQ6IDgwMHB4O1xufVxuLmludHJHcmlkRWxlbWVudHtcbiAgICBib3JkZXI6IDJweCBzb2xpZCBncmF5O1xufVxuI2l0ZW0xe1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBncmlkLWFyZWE6IGluO1xufVxuI2l0ZW0ye1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBncmlkLWFyZWE6IG91dDtcbn1cbiNpdGVtM3tcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgZ3JpZC1hcmVhOiBzdDtcbn1cbiNpdGVtNHtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgZ3JpZC1hcmVhOiBiZTtcbn1cblxuXG5cbi5sb2d0YWJsZXtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBmb250LWZhbWlseTogaW5oZXJpdDtcbiAgICBmb250LXNpemU6IGluaGVyaXQ7XG4gICAgZm9udC1zdHlsZTogbm9ybWFsO1xuICAgIHRleHQtYWxpZ246IGxlZnQ7XG59XG4ubG9ndGFibGUgdHI6bnRoLWNoaWxkKGV2ZW4pe1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNhMGM2ZmY0Mjtcbn0iXX0= */"
+module.exports = "mat-toolbar{\n    position: absolute;\n    top: 0;\n}\nbutton{\n    padding-left: 6px;\n    padding-right: 6px;\n    min-width: 0px;\n    margin: 0 6px;\n}\nmat-toolbar button{\n    background-color: rgb(92, 116, 221);\n    color: white;\n}\n#close{\n    background-color: rgba(255, 0, 0, 0.6);\n    color: white;\n}\n#wrapper{\n    overflow: hidden;\n}\n#other{\n    border: 3px solid black;\n}\n.sniffed{\n    padding: 8px;\n    background-color: gray;\n    color: white;\n    margin: 12px;\n    display: inline-flex;\n    border: 3px solid deeppink;\n}\n.showed{\n    padding: 8px;\n    background-color: gray;\n    color: white;\n    margin: 12px;\n    display: inline-flex;\n    border: 3px solid orange;\n}\n.dummyControl{\n    width: 40%;\n    /* border: 1px solid black; */\n    display: inline-block;\n    text-align: center;\n    min-height: 80vh;\n    margin-top: 20px;\n    margin-left: 20px;\n    margin-bottom: 50px;\n    box-shadow: 0 0 40px #aebaca;\n    padding: 4px;\n    border-radius: 16px;\n}\n.msgOption{\n    display: inline-block;\n    width: 100%;\n    margin-top: 45px;\n}\n.msgOption mat-form-field{\n    width: 90%;\n}\n.dummyMessages{\n    width: 55%;\n    float: right;\n    /* border: 1px solid black; */\n    display: inline-block;\n    min-height: 800px;\n    margin-top: 5px;\n}\n.dualSelector{\n    display: inline;\n    border: 1px solid gray;\n    text-align: center;\n    padding: 0 6px;\n}\n.introspectorGrid{\n    margin: 1% 2.5%;\n    display: grid;\n    grid-template-areas:\n      'in in in out out out'\n      'st be be be  be  be'\n      'sp sp sp sp  sp  sp';\n    grid-gap: 10px;\n    min-height: 800px;\n}\n.intrGridElement{\n    /* border: 2px solid gray; */\n}\n#item1{\n    text-align: center;\n    grid-area: in;\n    /* overflow-y: auto; */\n}\n#item2{\n    text-align: center;\n    grid-area: out;\n    /* overflow-y: auto; */\n}\n#item3{\n    text-align: center;\n    grid-area: st;\n    box-shadow: 0 0 40px #aebaca;\n    padding: 4px;\n    border-radius: 16px;\n}\n#item4{\n    text-align: left;\n    grid-area: be;\n    box-shadow: 0 0 40px #aebaca;\n    padding: 4px;\n    border-radius: 16px;\n}\n#item5{\n    text-align: left;\n    grid-area: sp;\n    box-shadow: 0 0 40px #aebaca;\n    padding: 4px;\n    border-radius: 16px;\n}\n.example-tree-invisible {\n    display: none;\n}\n.example-tree ul,\n.example-tree li {\n    margin-top: 0;\n    margin-bottom: 0;\n    list-style-type: none;\n}\n.example-tree-node {\n    display: block;\n}\n.example-tree-node .example-tree-node {\n    padding-left: 40px;\n}\n.example-tree-progress-bar {\n    margin-left: 30px;\n}\n.example-tree-nested-node {\n    padding-left: 30px;\n}\nspan{\n    cursor: pointer;\n    border: 5px solid transparent;\n    padding-right: 8px;\n}\n.focusClass{\n    background-color: rgb(92, 116, 221);\n    color: white;\n}\n.logtable{\n    width: 95%;\n    margin: 2.5% 2.5%;\n    font-family: inherit;\n    font-size: inherit;\n    font-style: normal;\n    text-align: left;\n    padding: 4px;\n    border-radius: 16px;\n    box-shadow: 0 0 40px #aebaca;\n}\n.logtable tr:nth-child(even){\n    background-color: #a0c6ff42;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdGVzdC90ZXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxrQkFBa0I7SUFDbEIsTUFBTTtBQUNWO0FBQ0E7SUFDSSxpQkFBaUI7SUFDakIsa0JBQWtCO0lBQ2xCLGNBQWM7SUFDZCxhQUFhO0FBQ2pCO0FBQ0E7SUFDSSxtQ0FBbUM7SUFDbkMsWUFBWTtBQUNoQjtBQUNBO0lBQ0ksc0NBQXNDO0lBQ3RDLFlBQVk7QUFDaEI7QUFDQTtJQUNJLGdCQUFnQjtBQUNwQjtBQUdBO0lBQ0ksdUJBQXVCO0FBQzNCO0FBQ0E7SUFDSSxZQUFZO0lBQ1osc0JBQXNCO0lBQ3RCLFlBQVk7SUFDWixZQUFZO0lBQ1osb0JBQW9CO0lBQ3BCLDBCQUEwQjtBQUM5QjtBQUNBO0lBQ0ksWUFBWTtJQUNaLHNCQUFzQjtJQUN0QixZQUFZO0lBQ1osWUFBWTtJQUNaLG9CQUFvQjtJQUNwQix3QkFBd0I7QUFDNUI7QUFJQTtJQUNJLFVBQVU7SUFDViw2QkFBNkI7SUFDN0IscUJBQXFCO0lBQ3JCLGtCQUFrQjtJQUNsQixnQkFBZ0I7SUFDaEIsZ0JBQWdCO0lBQ2hCLGlCQUFpQjtJQUNqQixtQkFBbUI7SUFDbkIsNEJBQTRCO0lBQzVCLFlBQVk7SUFDWixtQkFBbUI7QUFDdkI7QUFDQTtJQUNJLHFCQUFxQjtJQUNyQixXQUFXO0lBQ1gsZ0JBQWdCO0FBQ3BCO0FBQ0E7SUFDSSxVQUFVO0FBQ2Q7QUFDQTtJQUNJLFVBQVU7SUFDVixZQUFZO0lBQ1osNkJBQTZCO0lBQzdCLHFCQUFxQjtJQUNyQixpQkFBaUI7SUFDakIsZUFBZTtBQUNuQjtBQUNBO0lBQ0ksZUFBZTtJQUNmLHNCQUFzQjtJQUN0QixrQkFBa0I7SUFDbEIsY0FBYztBQUNsQjtBQUlBO0lBQ0ksZUFBZTtJQUNmLGFBQWE7SUFDYjs7OzJCQUd1QjtJQUN2QixjQUFjO0lBQ2QsaUJBQWlCO0FBQ3JCO0FBQ0E7SUFDSSw0QkFBNEI7QUFDaEM7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixhQUFhO0lBQ2Isc0JBQXNCO0FBQzFCO0FBQ0E7SUFDSSxrQkFBa0I7SUFDbEIsY0FBYztJQUNkLHNCQUFzQjtBQUMxQjtBQUNBO0lBQ0ksa0JBQWtCO0lBQ2xCLGFBQWE7SUFDYiw0QkFBNEI7SUFDNUIsWUFBWTtJQUNaLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGFBQWE7SUFDYiw0QkFBNEI7SUFDNUIsWUFBWTtJQUNaLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGFBQWE7SUFDYiw0QkFBNEI7SUFDNUIsWUFBWTtJQUNaLG1CQUFtQjtBQUN2QjtBQUNBO0lBQ0ksYUFBYTtBQUNqQjtBQUNBOztJQUVJLGFBQWE7SUFDYixnQkFBZ0I7SUFDaEIscUJBQXFCO0FBQ3pCO0FBQ0E7SUFDSSxjQUFjO0FBQ2xCO0FBRUE7SUFDSSxrQkFBa0I7QUFDdEI7QUFDQTtJQUNJLGlCQUFpQjtBQUNyQjtBQUVBO0lBQ0ksa0JBQWtCO0FBQ3RCO0FBQ0E7SUFDSSxlQUFlO0lBQ2YsNkJBQTZCO0lBQzdCLGtCQUFrQjtBQUN0QjtBQUNBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7QUFDaEI7QUFLQTtJQUNJLFVBQVU7SUFDVixpQkFBaUI7SUFDakIsb0JBQW9CO0lBQ3BCLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsZ0JBQWdCO0lBQ2hCLFlBQVk7SUFDWixtQkFBbUI7SUFDbkIsNEJBQTRCO0FBQ2hDO0FBQ0E7SUFDSSwyQkFBMkI7QUFDL0IiLCJmaWxlIjoic3JjL2FwcC90ZXN0L3Rlc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIm1hdC10b29sYmFye1xuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgICB0b3A6IDA7XG59XG5idXR0b257XG4gICAgcGFkZGluZy1sZWZ0OiA2cHg7XG4gICAgcGFkZGluZy1yaWdodDogNnB4O1xuICAgIG1pbi13aWR0aDogMHB4O1xuICAgIG1hcmdpbjogMCA2cHg7XG59XG5tYXQtdG9vbGJhciBidXR0b257XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDkyLCAxMTYsIDIyMSk7XG4gICAgY29sb3I6IHdoaXRlO1xufVxuI2Nsb3Nle1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAwLCAwLCAwLjYpO1xuICAgIGNvbG9yOiB3aGl0ZTtcbn1cbiN3cmFwcGVye1xuICAgIG92ZXJmbG93OiBoaWRkZW47XG59XG5cblxuI290aGVye1xuICAgIGJvcmRlcjogM3B4IHNvbGlkIGJsYWNrO1xufVxuLnNuaWZmZWR7XG4gICAgcGFkZGluZzogOHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IGdyYXk7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIG1hcmdpbjogMTJweDtcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICBib3JkZXI6IDNweCBzb2xpZCBkZWVwcGluaztcbn1cbi5zaG93ZWR7XG4gICAgcGFkZGluZzogOHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6IGdyYXk7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIG1hcmdpbjogMTJweDtcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgICBib3JkZXI6IDNweCBzb2xpZCBvcmFuZ2U7XG59XG5cblxuXG4uZHVtbXlDb250cm9se1xuICAgIHdpZHRoOiA0MCU7XG4gICAgLyogYm9yZGVyOiAxcHggc29saWQgYmxhY2s7ICovXG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBtaW4taGVpZ2h0OiA4MHZoO1xuICAgIG1hcmdpbi10b3A6IDIwcHg7XG4gICAgbWFyZ2luLWxlZnQ6IDIwcHg7XG4gICAgbWFyZ2luLWJvdHRvbTogNTBweDtcbiAgICBib3gtc2hhZG93OiAwIDAgNDBweCAjYWViYWNhO1xuICAgIHBhZGRpbmc6IDRweDtcbiAgICBib3JkZXItcmFkaXVzOiAxNnB4O1xufVxuLm1zZ09wdGlvbntcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgbWFyZ2luLXRvcDogNDVweDtcbn1cbi5tc2dPcHRpb24gbWF0LWZvcm0tZmllbGR7XG4gICAgd2lkdGg6IDkwJTtcbn1cbi5kdW1teU1lc3NhZ2Vze1xuICAgIHdpZHRoOiA1NSU7XG4gICAgZmxvYXQ6IHJpZ2h0O1xuICAgIC8qIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrOyAqL1xuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgICBtaW4taGVpZ2h0OiA4MDBweDtcbiAgICBtYXJnaW4tdG9wOiA1cHg7XG59XG4uZHVhbFNlbGVjdG9ye1xuICAgIGRpc3BsYXk6IGlubGluZTtcbiAgICBib3JkZXI6IDFweCBzb2xpZCBncmF5O1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBwYWRkaW5nOiAwIDZweDtcbn1cblxuXG5cbi5pbnRyb3NwZWN0b3JHcmlke1xuICAgIG1hcmdpbjogMSUgMi41JTtcbiAgICBkaXNwbGF5OiBncmlkO1xuICAgIGdyaWQtdGVtcGxhdGUtYXJlYXM6XG4gICAgICAnaW4gaW4gaW4gb3V0IG91dCBvdXQnXG4gICAgICAnc3QgYmUgYmUgYmUgIGJlICBiZSdcbiAgICAgICdzcCBzcCBzcCBzcCAgc3AgIHNwJztcbiAgICBncmlkLWdhcDogMTBweDtcbiAgICBtaW4taGVpZ2h0OiA4MDBweDtcbn1cbi5pbnRyR3JpZEVsZW1lbnR7XG4gICAgLyogYm9yZGVyOiAycHggc29saWQgZ3JheTsgKi9cbn1cbiNpdGVtMXtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgZ3JpZC1hcmVhOiBpbjtcbiAgICAvKiBvdmVyZmxvdy15OiBhdXRvOyAqL1xufVxuI2l0ZW0ye1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBncmlkLWFyZWE6IG91dDtcbiAgICAvKiBvdmVyZmxvdy15OiBhdXRvOyAqL1xufVxuI2l0ZW0ze1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBncmlkLWFyZWE6IHN0O1xuICAgIGJveC1zaGFkb3c6IDAgMCA0MHB4ICNhZWJhY2E7XG4gICAgcGFkZGluZzogNHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDE2cHg7XG59XG4jaXRlbTR7XG4gICAgdGV4dC1hbGlnbjogbGVmdDtcbiAgICBncmlkLWFyZWE6IGJlO1xuICAgIGJveC1zaGFkb3c6IDAgMCA0MHB4ICNhZWJhY2E7XG4gICAgcGFkZGluZzogNHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDE2cHg7XG59XG4jaXRlbTV7XG4gICAgdGV4dC1hbGlnbjogbGVmdDtcbiAgICBncmlkLWFyZWE6IHNwO1xuICAgIGJveC1zaGFkb3c6IDAgMCA0MHB4ICNhZWJhY2E7XG4gICAgcGFkZGluZzogNHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDE2cHg7XG59XG4uZXhhbXBsZS10cmVlLWludmlzaWJsZSB7XG4gICAgZGlzcGxheTogbm9uZTtcbn1cbi5leGFtcGxlLXRyZWUgdWwsXG4uZXhhbXBsZS10cmVlIGxpIHtcbiAgICBtYXJnaW4tdG9wOiAwO1xuICAgIG1hcmdpbi1ib3R0b206IDA7XG4gICAgbGlzdC1zdHlsZS10eXBlOiBub25lO1xufVxuLmV4YW1wbGUtdHJlZS1ub2RlIHtcbiAgICBkaXNwbGF5OiBibG9jaztcbn1cblxuLmV4YW1wbGUtdHJlZS1ub2RlIC5leGFtcGxlLXRyZWUtbm9kZSB7XG4gICAgcGFkZGluZy1sZWZ0OiA0MHB4O1xufVxuLmV4YW1wbGUtdHJlZS1wcm9ncmVzcy1iYXIge1xuICAgIG1hcmdpbi1sZWZ0OiAzMHB4O1xufVxuXG4uZXhhbXBsZS10cmVlLW5lc3RlZC1ub2RlIHtcbiAgICBwYWRkaW5nLWxlZnQ6IDMwcHg7XG59XG5zcGFue1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICBib3JkZXI6IDVweCBzb2xpZCB0cmFuc3BhcmVudDtcbiAgICBwYWRkaW5nLXJpZ2h0OiA4cHg7XG59XG4uZm9jdXNDbGFzc3tcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoOTIsIDExNiwgMjIxKTtcbiAgICBjb2xvcjogd2hpdGU7XG59XG5cblxuXG5cbi5sb2d0YWJsZXtcbiAgICB3aWR0aDogOTUlO1xuICAgIG1hcmdpbjogMi41JSAyLjUlO1xuICAgIGZvbnQtZmFtaWx5OiBpbmhlcml0O1xuICAgIGZvbnQtc2l6ZTogaW5oZXJpdDtcbiAgICBmb250LXN0eWxlOiBub3JtYWw7XG4gICAgdGV4dC1hbGlnbjogbGVmdDtcbiAgICBwYWRkaW5nOiA0cHg7XG4gICAgYm9yZGVyLXJhZGl1czogMTZweDtcbiAgICBib3gtc2hhZG93OiAwIDAgNDBweCAjYWViYWNhO1xufVxuLmxvZ3RhYmxlIHRyOm50aC1jaGlsZChldmVuKXtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjYTBjNmZmNDI7XG59Il19 */"
 
 /***/ }),
 
@@ -997,7 +993,7 @@ module.exports = "mat-toolbar{\n    position: absolute;\n    top: 0;\n}\nbutton{
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div>\n    <mat-toolbar>\n        <button mat-button routerLink=\"/\" id=\"close\">Close</button>\n\n        <span *ngIf=\"isSniffer\">\n            <button mat-button (click)=\"clear()\">Clear</button>\n            <!-- <button mat-button>Open</button>\n            <button mat-button>Save</button>\n            <button mat-button>Write</button> -->\n            <button mat-button (click)=\"addSniffed()\">Do Sniff</button>\n            <button mat-button (click)=\"removeSniffed()\">Don't Sniff</button>\n            <!-- <button mat-button (click)=\"addShowed()\">Show only</button> -->\n        </span>\n\n        <span *ngIf=\"isLog\">\n            <!-- <button mat-button>Set default logging</button> -->\n            <button mat-button (click)=\"startLog()\">Start log</button>\n            <!-- <button mat-button>Stop log</button> -->\n        </span>\n\n        <span *ngIf=\"isDummy\">\n            <!-- <button mat-button>Reset</button> -->\n            <button mat-button (click)=\"sendDummy()\">Send</button>\n            <!-- <button mat-button>Open</button>\n            <button mat-button>Save</button>\n            <button mat-button>Open queue</button>\n            <button mat-button>Save queue</button>\n            <button mat-button>Set as current</button>\n            <button mat-button>Reply</button>\n            <button mat-button>View</button>\n            <button mat-button>Delete</button> -->\n        </span>\n\n        <span *ngIf=\"isIntrospector\">\n            <button mat-button>Debug On</button>\n            <button mat-button>Debug Off</button>\n            <button mat-button>Step</button>\n            <button mat-button>Break</button>\n            <button mat-button>Slow</button>\n            <button mat-button>Go</button>\n        </span>\n\n                \n\n    </mat-toolbar>\n    <div *ngIf=\"isSniffer\" style=\"overflow-y: auto; max-height:92vh;\">\n        <div class=\"sniffed\" id=\"other\">\n            Other\n        </div>\n        <div class=\"sniffed\" *ngFor=\"let agent of sniffed\">\n            {{agent}}\n        </div>\n        <div class=\"showed\" *ngFor=\"let agent of showed\">\n            {{agent}}\n        </div>\n        <table class=\"logtable\">\n            <tr>\n                <th> Sender </th>\n                <th> Type </th>\n                <th> Receiver </th>\n                <th> Content </th>\n            </tr>\n            <tr *ngFor=\"let m of messagelist\">\n                <th> {{ m.sender }} </th>\n                <th> {{ m.type }} </th>\n                <th> {{ m.receiver }} </th>\n                <th> {{ m.content }} </th>\n            </tr>\n        </table>\n    </div>\n\n    <div *ngIf=\"isDummy\">\n        <div class=\"dummyControl\">\n            <div class=\"dualSelector\">\n                ACL Message\n            </div>\n            <div class=\"dualSelector\">\n                Envelope\n            </div>\n            <div class=\"msgOption\">\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Sender\" [(ngModel)]=\"sender\"\n                        [ngModelOptions]=\"{standalone: true}\" required=true>\n                    </mat-form-field>\n                </form>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Receiver\" [(ngModel)]=\"receiver\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <mat-form-field>\n                    <mat-label>Communication type</mat-label>\n                    <mat-select [(value)]=\"comm\">\n                        <mat-option value=\"accept-proposal\">Accept proposal</mat-option>\n                        <mat-option value=\"agree\">Agree</mat-option>\n                        <mat-option value=\"cancel\">Cancel</mat-option>\n                        <mat-option value=\"cfp\">Cfp</mat-option>\n                        <mat-option value=\"confirm\">Confirm</mat-option>\n                        <mat-option value=\"disconfirm\">Disconfirm</mat-option>\n                        <mat-option value=\"failure\">Failure</mat-option>\n                        <mat-option value=\"inform\">Inform</mat-option>\n                        <mat-option value=\"inform-if\">Inform if</mat-option>\n                        <mat-option value=\"inform-ref\">Inform ref</mat-option>\n                        <mat-option value=\"not-understood\">Not undersood</mat-option>\n                        <mat-option value=\"purpose\">Purpose</mat-option>\n                        <mat-option value=\"query-if\">Query if</mat-option>\n                        <mat-option value=\"query-ref\">Query ref</mat-option>\n                        <mat-option value=\"refuse\">Refuse</mat-option>\n                        <mat-option value=\"reject-proposal\">Reject proposal</mat-option>\n                        <mat-option value=\"request\">Request</mat-option>\n                        <mat-option value=\"request-when\">Request when</mat-option>\n                        <mat-option value=\"request-whenever\">Request whenever</mat-option>\n                        <mat-option value=\"subscribe\">Subscribe</mat-option>\n                        <mat-option value=\"proxy\">Proxy</mat-option>\n                        <mat-option value=\"propagate\">Propagate</mat-option>\n                    </mat-select>\n                </mat-form-field>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Content\" [(ngModel)]=\"content\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Language\" [(ngModel)]=\"language\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Encoding\" [(ngModel)]=\"encoding\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Ontology\" [(ngModel)]=\"ontology\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <mat-form-field>\n                    <mat-label>Protocol</mat-label>\n                    <mat-select [(value)]=\"protocol\">\n                        <mat-option value=\"Null\">Null</mat-option>\n                        <mat-option value=\"fipa-auction-english\">Fipa-auction-english</mat-option>\n                        <mat-option value=\"fipa-auction-dutch\">Fipa-auction-dutch</mat-option>\n                        <mat-option value=\"fipa-contract-net\">Fipa-contract-net</mat-option>\n                        <mat-option value=\"fipa-iterated-contract-net\">Fipa-iterated-contract-net</mat-option>\n                        <mat-option value=\"fipa-query\">Fipa-query</mat-option>\n                        <mat-option value=\"fipa-request\">Fipa-request</mat-option>\n                        <mat-option value=\"fipa-request-when\">Fipa-request-when</mat-option>\n                        <mat-option value=\"fipa-purpose\">Fipa-purpose</mat-option>\n                        <mat-option value=\"ADD USER-DEF PROTOCOL\">Add user-def protocol</mat-option>\n                    </mat-select>\n                </mat-form-field>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Conversation\" [(ngModel)]=\"conversation\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"In reply to\" [(ngModel)]=\"repto\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Reply with\" [(ngModel)]=\"repw\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n            </div>\n        </div>\n        <div class=\"dummyMessages\">\n            <p>Testo di prova</p>\n        </div>\n    </div>\n        \n        <div *ngIf=\"isLog\" style=\"overflow-y: auto; max-height:92vh;\">\n                <table class=\"logtable\">\n            <tr>\n                <th> Name </th>\n                <th> Level </th>\n            </tr>\n            <tr *ngFor=\"let l of logs\">\n                <th> {{ l.name }} </th>\n                <th> {{ l.level }} </th>\n            </tr>\n        </table>\n    </div>\n\n    <div *ngIf=\"isIntrospector\" class=\"introspectorGrid\">\n        <div class=\"intrGridElement\" id=\"item1\">\n            <p>Incoming Messages</p>\n            <div class=\"dualSelector\">\n                Pending\n            </div>\n            <div class=\"dualSelector\">\n                Received\n            </div>\n        </div>\n        <div class=\"intrGridElement\" id=\"item2\">\n            <p>Outgoing Messages</p>\n            <div class=\"dualSelector\">\n                Pending\n            </div>\n            <div class=\"dualSelector\">\n                Received\n            </div>\n        </div>\n        <div class=\"intrGridElement\" id=\"item3\">\n            Current State\n        </div>\n        <div class=\"intrGridElement\" id=\"item4\">\n            Behaviours\n        </div>\n    </div>\n</div>\n\n"
+module.exports = "\n<div id=\"wrapper\">\n    <mat-toolbar>\n        <button mat-button routerLink=\"/\" id=\"close\">Close</button>\n\n        <span *ngIf=\"isSniffer\">\n            <button mat-button (click)=\"clear()\">Clear</button>\n            <!-- <button mat-button>Open</button>\n            <button mat-button>Save</button>\n            <button mat-button>Write</button> -->\n            <button mat-button (click)=\"addSniffed()\">Do Sniff</button>\n            <button mat-button (click)=\"removeSniffed()\">Don't Sniff</button>\n            <!-- <button mat-button (click)=\"addShowed()\">Show only</button> -->\n        </span>\n\n        <span *ngIf=\"isLog\">\n            <!-- <button mat-button>Set default logging</button> -->\n            <button mat-button (click)=\"startLog()\">Start log</button>\n            <!-- <button mat-button>Stop log</button> -->\n        </span>\n\n        <span *ngIf=\"isDummy\">\n            <!-- <button mat-button>Reset</button> -->\n            <button mat-button (click)=\"sendDummy()\">Send</button>\n            <!-- <button mat-button>Open</button>\n            <button mat-button>Save</button>\n            <button mat-button>Open queue</button>\n            <button mat-button>Save queue</button>\n            <button mat-button>Set as current</button>\n            <button mat-button>Reply</button>\n            <button mat-button>View</button>\n            <button mat-button>Delete</button> -->\n        </span>\n\n        <span *ngIf=\"isIntrospector\">\n            <button mat-button (click)=\"debugOn()\">Debug On</button>\n            <button mat-button (click)=\"debugOff()\">Debug Off</button>\n            <!-- <button mat-button>Step</button>\n            <button mat-button>Break</button>\n            <button mat-button>Slow</button>\n            <button mat-button>Go</button> -->\n        </span>\n\n                \n\n    </mat-toolbar>\n    <div *ngIf=\"isSniffer\" style=\"overflow-y: auto; max-height:92vh; min-height:90vh;\">\n        <div class=\"sniffed\" id=\"other\">\n            Other\n        </div>\n        <div class=\"sniffed\" *ngFor=\"let agent of sniffed\">\n            {{agent}}\n        </div>\n        <div class=\"showed\" *ngFor=\"let agent of showed\">\n            {{agent}}\n        </div>\n        <table class=\"logtable\">\n            <tr>\n                <th> Sender </th>\n                <th> Type </th>\n                <th> Receiver </th>\n                <th> Content </th>\n            </tr>\n            <tr *ngFor=\"let m of snifferMsgList\">\n                <th> {{ m.sender }} </th>\n                <th> {{ m.type }} </th>\n                <th> {{ m.receiver }} </th>\n                <th> {{ m.content }} </th>\n            </tr>\n        </table>\n    </div>\n\n    <div *ngIf=\"isDummy\">\n        <div class=\"dummyControl\">\n            <div class=\"dualSelector\">\n                ACL Message\n            </div>\n            <div class=\"dualSelector\">\n                Envelope\n            </div>\n            <div class=\"msgOption\">\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Sender\" [(ngModel)]=\"sender\"\n                        [ngModelOptions]=\"{standalone: true}\" required=true>\n                    </mat-form-field>\n                </form>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Receiver\" [(ngModel)]=\"receiver\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <mat-form-field>\n                    <mat-label>Communication type</mat-label>\n                    <mat-select [(value)]=\"commtype\">\n                        <mat-option value=0>Accept proposal</mat-option>\n                        <mat-option value=1>Agree</mat-option>\n                        <mat-option value=2>Cancel</mat-option>\n                        <mat-option value=3>Cfp</mat-option>\n                        <mat-option value=4>Confirm</mat-option>\n                        <mat-option value=5>Disconfirm</mat-option>\n                        <mat-option value=6>Failure</mat-option>\n                        <mat-option value=7>Inform</mat-option>\n                        <mat-option value=8>Inform if</mat-option>\n                        <mat-option value=9>Inform ref</mat-option>\n                        <mat-option value=10>Not undersood</mat-option>\n                        <mat-option value=11>Purpose</mat-option>\n                        <mat-option value=12>Query if</mat-option>\n                        <mat-option value=13>Query ref</mat-option>\n                        <mat-option value=14>Refuse</mat-option>\n                        <mat-option value=15>Reject proposal</mat-option>\n                        <mat-option value=16>Request</mat-option>\n                        <mat-option value=17>Request when</mat-option>\n                        <mat-option value=18>Request whenever</mat-option>\n                        <mat-option value=19>Subscribe</mat-option>\n                        <mat-option value=20>Proxy</mat-option>\n                        <mat-option value=21>Propagate</mat-option>\n                    </mat-select>\n                </mat-form-field>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Content\" [(ngModel)]=\"content\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Language\" [(ngModel)]=\"language\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Encoding\" [(ngModel)]=\"encoding\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Ontology\" [(ngModel)]=\"ontology\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <mat-form-field>\n                    <mat-label>Protocol</mat-label>\n                    <mat-select [(value)]=\"protocol\">\n                        <mat-option value=\"Null\">Null</mat-option>\n                        <mat-option value=\"fipa-auction-english\">Fipa-auction-english</mat-option>\n                        <mat-option value=\"fipa-auction-dutch\">Fipa-auction-dutch</mat-option>\n                        <mat-option value=\"fipa-contract-net\">Fipa-contract-net</mat-option>\n                        <mat-option value=\"fipa-iterated-contract-net\">Fipa-iterated-contract-net</mat-option>\n                        <mat-option value=\"fipa-query\">Fipa-query</mat-option>\n                        <mat-option value=\"fipa-request\">Fipa-request</mat-option>\n                        <mat-option value=\"fipa-request-when\">Fipa-request-when</mat-option>\n                        <mat-option value=\"fipa-purpose\">Fipa-purpose</mat-option>\n                        <mat-option value=\"ADD USER-DEF PROTOCOL\">Add user-def protocol</mat-option>\n                    </mat-select>\n                </mat-form-field>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Conversation\" [(ngModel)]=\"conversation\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"In reply to\" [(ngModel)]=\"repto\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n                <form>\n                    <mat-form-field>\n                        <input matInput type=\"text\" placeholder=\"Reply with\" [(ngModel)]=\"repw\"\n                        [ngModelOptions]=\"{standalone: true}\" required=false>\n                    </mat-form-field>\n                </form>\n            </div>\n        </div>\n        <div class=\"dummyMessages\">\n            <table class=\"logtable\">\n                <tr>\n                    <th> Sender </th>\n                    <th> Type </th>\n                    <th> Receiver </th>\n                    <th> Content </th>\n                </tr>\n                <tr *ngFor=\"let m of dummyMsgList\">\n                    <th> {{ m.sender }} </th>\n                    <th> {{ m.type }} </th>\n                    <th> {{ m.receiver }} </th>\n                    <th> {{ m.content }} </th>\n                </tr>\n            </table>\n        </div>\n    </div>\n        \n        <div *ngIf=\"isLog\" style=\"overflow-y: auto; max-height:92vh; min-height:90vh;\">\n            <table class=\"logtable\">\n                <tr>\n                    <th> Name </th>\n                    <th> Level </th>\n                </tr>\n                <tr *ngFor=\"let l of logs\">\n                    <th> {{ l.name }} </th>\n                    <th> {{ l.level }} </th>\n                </tr>\n            </table>\n    </div>\n\n    <div *ngIf=\"isIntrospector\" class=\"introspectorGrid\">\n        <div class=\"intrGridElement\" id=\"item1\">\n            <p>Incoming Messages</p>\n            <!-- <div class=\"dualSelector\">\n                Pending\n            </div>\n            <div class=\"dualSelector\">\n                Received\n            </div> -->\n            <table class=\"logtable\">\n                <tr>\n                    <th> Sender </th>\n                    <th> Type </th>\n                    <th> Receiver </th>\n                    <th> Content </th>\n                </tr>\n                <tr *ngFor=\"let m of receivedMsgList\">\n                    <th> {{ m.sender }} </th>\n                    <th> {{ m.type }} </th>\n                    <th> {{ m.receiver }} </th>\n                    <th> {{ m.content }} </th>\n                </tr>\n            </table>\n        </div>\n        <div class=\"intrGridElement\" id=\"item2\">\n            <p>Outgoing Messages</p>\n            <!-- <div class=\"dualSelector\">\n                Pending\n            </div>\n            <div class=\"dualSelector\">\n                Received\n            </div> -->\n            <table class=\"logtable\">\n                <tr>\n                    <th> Sender </th>\n                    <th> Type </th>\n                    <th> Receiver </th>\n                    <th> Content </th>\n                </tr>\n                <tr *ngFor=\"let m of sentMsgList\">\n                    <th> {{ m.sender }} </th>\n                    <th> {{ m.type }} </th>\n                    <th> {{ m.receiver }} </th>\n                    <th> {{ m.content }} </th>\n                </tr>\n            </table>\n        </div>\n        <div class=\"intrGridElement\" id=\"item3\">\n            Current State\n            <p>{{ state }}</p>\n        </div>\n        <div class=\"intrGridElement\" id=\"item4\">\n            Behaviours\n            <cdk-tree #tree [dataSource]=\"dataSource\" [treeControl]=\"treeControl\">\n                <!-- This is the tree node template for leaf nodes -->\n                <cdk-nested-tree-node *cdkTreeNodeDef=\"let node\" class=\"example-tree-node\">\n                    <!-- use a disabled button to provide padding for tree leaf -->\n                    <button mat-icon-button disabled *ngIf='node.name;else other_content'></button>\n                    <span tabindex=\"1\" (click)=\"focus(node.name)\" [ngClass]=\"{focusClass: selected == node.name}\">\n                        {{node.name}}\n                    </span>\n                    <!-- <ng-template #other_content>Qui se non esiste il nome della cartella ma solo gli agenti</ng-template> -->\n                    <!-- {{node.agents.name}} -->\n                </cdk-nested-tree-node>\n                <!-- This is the tree node template for expandable nodes -->\n                \n            \n            \n                <cdk-nested-tree-node *cdkTreeNodeDef=\"let node; when: hasChild\" class=\"example-tree-node\">\n                    <button mat-icon-button [attr.aria-label]=\"'toggle ' + node.name\" cdkTreeNodeToggle>\n                        <mat-icon class=\"mat-icon-rtl-mirror\">\n                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}\n                        </mat-icon>\n                    </button>\n                    <span tabindex=\"1\" (click)=\"focus(node.name)\" [ngClass]=\"{focusClass: selected == node.name}\">\n                        {{node.name}}\n                    </span>\n                    <div [class.example-tree-invisible]=\"!treeControl.isExpanded(node)\">\n                        <ng-container cdkTreeNodeOutlet></ng-container>\n                    </div>\n                </cdk-nested-tree-node>\n            </cdk-tree>\n        </div>\n        <div *ngIf=\"detail\" class=\"intrGridElement\" id=\"item5\">\n            <ul>\n                <li>Name: {{ selected }}</li>\n                <li>Class: {{ class }}</li>\n                <li>Kind: {{ kind }}</li>\n            </ul>\n        </div>\n    </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -1017,6 +1013,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _data_transfer_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../data-transfer.service */ "./src/app/data-transfer.service.ts");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/cdk/collections */ "./node_modules/@angular/cdk/esm5/collections.es5.js");
+/* harmony import */ var _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/cdk/tree */ "./node_modules/@angular/cdk/esm5/tree.es5.js");
+
+
+
 
 
 
@@ -1035,11 +1037,109 @@ var TestComponent = /** @class */ (function () {
         this.isLog = false;
         this.sniffed = [];
         this.showed = [];
+        this.sniffing = false;
         this.logging = false;
+        this.debugging = false;
+        this.commtype = 7;
         this.language = "fipa-sl0";
-        this.messagelist = [];
+        this.snifferMsgList = [];
+        this.dummyMsgList = [];
         this.logs = [];
+        this.behaviours = [];
+        this.sentMsgList = [];
+        this.receivedMsgList = [];
+        this.postedMsgList = [];
+        this.detail = false;
+        this.VOID_DATA = [];
+        this.treeControl = new _angular_cdk_tree__WEBPACK_IMPORTED_MODULE_8__["NestedTreeControl"](function (b) { return b.allChildren; });
+        this.dataSource = new _angular_cdk_collections__WEBPACK_IMPORTED_MODULE_7__["ArrayDataSource"](this.behaviours);
+        this.hasChild = function (_, b) { return !!b.allChildren && b.allChildren.length > 0; };
     }
+    TestComponent.prototype.focus = function (selected_) {
+        var _this = this;
+        // FIXME: does work only for <= 3 level subBehaviour
+        this.behaviours.forEach(function (b) {
+            if (!b.simple) {
+                b.allChildren.forEach(function (bb) {
+                    if (!bb.simple) {
+                        bb.allChildren.forEach(function (bbb) {
+                            if (bbb.name === selected_) {
+                                _this.selected = selected_;
+                                _this.class = bbb.className;
+                                _this.kind = bbb.kind;
+                            }
+                        });
+                    }
+                    if (bb.name === selected_) {
+                        _this.selected = selected_;
+                        _this.class = bb.className;
+                        _this.kind = bb.kind;
+                    }
+                });
+            }
+            if (b.name === selected_) {
+                _this.selected = selected_;
+                _this.class = b.className;
+                _this.kind = b.kind;
+            }
+        });
+        this.detail = true;
+    };
+    TestComponent.prototype.newMessages = function (data) {
+        var list = [];
+        var msg = { sender: null, type: null, receiver: null, content: null };
+        for (var i in data) {
+            var s = void 0;
+            s = JSON.stringify(data[i]);
+            msg.sender = s.substring(s.indexOf(":sender") + 33, s.indexOf("@"));
+            msg.type = s.substring(2, s.indexOf("\\"));
+            if (s.indexOf(":receiver") !== -1 && s.indexOf(":content") !== -1) {
+                msg.receiver = s.substring(s.indexOf(":receiver"), s.indexOf(":content"));
+                var rec = "";
+                for (var j = 0; j < msg.receiver.length; j++) {
+                    if (msg.receiver.charAt(j) == "@") {
+                        var k = 0;
+                        while (msg.receiver.charAt(j - k) !== " ") {
+                            k++;
+                        }
+                        rec = rec + msg.receiver.substring(j - k, j) + " ";
+                    }
+                }
+                msg.receiver = rec;
+            }
+            else if (s.indexOf(":receiver") !== -1) {
+                msg.receiver = s.substring(s.indexOf(":receiver"), s.length);
+                var rec = "";
+                for (var j = 0; j < msg.receiver.length; j++) {
+                    if (msg.receiver.charAt(j) == "@") {
+                        var k = 0;
+                        while (msg.receiver.charAt(j - k) !== " ") {
+                            k++;
+                        }
+                        rec = rec + msg.receiver.substring(j - k, j) + " ";
+                    }
+                }
+                msg.receiver = rec;
+            }
+            else {
+                msg.receiver = "?";
+            }
+            if (s.indexOf(":content") !== -1) {
+                msg.content = s.substring(s.indexOf(":content") + 8, s.length - 1);
+            }
+            else {
+                msg.content = "empty";
+            }
+            list = list.concat({
+                sender: msg.sender,
+                type: msg.type,
+                receiver: msg.receiver,
+                content: msg.content,
+            });
+            // console.log(msg.type);
+        }
+        return list;
+    };
     TestComponent.prototype.ngOnInit = function () {
         var _this = this;
         var name;
@@ -1056,50 +1156,14 @@ var TestComponent = /** @class */ (function () {
             }).subscribe(function (data) {
                 _this.dataService.add("sniffer" + data, _this.dataService.selection);
             });
-            this.interval = setInterval(function () {
-                _this.http.get('http://localhost:2020/getSniffedMsg').subscribe(function (data) {
-                    // console.log(data);
-                    var msg = { sender: null, type: null, receiver: null, content: null };
-                    for (var i in data) {
-                        var s = void 0;
-                        s = JSON.stringify(data[i]);
-                        console.log(s);
-                        msg.sender = s.substring(s.indexOf(":sender") + 33, s.indexOf("@"));
-                        msg.type = s.substring(2, s.indexOf("\\"));
-                        if (s.indexOf(":receiver") !== -1) {
-                            msg.receiver = s.substring(s.indexOf(":receiver"), s.indexOf(":content"));
-                            var rec = "";
-                            for (var j = 0; j < msg.receiver.length; j++) {
-                                if (msg.receiver.charAt(j) == "@") {
-                                    var k = 0;
-                                    while (msg.receiver.charAt(j - k) !== " ") {
-                                        k++;
-                                    }
-                                    rec = rec + msg.receiver.substring(j - k, j) + " ";
-                                }
-                            }
-                            msg.receiver = rec;
-                        }
-                        else {
-                            msg.receiver = "?";
-                        }
-                        if (s.indexOf(":content") !== -1) {
-                            msg.content = s.substring(s.indexOf(":content") + 8, s.length - 1);
-                        }
-                        else {
-                            msg.content = "empty";
-                        }
-                        _this.messagelist = _this.messagelist.concat({
-                            sender: msg.sender,
-                            type: msg.type,
-                            receiver: msg.receiver,
-                            content: msg.content,
-                        });
-                        // console.log(msg.type);
-                    }
-                    // console.log(this.messagelist);
-                });
-            }, 2000);
+            this.timer = Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["interval"])(2000);
+            this.subscription = this.timer.subscribe(function (val) {
+                if (_this.sniffing === true) {
+                    _this.http.get('http://localhost:2020/getSniffedMsg').subscribe(function (data) {
+                        _this.snifferMsgList = _this.snifferMsgList.concat(_this.newMessages(data));
+                    });
+                }
+            });
         }
         else if (name == 'dummy') {
             this.isDummy = true;
@@ -1113,12 +1177,62 @@ var TestComponent = /** @class */ (function () {
                 _this.dataService.add("da" + data, _this.dataService.selection);
                 _this.sender = "da" + data;
             });
+            this.timer = Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["interval"])(2000);
+            this.subscription = this.timer.subscribe(function (val) {
+                console.log("asking for messages");
+                _this.http.get('http://localhost:2020/getDummyMsg').subscribe(function (data) {
+                    _this.dummyMsgList = _this.dummyMsgList.concat(_this.newMessages(data));
+                });
+            });
         }
         else if (name == 'introspector') {
             this.isIntrospector = true;
             this.isSniffer = false;
             this.isDummy = false;
             this.isLog = false;
+            var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpParams"]().set("container", this.dataService.selection);
+            this.http.get('http://localhost:2020/introspector', {
+                params: params, responseType: 'text'
+            }).subscribe(function (data) {
+                _this.dataService.add("introspector" + data, _this.dataService.selection);
+            });
+            this.timer = Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["interval"])(2000);
+            this.subscription = this.timer.subscribe(function (val) {
+                if (_this.debugging === true) {
+                    _this.http.get('http://localhost:2020/getBehaviours', {
+                        responseType: 'json'
+                    }).subscribe(function (data) {
+                        var b;
+                        var n = 0;
+                        for (var i in data) {
+                            n++;
+                            b = JSON.parse(JSON.stringify(data[i]));
+                            if (_this.behaviours.includes(b)) {
+                                _this.behaviours = _this.behaviours.filter(function (item) { return item !== b; });
+                            }
+                            else if (_this.behaviours.length < n) {
+                                _this.behaviours = _this.behaviours.concat(b);
+                            }
+                        }
+                        _this.tree.renderNodeChanges(_this.VOID_DATA);
+                        _this.tree.renderNodeChanges(_this.behaviours);
+                    });
+                    _this.http.get('http://localhost:2020/getCurrentState', {
+                        responseType: 'text'
+                    }).subscribe(function (data) {
+                        _this.state = data;
+                    });
+                    _this.http.get('http://localhost:2020/getSentMsg').subscribe(function (data) {
+                        _this.sentMsgList = _this.sentMsgList.concat(_this.newMessages(data));
+                    });
+                    _this.http.get('http://localhost:2020/getReceivedMsg').subscribe(function (data) {
+                        _this.receivedMsgList = _this.receivedMsgList.concat(_this.newMessages(data));
+                    });
+                    _this.http.get('http://localhost:2020/getPostedMsg').subscribe(function (data) {
+                        _this.postedMsgList = _this.postedMsgList.concat(_this.newMessages(data));
+                    });
+                }
+            });
         }
         else if (name == 'log-manager') {
             this.isLog = true;
@@ -1131,7 +1245,8 @@ var TestComponent = /** @class */ (function () {
             }).subscribe(function (data) {
                 _this.dataService.add("log" + data, _this.dataService.selection);
             });
-            this.interval = setInterval(function () {
+            this.timer = Object(rxjs__WEBPACK_IMPORTED_MODULE_6__["interval"])(2000);
+            this.subscription = this.timer.subscribe(function (val) {
                 if (_this.logging === true) {
                     _this.http.get('http://localhost:2020/startLog', {
                         responseType: 'json'
@@ -1139,14 +1254,16 @@ var TestComponent = /** @class */ (function () {
                         var log;
                         for (var i in data) {
                             log = JSON.parse(JSON.stringify(data[i]));
-                            // console.log(this.log);
                             _this.logs = _this.logs.concat(log);
                         }
-                        // console.log(this.logs);
                     });
                 }
-            }, 4000);
+            });
         }
+    };
+    TestComponent.prototype.ngOnDestroy = function () {
+        this.subscription.unsubscribe();
+        console.log("destroyed");
     };
     TestComponent.prototype.addSniffed = function () {
         var selection = ''; // localName only
@@ -1165,6 +1282,9 @@ var TestComponent = /** @class */ (function () {
             this.snackBar.open("You must select an agent from the tree", "Dismiss", {
                 duration: 4000,
             });
+        }
+        if (this.sniffed.length !== 0) {
+            this.sniffing = true;
         }
     };
     TestComponent.prototype.removeSniffed = function () {
@@ -1186,6 +1306,9 @@ var TestComponent = /** @class */ (function () {
                 duration: 4000,
             });
         }
+        if (this.sniffed.length === 0) {
+            this.sniffing = false;
+        }
     };
     TestComponent.prototype.addShowed = function () {
         var selection = '';
@@ -1203,17 +1326,56 @@ var TestComponent = /** @class */ (function () {
         }
     };
     TestComponent.prototype.clear = function () {
-        this.messagelist = [];
+        this.snifferMsgList = [];
     };
     TestComponent.prototype.startLog = function () {
         this.logging = true;
     };
     TestComponent.prototype.sendDummy = function () {
-        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpParams"]().set("senderName", this.sender).set("receiverName", this.receiver).set("content", this.content).set("ontology", this.ontology).set("language", this.language).set("protocol", this.protocol);
+        console.log("pressed");
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpParams"]()
+            .set("senderName", this.sender)
+            .set("receiverName", this.receiver)
+            .set("commType", this.commtype.toString())
+            .set("content", this.content)
+            .set("ontology", this.ontology)
+            .set("language", this.language)
+            .set("protocol", this.protocol)
+            .set("conversation", this.conversation)
+            .set("repTo", this.repto)
+            .set("repWith", this.repw)
+            .set("encoding", this.encoding);
         this.http.get('http://localhost:2020/sendDummy', {
             params: params
         }).subscribe(function (data) { return console.log(data); });
+        console.log("end");
     };
+    TestComponent.prototype.debugOn = function () {
+        this.debugging = true;
+        console.log(this.dataService.selection);
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpParams"]().set("name", this.dataService.selection);
+        this.http.get('http://localhost:2020/debugOn', {
+            params: params
+        }).subscribe(function (data) {
+            console.log(data);
+        });
+    };
+    TestComponent.prototype.debugOff = function () {
+        var _this = this;
+        this.debugging = false;
+        console.log(this.dataService.selection);
+        var params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpParams"]().set("name", this.dataService.selection);
+        this.http.get('http://localhost:2020/debugOff', {
+            params: params
+        }).subscribe(function (data) {
+            console.log(data);
+            _this.behaviours = [];
+        });
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('tree'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], TestComponent.prototype, "tree", void 0);
     TestComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-test',
@@ -1247,7 +1409,7 @@ module.exports = ".example-tree-invisible {\n    display: none;\n  }\n  \n  .exa
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<!-- <button (click)='platformName()'>platformName</button> -->\n\n<cdk-tree #tree [dataSource]=\"dataSource\" [treeControl]=\"treeControl\">\n    <!-- This is the tree node template for leaf nodes -->\n    <cdk-nested-tree-node *cdkTreeNodeDef=\"let node\" class=\"example-tree-node\">\n        <!-- use a disabled button to provide padding for tree leaf -->\n        <button mat-icon-button disabled *ngIf='node.name;else other_content'></button>\n        <span tabindex=\"1\" (click)=\"focus(node.name)\" [ngClass]=\"{focusClass: selected == node.name}\">\n            {{node.name}}\n        </span>\n        <!-- <ng-template #other_content>Qui se non esiste il nome della cartella ma solo gli agenti</ng-template> -->\n        <!-- {{node.agents.name}} -->\n    </cdk-nested-tree-node>\n    <!-- This is the tree node template for expandable nodes -->\n    \n\n\n    <cdk-nested-tree-node *cdkTreeNodeDef=\"let node; when: hasChild\" class=\"example-tree-node\">\n        <button mat-icon-button [attr.aria-label]=\"'toggle ' + node.name\" cdkTreeNodeToggle>\n            <mat-icon class=\"mat-icon-rtl-mirror\">\n                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}\n            </mat-icon>\n        </button>\n        <span tabindex=\"1\" (click)=\"focus(node.name)\" [ngClass]=\"{focusClass: selected == node.name}\">\n            {{node.name}}\n        </span>\n        <div [class.example-tree-invisible]=\"!treeControl.isExpanded(node)\">\n            <ng-container cdkTreeNodeOutlet></ng-container>\n        </div>\n    </cdk-nested-tree-node>\n</cdk-tree>\n\n<!-- <button (click)='addContainer()'>Add container test button</button> -->"
+module.exports = "\n\n<!-- <button (click)='platformName()'>platformName</button> -->\n\n<cdk-tree #tree [dataSource]=\"dataSource\" [treeControl]=\"treeControl\">\n    <!-- This is the tree node template for leaf nodes -->\n    <cdk-nested-tree-node *cdkTreeNodeDef=\"let node\" class=\"example-tree-node\">\n        <!-- use a disabled button to provide padding for tree leaf -->\n        <button mat-icon-button disabled *ngIf='node.name;else other_content'></button>\n        <span tabindex=\"1\" (click)=\"focus(node.name)\" [ngClass]=\"{focusClass: selected == node.name}\">\n            {{node.name}}\n        </span>\n        <!-- <ng-template #other_content>Qui se non esiste il nome della cartella ma solo gli agenti</ng-template> -->\n        <!-- {{node.agents.name}} -->\n    </cdk-nested-tree-node>\n    <!-- This is the tree node template for expandable nodes -->\n    \n\n\n    <cdk-nested-tree-node *cdkTreeNodeDef=\"let node; when: hasChild\" class=\"example-tree-node\">\n        <button mat-icon-button [attr.aria-label]=\"'toggle ' + node.name\" cdkTreeNodeToggle>\n            <mat-icon class=\"mat-icon-rtl-mirror\">\n                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}\n            </mat-icon>\n        </button>\n        <span tabindex=\"1\" (click)=\"focus(node.name)\" [ngClass]=\"{focusClass: selected == node.name}\">\n            {{node.name}}\n        </span>\n        <div [class.example-tree-invisible]=\"!treeControl.isExpanded(node)\">\n            <ng-container cdkTreeNodeOutlet></ng-container>\n        </div>\n    </cdk-nested-tree-node>\n</cdk-tree>\n\n<!-- <button (click)='expand()'>Add container test button</button> -->"
 
 /***/ }),
 
@@ -1284,19 +1446,28 @@ var TreeComponent = /** @class */ (function () {
         this.hasChild = function (_, node) { return !!node.childNode && node.childNode.length > 0; };
     }
     TreeComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.dataService.getTree().then(function (protoTree) {
-            _this.tree.renderNodeChanges(protoTree);
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.dataService.getTree().then(function (protoTree) {
+                            _this.tree.renderNodeChanges(protoTree);
+                        })];
+                    case 1:
+                        _a.sent();
+                        this.dataService.refreshStatus.subscribe(function (status) {
+                            if (status == true) {
+                                _this.tree.renderNodeChanges(_this.VOID_DATA);
+                                _this.tree.renderNodeChanges(_this.dataService.TREE_DATA);
+                            }
+                        });
+                        this.interval = setInterval(function () {
+                            _this.dataService.updateFromRemote();
+                        }, 1000);
+                        return [2 /*return*/];
+                }
+            });
         });
-        this.dataService.refreshStatus.subscribe(function (status) {
-            if (status == true) {
-                _this.tree.renderNodeChanges(_this.VOID_DATA);
-                _this.tree.renderNodeChanges(_this.dataService.TREE_DATA);
-            }
-        });
-        this.interval = setInterval(function () {
-            _this.dataService.updateFromRemote();
-        }, 1000);
     };
     TreeComponent.prototype.focus = function (selected_) {
         this.selected = selected_;

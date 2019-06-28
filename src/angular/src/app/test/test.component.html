@@ -1,5 +1,5 @@
 
-<div>
+<div id="wrapper">
     <mat-toolbar>
         <button mat-button routerLink="/" id="close">Close</button>
 
@@ -33,18 +33,18 @@
         </span>
 
         <span *ngIf="isIntrospector">
-            <button mat-button>Debug On</button>
-            <button mat-button>Debug Off</button>
-            <button mat-button>Step</button>
+            <button mat-button (click)="debugOn()">Debug On</button>
+            <button mat-button (click)="debugOff()">Debug Off</button>
+            <!-- <button mat-button>Step</button>
             <button mat-button>Break</button>
             <button mat-button>Slow</button>
-            <button mat-button>Go</button>
+            <button mat-button>Go</button> -->
         </span>
 
                 
 
     </mat-toolbar>
-    <div *ngIf="isSniffer" style="overflow-y: auto; max-height:92vh;">
+    <div *ngIf="isSniffer" style="overflow-y: auto; max-height:92vh; min-height:90vh;">
         <div class="sniffed" id="other">
             Other
         </div>
@@ -61,7 +61,7 @@
                 <th> Receiver </th>
                 <th> Content </th>
             </tr>
-            <tr *ngFor="let m of messagelist">
+            <tr *ngFor="let m of snifferMsgList">
                 <th> {{ m.sender }} </th>
                 <th> {{ m.type }} </th>
                 <th> {{ m.receiver }} </th>
@@ -93,29 +93,29 @@
                 </form>
                 <mat-form-field>
                     <mat-label>Communication type</mat-label>
-                    <mat-select [(value)]="comm">
-                        <mat-option value="accept-proposal">Accept proposal</mat-option>
-                        <mat-option value="agree">Agree</mat-option>
-                        <mat-option value="cancel">Cancel</mat-option>
-                        <mat-option value="cfp">Cfp</mat-option>
-                        <mat-option value="confirm">Confirm</mat-option>
-                        <mat-option value="disconfirm">Disconfirm</mat-option>
-                        <mat-option value="failure">Failure</mat-option>
-                        <mat-option value="inform">Inform</mat-option>
-                        <mat-option value="inform-if">Inform if</mat-option>
-                        <mat-option value="inform-ref">Inform ref</mat-option>
-                        <mat-option value="not-understood">Not undersood</mat-option>
-                        <mat-option value="purpose">Purpose</mat-option>
-                        <mat-option value="query-if">Query if</mat-option>
-                        <mat-option value="query-ref">Query ref</mat-option>
-                        <mat-option value="refuse">Refuse</mat-option>
-                        <mat-option value="reject-proposal">Reject proposal</mat-option>
-                        <mat-option value="request">Request</mat-option>
-                        <mat-option value="request-when">Request when</mat-option>
-                        <mat-option value="request-whenever">Request whenever</mat-option>
-                        <mat-option value="subscribe">Subscribe</mat-option>
-                        <mat-option value="proxy">Proxy</mat-option>
-                        <mat-option value="propagate">Propagate</mat-option>
+                    <mat-select [(value)]="commtype">
+                        <mat-option value=0>Accept proposal</mat-option>
+                        <mat-option value=1>Agree</mat-option>
+                        <mat-option value=2>Cancel</mat-option>
+                        <mat-option value=3>Cfp</mat-option>
+                        <mat-option value=4>Confirm</mat-option>
+                        <mat-option value=5>Disconfirm</mat-option>
+                        <mat-option value=6>Failure</mat-option>
+                        <mat-option value=7>Inform</mat-option>
+                        <mat-option value=8>Inform if</mat-option>
+                        <mat-option value=9>Inform ref</mat-option>
+                        <mat-option value=10>Not undersood</mat-option>
+                        <mat-option value=11>Purpose</mat-option>
+                        <mat-option value=12>Query if</mat-option>
+                        <mat-option value=13>Query ref</mat-option>
+                        <mat-option value=14>Refuse</mat-option>
+                        <mat-option value=15>Reject proposal</mat-option>
+                        <mat-option value=16>Request</mat-option>
+                        <mat-option value=17>Request when</mat-option>
+                        <mat-option value=18>Request whenever</mat-option>
+                        <mat-option value=19>Subscribe</mat-option>
+                        <mat-option value=20>Proxy</mat-option>
+                        <mat-option value=21>Propagate</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <form>
@@ -178,47 +178,125 @@
             </div>
         </div>
         <div class="dummyMessages">
-            <p>Testo di prova</p>
+            <table class="logtable">
+                <tr>
+                    <th> Sender </th>
+                    <th> Type </th>
+                    <th> Receiver </th>
+                    <th> Content </th>
+                </tr>
+                <tr *ngFor="let m of dummyMsgList">
+                    <th> {{ m.sender }} </th>
+                    <th> {{ m.type }} </th>
+                    <th> {{ m.receiver }} </th>
+                    <th> {{ m.content }} </th>
+                </tr>
+            </table>
         </div>
     </div>
         
-        <div *ngIf="isLog" style="overflow-y: auto; max-height:92vh;">
-                <table class="logtable">
-            <tr>
-                <th> Name </th>
-                <th> Level </th>
-            </tr>
-            <tr *ngFor="let l of logs">
-                <th> {{ l.name }} </th>
-                <th> {{ l.level }} </th>
-            </tr>
-        </table>
+        <div *ngIf="isLog" style="overflow-y: auto; max-height:92vh; min-height:90vh;">
+            <table class="logtable">
+                <tr>
+                    <th> Name </th>
+                    <th> Level </th>
+                </tr>
+                <tr *ngFor="let l of logs">
+                    <th> {{ l.name }} </th>
+                    <th> {{ l.level }} </th>
+                </tr>
+            </table>
     </div>
 
     <div *ngIf="isIntrospector" class="introspectorGrid">
         <div class="intrGridElement" id="item1">
             <p>Incoming Messages</p>
-            <div class="dualSelector">
+            <!-- <div class="dualSelector">
                 Pending
             </div>
             <div class="dualSelector">
                 Received
-            </div>
+            </div> -->
+            <table class="logtable">
+                <tr>
+                    <th> Sender </th>
+                    <th> Type </th>
+                    <th> Receiver </th>
+                    <th> Content </th>
+                </tr>
+                <tr *ngFor="let m of receivedMsgList">
+                    <th> {{ m.sender }} </th>
+                    <th> {{ m.type }} </th>
+                    <th> {{ m.receiver }} </th>
+                    <th> {{ m.content }} </th>
+                </tr>
+            </table>
         </div>
         <div class="intrGridElement" id="item2">
             <p>Outgoing Messages</p>
-            <div class="dualSelector">
+            <!-- <div class="dualSelector">
                 Pending
             </div>
             <div class="dualSelector">
                 Received
-            </div>
+            </div> -->
+            <table class="logtable">
+                <tr>
+                    <th> Sender </th>
+                    <th> Type </th>
+                    <th> Receiver </th>
+                    <th> Content </th>
+                </tr>
+                <tr *ngFor="let m of sentMsgList">
+                    <th> {{ m.sender }} </th>
+                    <th> {{ m.type }} </th>
+                    <th> {{ m.receiver }} </th>
+                    <th> {{ m.content }} </th>
+                </tr>
+            </table>
         </div>
         <div class="intrGridElement" id="item3">
             Current State
+            <p>{{ state }}</p>
         </div>
         <div class="intrGridElement" id="item4">
             Behaviours
+            <cdk-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
+                <!-- This is the tree node template for leaf nodes -->
+                <cdk-nested-tree-node *cdkTreeNodeDef="let node" class="example-tree-node">
+                    <!-- use a disabled button to provide padding for tree leaf -->
+                    <button mat-icon-button disabled *ngIf='node.name;else other_content'></button>
+                    <span tabindex="1" (click)="focus(node.name)" [ngClass]="{focusClass: selected == node.name}">
+                        {{node.name}}
+                    </span>
+                    <!-- <ng-template #other_content>Qui se non esiste il nome della cartella ma solo gli agenti</ng-template> -->
+                    <!-- {{node.agents.name}} -->
+                </cdk-nested-tree-node>
+                <!-- This is the tree node template for expandable nodes -->
+                
+            
+            
+                <cdk-nested-tree-node *cdkTreeNodeDef="let node; when: hasChild" class="example-tree-node">
+                    <button mat-icon-button [attr.aria-label]="'toggle ' + node.name" cdkTreeNodeToggle>
+                        <mat-icon class="mat-icon-rtl-mirror">
+                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                        </mat-icon>
+                    </button>
+                    <span tabindex="1" (click)="focus(node.name)" [ngClass]="{focusClass: selected == node.name}">
+                        {{node.name}}
+                    </span>
+                    <div [class.example-tree-invisible]="!treeControl.isExpanded(node)">
+                        <ng-container cdkTreeNodeOutlet></ng-container>
+                    </div>
+                </cdk-nested-tree-node>
+            </cdk-tree>
+        </div>
+        <div *ngIf="detail" class="intrGridElement" id="item5">
+            <ul>
+                <li>Name: {{ selected }}</li>
+                <li>Class: {{ class }}</li>
+                <li>Kind: {{ kind }}</li>
+            </ul>
         </div>
     </div>
 </div>

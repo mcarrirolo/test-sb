@@ -115,11 +115,7 @@ export class MainMenuComponent implements OnInit {
     startIntrospector() {
         this.updateSelection();
         if (this.selection.indexOf('@') == -1 && this.selection != '') {
-            console.log("Starting introspector on " + this.selection);
-            let params = new HttpParams().set("container", this.selection);
-            this.http.get('http://localhost:2020/introspector', {
-                params: params
-            }).subscribe(data => console.log(data));
+            console.log("Starting dummy on " + this.selection);
             this.router.navigate(['/introspector']);
         } else {
             this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {

@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import jade.content.lang.sl.SLCodec;
 import jade.core.AID;
+import jade.core.BehaviourID;
 import jade.core.ContainerID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.domain.AMSService;
@@ -25,10 +26,6 @@ import jade.domain.introspection.Event;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import jade.tools.ToolAgent;
-import jade.tools.logging.JavaLoggingLogManagerImpl;
-import jade.tools.logging.LogManager;
-import jade.tools.logging.ontology.LoggerInfo;
-import jade.util.leap.List;
 import jade.wrapper.ControllerException;
 
 /**
@@ -48,6 +45,24 @@ public class TestAgent extends ToolAgent implements ITestAgent {
 
     // Log Manager log list
     static public Vector<Object> ll = new Vector<Object>();
+
+    // Dummy message list
+    static public Vector<String> dl = new Vector<String>();
+
+    // Introspector behaviours list
+    static public Vector<BehaviourID> bl = new Vector<BehaviourID>();
+
+    // Introspector actual state of the agent under debugging
+    static public String as = "";
+
+    // Introspector sent message list
+    static public Vector<String> sl = new Vector<String>();
+
+    // Introspector received message list
+    static public Vector<String> rl = new Vector<String>();
+
+    // Introspector posted message list
+    static public Vector<String> pl = new Vector<String>();
 
     /*
      * Il setup è il primo metodo ad essere eseguito quando l'agente viene creato.
@@ -524,7 +539,7 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         } else {
             ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
             req.addReceiver(getAMS());
-            req.setContent("((action " + getAMS() + " (create-agent :agent-name da" + dummyCounter + " :class-name jade.tools.DummyAgent.DummyAgent :container (container-ID :name " + container
+            req.setContent("((action " + getAMS() + " (create-agent :agent-name da" + dummyCounter + " :class-name controller.tools.Dummy :container (container-ID :name " + container
                     + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP))))");
             req.setOntology("JADE-Agent-Management");
             req.setLanguage("fipa-sl0");
@@ -537,7 +552,7 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         return dummyCounter;
     }
 
-    public void sendDummyRequest(String senderName, String receiverName, String content, String ontology, String language, String protocol){
+    public void sendDummyRequest(String senderName, String receiverName, int commType, String content, String ontology, String language, String protocol, String conversation, String repTo, String repWith, String encoding){
         AMSAgentDescription[] agents = agentsRequest();
         AID sender = null;
         AID receiver = null;
@@ -549,14 +564,24 @@ public class TestAgent extends ToolAgent implements ITestAgent {
                 receiver = i.getName();
             }
         }
-        ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+        ACLMessage req = new ACLMessage(commType);
         req.setSender(sender);
         req.addReceiver(receiver);
         req.setContent(content);
         req.setOntology(ontology);
         req.setLanguage(language);
         req.setProtocol(protocol);
+        req.setConversationId(conversation);
+        req.setReplyWith(repWith);
+        req.setInReplyTo(repTo);
+        req.setEncoding(encoding);
         send(req);
+    }
+
+    public Object[] getDummyMsgRequest() {
+        Object[] tmp = dl.toArray().clone();
+        dl.clear();
+        return tmp;
     }
 
     public int logRequest(String container) {
@@ -586,14 +611,14 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         return tmp;
     }
 
-    public void introspectorRequest(String container) {
+    public int introspectorRequest(String container) {
         introspectorCounter++;
         if (container == null) {
             System.out.println("Invalid parameters");
         } else {
             ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
             req.addReceiver(getAMS());
-            req.setContent("((action " + getAMS() + " (create-agent :agent-name introspector" + introspectorCounter + " :class-name jade.tools.introspector.Introspector  :container (container-ID :name " + container
+            req.setContent("((action " + getAMS() + " (create-agent :agent-name introspector" + introspectorCounter + " :class-name controller.tools.Introspector  :container (container-ID :name " + container
                     + " :protocol JADE-IMTP :address \"<Unknown Host>\" :protocol JADE-IMTP))))");
             req.setOntology("JADE-Agent-Management");
             req.setLanguage("fipa-sl0");
@@ -603,6 +628,81 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         }
         // l'evento subscribe successivo alla richiesta di creazione dell'agente introspector, viene eseguito automaticamente
         // pertanto non è necessario implementarlo qui
+        return introspectorCounter;
+    }
+
+    public void debugOnRequest(String name){
+        AMSAgentDescription[] agents = agentsRequest();
+        AID introspector = null;
+        AID target = null;
+        for (AMSAgentDescription i : agents) {
+            if(i.getName().toString().contains("introspector" + String.valueOf(introspectorCounter)) && i.getName().toString().indexOf("-on-") == -1){
+                introspector = i.getName();
+            }
+            else if(i.getName().toString().contains(name)){
+                target = i.getName();
+            }
+        }
+        ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+        req.setSender(introspector);
+        req.addReceiver(getAMS());
+        req.setContent("((action " + getAMS() + " (debug-on :debugger (agent-identifier :name " + introspector.getName()
+                        + " :addresses (sequence " + getAMS().toString().substring(getAMS().toString().indexOf("http")) 
+                        + " :debugged-agents (sequence (agent-identifier :name " + target.getName() + ")))))");
+        req.setOntology("JADE-Agent-Management");
+        req.setLanguage("fipa-sl0");
+        req.setProtocol("fipa-request");
+        send(req);
+        System.out.println("\n\nDebugging request sent\n\n" + req.toString() + "\n\n");
+    }
+
+    public void debugOffRequest(String name){
+        AMSAgentDescription[] agents = agentsRequest();
+        AID introspector = null;
+        AID target = null;
+        for (AMSAgentDescription i : agents) {
+            if(i.getName().toString().contains("introspector" + String.valueOf(introspectorCounter)) && i.getName().toString().indexOf("-on-") == -1){
+                introspector = i.getName();
+            }
+            else if(i.getName().toString().contains(name)){
+                target = i.getName();
+            }
+        }
+        ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+        req.setSender(introspector);
+        req.addReceiver(getAMS());
+        req.setContent("((action " + getAMS() + " (debug-off :debugger (agent-identifier :name " + introspector.getName()
+                   + " :addresses (sequence " + getAMS().toString().substring(getAMS().toString().indexOf("http")) 
+                   + " :debugged-agents (sequence (agent-identifier :name " + target.getName() + ")))))");
+        req.setOntology("JADE-Agent-Management");
+        req.setLanguage("fipa-sl0");
+        req.setProtocol("fipa-request");
+        send(req);
+    }
+
+    public Object[] getBehavioursRequest(){
+        return bl.toArray();
+    }
+
+    public String getCurrentStateRequest(){
+        return as;
+    }
+
+    public Object[] getSentMsgRequest(){
+        Object[] tmp = sl.toArray().clone();
+        sl.clear();
+        return tmp;
+    }
+
+    public Object[] getReceivedMsgRequest(){
+        Object[] tmp = rl.toArray().clone();
+        rl.clear();
+        return tmp;
+    }
+	public Object[] getPostedMsgRequest(){
+        Object[] tmp = pl.toArray().clone();
+        pl.clear();
+        return tmp;
     }
     
     public String[] updateRequest(){

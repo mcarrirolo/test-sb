@@ -1,5 +1,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <mat-drawer-container autosize class="drawer" (contextmenu)="rightClick()">
     <mat-drawer mode="side" opened>
         <app-main-menu></app-main-menu>
@@ -27,16 +29,9 @@
         <button mat-button routerLink="/test">Router Test</button> -->
     </mat-toolbar>
 
-    <div>
-        <!-- FIXME: standard divs are preferred over mat-card -->
-        <div class="tree">
-            <app-tree></app-tree>
-        </div>
 
-        <!-- <mat-card class="card">
-            <p>{{return}}</p>
-        </mat-card> -->
-
+    <div class="split-grid">
+        <app-tree class="tree"></app-tree>
         <div class="view">
             <router-outlet></router-outlet>
         </div>

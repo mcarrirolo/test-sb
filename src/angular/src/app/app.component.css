@@ -9,6 +9,12 @@ button{
     min-width: 0px;
     margin: 0 6px;
 }
+mat-drawer-content{
+    overflow: unset !important;
+}
+.mat-drawer-content{
+    overflow: unset !important;
+}
 mat-toolbar button{
     background-color: rgb(92, 116, 221);
     color: white;
@@ -16,15 +22,38 @@ mat-toolbar button{
 div{
     font-family: 'Roboto', monospace;
 }
+
+
+
+.split-grid{
+    display: grid;
+    /* min-height: calc(100vh - 64px); */
+    max-height: calc(100vh - 68px);
+    overflow: hidden;
+    padding: 0;
+    grid-gap: 4px;
+    grid-template: 
+    "tree view" min-content
+    "tree view" 1fr
+        / min-content 1fr;
+        
+}
 .tree{
-    width: 40%;
-    display: inline-table;
+    grid-area: tree;
+    border-right: 1px solid gainsboro;
+    overflow: auto;
+    resize: horizontal;
+    min-height: calc(100vh - 68px);
+    max-height: calc(100vh - 68px);
+    min-width: 590px;
+    max-width: 70vw;
 }
 .view{
-    width: calc(60% - 20px);
-    display: inline-table;
-    margin: 0 10px;
     float: right;
+    grid-area: view;
+    overflow: auto;
+    min-height: calc(100vh - 68px);
+    max-height: calc(100vh - 68px);
 }
 router-outlet{
     display: none;

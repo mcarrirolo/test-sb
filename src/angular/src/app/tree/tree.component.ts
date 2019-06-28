@@ -40,8 +40,8 @@ export class TreeComponent implements OnInit {
     selected: string = "";
     interval: any;
 
-    ngOnInit() {
-        this.dataService.getTree().then(
+    async ngOnInit() {
+        await this.dataService.getTree().then(
             protoTree => {
                 this.tree.renderNodeChanges(protoTree);
             }

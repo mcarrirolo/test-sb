@@ -16,6 +16,9 @@ mat-toolbar button{
     background-color: rgba(255, 0, 0, 0.6);
     color: white;
 }
+#wrapper{
+    overflow: hidden;
+}
 
 
 #other{
@@ -42,26 +45,32 @@ mat-toolbar button{
 
 .dummyControl{
     width: 40%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: inline-block;
     text-align: center;
-    min-height: 800px;
-    margin-top: 10px;
+    min-height: 80vh;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 50px;
+    box-shadow: 0 0 40px #aebaca;
+    padding: 4px;
+    border-radius: 16px;
 }
 .msgOption{
     display: inline-block;
     width: 100%;
+    margin-top: 45px;
 }
 .msgOption mat-form-field{
     width: 90%;
 }
 .dummyMessages{
-    width: calc(55%);
+    width: 55%;
     float: right;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     display: inline-block;
     min-height: 800px;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 .dualSelector{
     display: inline;
@@ -73,41 +82,95 @@ mat-toolbar button{
 
 
 .introspectorGrid{
+    margin: 1% 2.5%;
     display: grid;
     grid-template-areas:
       'in in in out out out'
-      'st be be be  be  be';
+      'st be be be  be  be'
+      'sp sp sp sp  sp  sp';
     grid-gap: 10px;
     min-height: 800px;
 }
 .intrGridElement{
-    border: 2px solid gray;
+    /* border: 2px solid gray; */
 }
 #item1{
     text-align: center;
     grid-area: in;
+    /* overflow-y: auto; */
 }
 #item2{
     text-align: center;
     grid-area: out;
+    /* overflow-y: auto; */
 }
 #item3{
     text-align: center;
     grid-area: st;
+    box-shadow: 0 0 40px #aebaca;
+    padding: 4px;
+    border-radius: 16px;
 }
 #item4{
-    text-align: center;
+    text-align: left;
     grid-area: be;
+    box-shadow: 0 0 40px #aebaca;
+    padding: 4px;
+    border-radius: 16px;
 }
+#item5{
+    text-align: left;
+    grid-area: sp;
+    box-shadow: 0 0 40px #aebaca;
+    padding: 4px;
+    border-radius: 16px;
+}
+.example-tree-invisible {
+    display: none;
+}
+.example-tree ul,
+.example-tree li {
+    margin-top: 0;
+    margin-bottom: 0;
+    list-style-type: none;
+}
+.example-tree-node {
+    display: block;
+}
+
+.example-tree-node .example-tree-node {
+    padding-left: 40px;
+}
+.example-tree-progress-bar {
+    margin-left: 30px;
+}
+
+.example-tree-nested-node {
+    padding-left: 30px;
+}
+span{
+    cursor: pointer;
+    border: 5px solid transparent;
+    padding-right: 8px;
+}
+.focusClass{
+    background-color: rgb(92, 116, 221);
+    color: white;
+}
+
 
 
 
 .logtable{
-    width: 100%;
+    width: 95%;
+    margin: 2.5% 2.5%;
     font-family: inherit;
     font-size: inherit;
     font-style: normal;
     text-align: left;
+    padding: 4px;
+    border-radius: 16px;
+    box-shadow: 0 0 40px #aebaca;
 }
 .logtable tr:nth-child(even){
     background-color: #a0c6ff42;

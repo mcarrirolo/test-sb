@@ -7,6 +7,8 @@ import {
 } from '@angular/common/http';
 import { DataTransferService } from './data-transfer.service';
 import { MainMenuComponent } from './main-menu/main-menu.component';
+import * as $ from 'jquery';
+// import 'jquery-ui-dist/jquery-ui';
 
 @Component({
     selector: 'app-root',
@@ -14,15 +16,15 @@ import { MainMenuComponent } from './main-menu/main-menu.component';
     styleUrls: ['./app.component.css'],
     providers: [DataTransferService]
 })
-export class AppComponent {
+export class AppComponent{
 
     title = 'Test-sb';
     return = '';
-    gridlayout = '55% 45%';
 
     @ViewChild(MainMenuComponent) menu: MainMenuComponent;
 
     constructor(private http: HttpClient) {}
+
 
     private sayHello(): void {
         this.return = 'loading...';

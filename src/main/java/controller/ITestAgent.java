@@ -23,12 +23,20 @@ public interface ITestAgent {
     Object[] getSniffedMsgRequest();
 
     int dummyRequest(String container);
-    void sendDummyRequest(String senderName, String receiverName, String content, String ontology, String language, String protocol);
+    void sendDummyRequest(String senderName, String receiverName, int commType, String content, String ontology, String language, String protocol, String conversation, String repTo, String repWith, String encoding);
+    Object[] getDummyMsgRequest();
 
     int logRequest(String container);
     Object[] startLoggingRequest();
 
-    void introspectorRequest(String container);
+    int introspectorRequest(String container);
+	void debugOnRequest(String name);
+	void debugOffRequest(String name);
+	Object[] getBehavioursRequest();
+	String getCurrentStateRequest();
+	Object[] getSentMsgRequest();
+	Object[] getReceivedMsgRequest();
+	Object[] getPostedMsgRequest();
 
     String[] updateRequest();
 
