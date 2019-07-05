@@ -48,12 +48,12 @@
                     Remote Platforms
                </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>Add platform via AMS AID</p>
-          <p>Add platform via URL</p>
-          <p>View AP description</p>
-          <p>Refresh AP description</p>
-          <p>Remove remote platform</p>
-          <p>Refresh agent list</p>
+          <p (click)="addPlatformAMS()">Add platform via AMS AID</p>
+          <!-- <p>Add platform via URL</p> -->
+          <p (click)="viewDescription()">View AP description</p>
+          <p (click)="refreshDescription()">Refresh AP description</p>
+          <p (click)="removePlatform()">Remove remote platform</p>
+          <p (click)="refreshAgents()">Refresh agent list</p>
      </mat-expansion-panel>
      <mat-expansion-panel>
           <mat-expansion-panel-header>

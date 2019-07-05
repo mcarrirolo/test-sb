@@ -21,8 +21,11 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.SearchConstraints;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.introspection.AMSSubscriber;
+import jade.domain.introspection.BornAgent;
 import jade.domain.introspection.DeadAgent;
 import jade.domain.introspection.Event;
+import jade.domain.introspection.IntrospectionOntology;
+import jade.domain.introspection.IntrospectionVocabulary;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import jade.tools.ToolAgent;
@@ -39,6 +42,9 @@ public class TestAgent extends ToolAgent implements ITestAgent {
     int dummyCounter = 0;
     int logCounter = 0;
     int introspectorCounter = 0;
+
+    // Keeps track of the changes in the tree
+    private Vector<String[]> changed = new Vector<String[]>();
 
     // Sniffer message list
     static public Vector<String> ml = new Vector<String>();
@@ -64,6 +70,9 @@ public class TestAgent extends ToolAgent implements ITestAgent {
     // Introspector posted message list
     static public Vector<String> pl = new Vector<String>();
 
+    // AP Description of latest platform added
+    static public String apd = "";
+
     /*
      * Il setup è il primo metodo ad essere eseguito quando l'agente viene creato.
      * Quindi è il posto adatto per eventuali inizializzazioni e per la definizione
@@ -74,8 +83,6 @@ public class TestAgent extends ToolAgent implements ITestAgent {
      */
     @Override
     protected void toolSetup() {
-
-
 
         DFAgentDescription dfd = new DFAgentDescription();
         ServiceDescription sd = new ServiceDescription();
@@ -91,13 +98,17 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         }
 
 
-
-
+        getContentManager().registerOntology(IntrospectionOntology.getInstance());
 
         // Serve per ricevere notifica degli eventi da parte di AMS
         AMSSubscriber subscriber = new AMSSubscriber() {
-            protected void installHandlers(Map handlers) {
-            }
+            protected void installHandlers(Map handlersTable) {
+                handlersTable.put(IntrospectionVocabulary.BORNAGENT, new EventHandler() {
+                public void handle(Event ev) {
+                    BornAgent be = (BornAgent) ev;
+                    // System.out.println("An agent is born in " + be.getWhere().getName());
+            }});
+        }
         };
         addBehaviour(subscriber);
 
@@ -140,7 +151,7 @@ public class TestAgent extends ToolAgent implements ITestAgent {
 
                 ACLMessage msg = myAgent.receive(tmpl);
                 if (msg != null) {
-                    System.out.println(myAgent.getLocalName() + " received\n" + msg);
+                    // System.out.println(myAgent.getLocalName() + " received\n" + msg);
 
                     parse(msg);
 
@@ -157,7 +168,7 @@ public class TestAgent extends ToolAgent implements ITestAgent {
                     // un oggetto serializable
                     reply.setContent("");
                     // Invia il messaggio
-                    send(reply);
+                    // send(reply);
 
                     // C'è un modo più rapido per rispondere ad un messaggio
                     // questo sistema già receiver ontology e conversation id se serve, poi per il
@@ -169,14 +180,12 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         });
     }
 
-    private Vector<String[]> changedAgents = new Vector<String[]>();
-
     // Il parser determina il contenuto del messaggio ricevuto tramite
     // l'AMSSubscriber
     // tiene dunque conto della creazione/distruzione degli ultimi agenti in un
     // vector
     private void parse(ACLMessage msg) {
-        String[] lastAgent = new String[4]; // name, container, addedd/removed, ip
+        String[] last = new String[4]; // name, container, addedd/removed, ip
         String content = msg.getContent();
         if (content.contains("occurred")) {
             if (content.contains("born-agent")) {
@@ -200,11 +209,11 @@ public class TestAgent extends ToolAgent implements ITestAgent {
                         i++;
                     }
                 }
-                lastAgent[0] = name;
-                lastAgent[1] = container;
-                lastAgent[2] = "addedd";
-                lastAgent[3] = "";
-                changedAgents.add(lastAgent);
+                last[0] = name;
+                last[1] = container;
+                last[2] = "added";
+                last[3] = "";
+                changed.add(last);
             } else if (content.contains("dead-agent")) {
                 Integer i = 0;
                 Integer n = content.indexOf(":name") + 6;
@@ -226,11 +235,11 @@ public class TestAgent extends ToolAgent implements ITestAgent {
                         i++;
                     }
                 }
-                lastAgent[0] = name;
-                lastAgent[1] = container;
-                lastAgent[2] = "removed";
-                lastAgent[3] = "";
-                changedAgents.add(lastAgent);
+                last[0] = name;
+                last[1] = container;
+                last[2] = "removed";
+                last[3] = "";
+                changed.add(last);
             } else if (content.contains("added-container")) {
                 Integer i = 0;
                 Integer n = content.indexOf("container-ID :name") + 19;
@@ -253,12 +262,32 @@ public class TestAgent extends ToolAgent implements ITestAgent {
                         i++;
                     }
                 }
-                lastAgent[0] = name;
-                lastAgent[1] = container;
-                lastAgent[2] = "addedd";
-                lastAgent[3] = ip;
-                changedAgents.add(lastAgent);
+                last[0] = name;
+                last[1] = container;
+                last[2] = "added";
+                last[3] = ip;
+                changed.add(last);
             }
+        }
+        else if(content.contains("ap-description")){
+
+            System.out.println(content);
+            apd = content.substring(content.indexOf("(ap-service") + 18, content.indexOf(":type") - 1);
+
+            AMSAgentDescription[] agents = remoteAgentsRequest(content.substring(content.indexOf("(ap-description :name ") + 25, content.indexOf(":ap-services") - 4));
+
+            for (AMSAgentDescription a : agents) {
+                changed.add(new String[]{a.getName().getName(), content.substring(content.indexOf("(ap-description :name ") + 25, content.indexOf(":ap-services") - 4), "added", ""});
+            }
+
+            last[0] = "";
+            last[1] = content.substring(content.indexOf("(ap-description :name ") + 25, content.indexOf(":ap-services") - 4);
+            last[2] = "added";
+            last[3] = "Remote Platforms";
+            changed.add(last);
+            
+            changed.add(new String[]{"", "Remote Platforms", "added", ""});
+
         }
 
     }
@@ -284,16 +313,46 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         SearchConstraints c = new SearchConstraints();
         c.setMaxResults(new Long(-1));
         try {
+            System.out.println("\nRetriving agents list...");
             agents = AMSService.search(this, new AMSAgentDescription(), c);
+            System.out.println("\nList retrived, lenght: " + agents.length);
+            return agents;
         } catch (FIPAException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return agents;
+        return null;
+    }
+
+    private AMSAgentDescription[] remoteAgentsRequest(String remoteContainer) {
+        AMSAgentDescription[] agents = null;
+        SearchConstraints c = new SearchConstraints();
+        c.setMaxResults(new Long(-1));
+        try {
+            System.out.println("\nRetriving remote agents list...");
+            agents = AMSService.search(this, new AID("ams@" + remoteContainer, AID.ISGUID), new AMSAgentDescription(), c);
+            System.out.println("\nList retrived, lenght: " + agents.length);
+            return agents;
+        } catch (FIPAException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public String[] agentsNameRequest() {
         AMSAgentDescription[] agents = agentsRequest();
+        String agentsNames[] = new String[agents.length];
+        for (int i = 0; i < agents.length; i++) {
+            AID agentID = agents[i].getName();
+            agentsNames[i] = agentID.getName();
+            // System.out.println(agentID.getLocalName());
+        }
+        return agentsNames;
+    }
+
+    public String[] remoteAgentsNameRequest(String remoteContainer) {
+        AMSAgentDescription[] agents = remoteAgentsRequest(remoteContainer);
         String agentsNames[] = new String[agents.length];
         for (int i = 0; i < agents.length; i++) {
             AID agentID = agents[i].getName();
@@ -479,17 +538,20 @@ public class TestAgent extends ToolAgent implements ITestAgent {
     }
     
     public void doSniffRequest(String name) {
-        AMSAgentDescription[] agents = agentsRequest();
-        AID sniffer = null;
-        AID target = null;
-        for (AMSAgentDescription i : agents) {
-            if(i.getName().toString().contains("sniffer" + String.valueOf(snifferCounter)) && i.getName().toString().indexOf("-on-") == -1){
-                sniffer = i.getName();
-            }
-            else if(i.getName().toString().contains(name)){
-                target = i.getName();
-            }
-        }
+        // AMSAgentDescription[] agents = agentsRequest();
+        // AID sniffer = null;
+        // AID target = null;
+        // for (AMSAgentDescription i : agents) {
+        //     if(i.getName().toString().contains("sniffer" + String.valueOf(snifferCounter)) && i.getName().toString().indexOf("-on-") == -1){
+        //         sniffer = i.getName();
+        //     }
+        //     else if(i.getName().toString().contains(name)){
+        //         target = i.getName();
+        //     }
+        // }
+        AID sniffer = new AID("sniffer" + String.valueOf(snifferCounter), AID.ISLOCALNAME);
+        AID target = new AID(name, AID.ISLOCALNAME);
+        System.out.println(target.getName());
         ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
         req.setSender(sniffer);
         req.addReceiver(getAMS());
@@ -503,17 +565,19 @@ public class TestAgent extends ToolAgent implements ITestAgent {
     }
 
     public void doNotSniffRequest(String name) {
-        AMSAgentDescription[] agents = agentsRequest();
-        AID sniffer = null;
-        AID target = null;
-        for (AMSAgentDescription i : agents) {
-            if(i.getName().toString().contains("sniffer" + String.valueOf(snifferCounter)) && i.getName().toString().indexOf("-on-") == -1){
-                sniffer = i.getName();
-            }
-            else if(i.getName().toString().contains(name)){
-                target = i.getName();
-            }
-        }
+        // AMSAgentDescription[] agents = agentsRequest();
+        // AID sniffer = null;
+        // AID target = null;
+        // for (AMSAgentDescription i : agents) {
+        //     if(i.getName().toString().contains("sniffer" + String.valueOf(snifferCounter)) && i.getName().toString().indexOf("-on-") == -1){
+        //         sniffer = i.getName();
+        //     }
+        //     else if(i.getName().toString().contains(name)){
+        //         target = i.getName();
+        //     }
+        // }
+        AID sniffer = new AID("sniffer" + String.valueOf(snifferCounter), AID.ISLOCALNAME);
+        AID target = new AID(name, AID.ISLOCALNAME);
         ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
         req.setSender(sniffer);
         req.addReceiver(getAMS());
@@ -553,17 +617,20 @@ public class TestAgent extends ToolAgent implements ITestAgent {
     }
 
     public void sendDummyRequest(String senderName, String receiverName, int commType, String content, String ontology, String language, String protocol, String conversation, String repTo, String repWith, String encoding){
-        AMSAgentDescription[] agents = agentsRequest();
-        AID sender = null;
-        AID receiver = null;
-        for (AMSAgentDescription i : agents) {
-            if(i.getName().toString().contains(senderName)){
-                sender = i.getName();
-            }
-            else if(i.getName().toString().contains(receiverName)){
-                receiver = i.getName();
-            }
-        }
+        // AMSAgentDescription[] agents = agentsRequest();
+        // AID sender = null;
+        // AID receiver = null;
+        // for (AMSAgentDescription i : agents) {
+        //     if(i.getName().toString().contains(senderName)){
+        //         sender = i.getName();
+        //     }
+        //     else if(i.getName().toString().contains(receiverName)){
+        //         receiver = i.getName();
+        //     }
+        // }
+        AID sender = new AID(senderName, AID.ISLOCALNAME);
+        AID receiver = new AID(receiverName, AID.ISLOCALNAME);
+        System.out.println(sender.toString() + receiver.toString());
         ACLMessage req = new ACLMessage(commType);
         req.setSender(sender);
         req.addReceiver(receiver);
@@ -632,17 +699,23 @@ public class TestAgent extends ToolAgent implements ITestAgent {
     }
 
     public void debugOnRequest(String name){
-        AMSAgentDescription[] agents = agentsRequest();
-        AID introspector = null;
-        AID target = null;
-        for (AMSAgentDescription i : agents) {
-            if(i.getName().toString().contains("introspector" + String.valueOf(introspectorCounter)) && i.getName().toString().indexOf("-on-") == -1){
-                introspector = i.getName();
-            }
-            else if(i.getName().toString().contains(name)){
-                target = i.getName();
-            }
-        }
+        System.out.println("\n\nDebug starting...");
+        // AMSAgentDescription[] agents = agentsRequest();
+        // AID introspector = null;
+        // AID target = null;
+        // for (AMSAgentDescription i : agents) {
+        //     System.out.println(i.getName().toString());
+        //     if(i.getName().toString().contains("introspector" + String.valueOf(introspectorCounter)) && i.getName().toString().indexOf("-on-") == -1){
+        //         introspector = i.getName();
+        //     }
+        //     else if(i.getName().toString().contains(name)){
+        //         target = i.getName();
+        //     }
+        // }
+        AID introspector = new AID("introspector" + String.valueOf(introspectorCounter), AID.ISLOCALNAME);
+        AID target = new AID(name, AID.ISGUID);
+        System.out.println(introspector.toString());
+        System.out.println(target.toString());
         ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
         req.setSender(introspector);
         req.addReceiver(getAMS());
@@ -653,21 +726,26 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         req.setLanguage("fipa-sl0");
         req.setProtocol("fipa-request");
         send(req);
-        System.out.println("\n\nDebugging request sent\n\n" + req.toString() + "\n\n");
+        System.out.println("\n\nStart debugging request sent\n\n" + req.toString());
     }
 
     public void debugOffRequest(String name){
-        AMSAgentDescription[] agents = agentsRequest();
-        AID introspector = null;
-        AID target = null;
-        for (AMSAgentDescription i : agents) {
-            if(i.getName().toString().contains("introspector" + String.valueOf(introspectorCounter)) && i.getName().toString().indexOf("-on-") == -1){
-                introspector = i.getName();
-            }
-            else if(i.getName().toString().contains(name)){
-                target = i.getName();
-            }
-        }
+        System.out.println("\n\nDebug ending...");
+        // AMSAgentDescription[] agents = agentsRequest();
+        // AID introspector = null;
+        // AID target = null;
+        // for (AMSAgentDescription i : agents) {
+        //     if(i.getName().toString().contains("introspector" + String.valueOf(introspectorCounter)) && i.getName().toString().indexOf("-on-") == -1){
+        //         introspector = i.getName();
+        //     }
+        //     else if(i.getName().toString().contains(name)){
+        //         target = i.getName();
+        //     }
+        // }
+        AID introspector = new AID("introspector" + String.valueOf(introspectorCounter), AID.ISLOCALNAME);
+        AID target = new AID(name, AID.ISGUID);
+        System.out.println(introspector.toString());
+        System.out.println(target.toString());
         ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
         req.setSender(introspector);
         req.addReceiver(getAMS());
@@ -678,6 +756,8 @@ public class TestAgent extends ToolAgent implements ITestAgent {
         req.setLanguage("fipa-sl0");
         req.setProtocol("fipa-request");
         send(req);
+        System.out.println("\n\nEnd debugging request sent\n\n" + req.toString());
+        bl.clear();
     }
 
     public Object[] getBehavioursRequest(){
@@ -706,17 +786,44 @@ public class TestAgent extends ToolAgent implements ITestAgent {
     }
     
     public String[] updateRequest(){
-        String[] lastAgent = new String[4]; // name, container, addedd/removed, ip
-        if(changedAgents.size() != 0){
-            lastAgent = changedAgents.remove(changedAgents.size()-1);
+        String[] last = new String[4]; // name, container, addedd/removed, ip
+        if(changed.size() != 0){
+            last = changed.remove(changed.size()-1);
         }
         else{
-            lastAgent[0] = "";
-            lastAgent[1] = "";
-            lastAgent[2] = "";
-            lastAgent[3] = "";
+            last[0] = "";
+            last[1] = "";
+            last[2] = "";
+            last[3] = "";
         }
-        return lastAgent;
+        return last;
+    }
+
+    public void addPlatformAMSRequest(String url){
+        ACLMessage req = new ACLMessage(ACLMessage.REQUEST);
+        req.addReceiver(getAMS());
+        req.setContent("((action (agent-identifier :name " + getAMS().getName() + " :addresses (sequence " + url + ")) (get-description)))");
+        req.setOntology("FIPA-Agent-Management");
+        req.setLanguage("fipa-sl0");
+        req.setProtocol("fipa-request");
+        send(req);
+    }
+
+    public void refreshAgentsRequest(String platform){
+        String[] agents = remoteAgentsNameRequest(platform);
+
+        for (String a : agents) {
+            changed.add(new String[]{a, platform, "added", ""});
+        }
+    }
+
+    public String getAPDescriptionRequest(){
+        System.out.println("Printing the values...");
+        String tmp = apd;
+        System.out.println("1: " + tmp);
+        apd = "";
+        System.out.println("2: " + apd);
+        return tmp;
     }
 
 }

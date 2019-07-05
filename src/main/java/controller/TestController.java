@@ -478,6 +478,7 @@ public class TestController {
                 System.out.println("gam is null");
             }
             else{
+                System.out.println("\npassing");
                 gam.debugOnRequest(name);
                 System.out.println("\nDebug on");
             }
@@ -497,6 +498,7 @@ public class TestController {
                 System.out.println("gam is null");
             }
             else{
+                System.out.println("\npassing");
                 gam.debugOffRequest(name);
                 System.out.println("\nDebug off");
             }
@@ -618,6 +620,63 @@ public class TestController {
             }
             else{
                 return gam.updateRequest();
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @GetMapping("/addPlatformAMS")
+    @ResponseStatus(HttpStatus.OK)
+    // @ResponseBody
+    public void addPlatformAMS(@RequestParam String url){
+        try{
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+            }
+            else{
+                gam.addPlatformAMSRequest(url);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/refreshAgents")
+    @ResponseStatus(HttpStatus.OK)
+    // @ResponseBody
+    public void refreshAgents(@RequestParam String platform){
+        try{
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+            }
+            else{
+                gam.refreshAgentsRequest(platform);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    @GetMapping("/getAPDescription")
+    // @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public String getAPDescription(){
+        try{
+            ITestAgent gam = Launcher.gamCtrl.getO2AInterface(ITestAgent.class);
+            if (gam == null) {
+                System.out.println("gam is null");
+                return null;
+            }
+            else{
+                System.out.println("\nPassing at the request...");
+                return gam.getAPDescriptionRequest();
             }
         }
         catch (Exception e){

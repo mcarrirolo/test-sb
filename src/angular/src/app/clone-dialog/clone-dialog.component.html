@@ -1,5 +1,8 @@
-<section class="mat-typography">
+<section class="mat-typography" *ngIf="title!='Add remote platforms via AMS'">
   <h2>{{title}} agent</h2>
+</section>
+<section class="mat-typography" *ngIf="title=='Add remote platforms via AMS'">
+  <h2>{{title}}</h2>
 </section>
 
 <mat-list role="list">
@@ -10,14 +13,35 @@
       </mat-form-field>
     </form>
   </mat-list-item>
-  <mat-list-item role="listitem">
+  <mat-list-item role="listitem" *ngIf="title=='Clone'">
     <form>
       <mat-form-field>
         <input matInput type="text" placeholder="Container" [(ngModel)]="cont" [ngModelOptions]="{standalone: true}">
       </mat-form-field>
     </form>
   </mat-list-item>
+  <mat-list-item role="listitem" *ngIf="title=='Migrate'">
+    <form>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Container" [(ngModel)]="cont" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+    </form>
+  </mat-list-item>
+  <mat-list-item role="listitem" *ngIf="title=='Thaw'">
+    <form>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Container" [(ngModel)]="cont" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+    </form>
+  </mat-list-item>
+  <mat-list-item role="listitem" *ngIf="title=='Add remote platforms via AMS'">
+    <form>
+      <mat-form-field>
+        <input matInput type="text" placeholder="Address" [(ngModel)]="addr" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+    </form>
+  </mat-list-item>
 </mat-list>
 
-<button mat-button (click)="cancel()">Cancel</button>
 <button mat-button (click)="send()">OK</button>
+<button mat-button (click)="cancel()">Cancel</button>

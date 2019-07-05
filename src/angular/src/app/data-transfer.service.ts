@@ -19,6 +19,8 @@ export class DataTransferService{
     container: string = '';
     state: string = '';
     ip: string = '';
+    remote: boolean = false;
+    apd: string[] = [];
 
     TREE_DATA: Node[] = [];
 
@@ -75,52 +77,40 @@ export class DataTransferService{
     }
 
     public remove(): void{
-        var i = 0;
-        var j = 0;
-        var m = 0;
         var n = 0;
         this.TREE_DATA.forEach(node => {
-            this.TREE_DATA[i].childNode.forEach(subnode => {
-                this.TREE_DATA[i].childNode[j].childNode.forEach(subsubnode => {
-                    this.TREE_DATA[i].childNode[j].childNode[m].childNode.forEach(subsubsubnode =>{
+            node.childNode.forEach(subnode => {
+                subnode.childNode.forEach(subsubnode => {
+                    subsubnode.childNode.forEach(subsubsubnode =>{
                         if(subsubsubnode.name == this.selection){
-                            this.TREE_DATA[i].childNode[j].childNode[m].childNode.splice(n,1);
+                            subsubnode.childNode.splice(n,1);
                         }
                         n++;
                     })
-                    m++;
                 });
-                j++;
             });
-            i++;
         });
         this.changeRefreshStatus(true);
     }
 
     public add(name: string, container: string): void{
-        var i = 0;
-        var j = 0;
-        var m = 0;
         var existing = false;
         this.TREE_DATA.forEach(node => {
-            this.TREE_DATA[i].childNode.forEach(subnode => {
-                this.TREE_DATA[i].childNode[j].childNode.forEach(subsubnode => {
+            node.childNode.forEach(subnode => {
+                subnode.childNode.forEach(subsubnode => {
                     if(subsubnode.name == container){
-                        this.TREE_DATA[i].childNode[j].childNode[m].childNode.forEach(subsubsubnode =>{
+                        subsubnode.childNode.forEach(subsubsubnode =>{
                             if(subsubsubnode.name.indexOf(name) !== -1){
                                 existing = true;
                             }
                         })
                         if(existing == false){
-                            this.TREE_DATA[i].childNode[j].childNode[m].childNode.push(new Node(name + '@' + this.ip));
+                            subsubnode.childNode.push(new Node(name + '@' + this.ip));
                         }
                     }
                 });
-                m++;
             });
-            j++;
         });
-        i++;
         this.changeRefreshStatus(true);
     }
 
@@ -142,62 +132,53 @@ export class DataTransferService{
                 this.container = container;
                 this.state = state;
                 this.ready = true;
-                console.log("this.ready -> " + true);
+                console.log("Ready -> " + true);
             }
             else if((this.name != name || this.container != container || this.state != state) && this.ready == true){
-                if(state == "addedd"){
+                if(state == "added"){
                     // Agent added
                     if(name != ""){
-                        var i = 0;
-                        var j = 0;
-                        var m = 0;
                         this.TREE_DATA.forEach(node => {
-                            this.TREE_DATA[i].childNode.forEach(subnode => {
-                                this.TREE_DATA[i].childNode[j].childNode.forEach(subsubnode => {
+                            node.childNode.forEach(subnode => {
+                                subnode.childNode.forEach(subsubnode => {
                                     if(subsubnode.name == container){
-                                        this.TREE_DATA[i].childNode[j].childNode[m].childNode.push(new Node(name));
+                                        subsubnode.childNode.push(new Node(name));
                                     }
-                                    m++;
                                 });
-                                j++;
                             });
-                            i++;
                         });
                     }
                     // Container added
-                    else{
-                        var i = 0;
-                        var j = 0;
+                    else if(ip !== ""){
                         this.TREE_DATA.forEach(node => {
-                            this.TREE_DATA[i].childNode.forEach(subnode => {
+                            node.childNode.forEach(subnode => {
                                 if(subnode.name.indexOf(ip) !== -1){
-                                    this.TREE_DATA[i].childNode[j].childNode.push(new Node(container));
+                                    subnode.childNode.push(new Node(container));
                                 }
-                                j++;
                             });
-                            i++;
+                        });
+                    }
+                    // Remote platforms added
+                    else if(ip === "" && this.remote === false){
+                        this.remote = true;
+                        this.TREE_DATA.forEach(node => {
+                            node.childNode.push(new Node(container));
                         });
                     }
                 }
                 if(state == "removed"){
-                    var i = 0;
-                    var j = 0;
-                    var m = 0;
                     var n = 0;
                     this.TREE_DATA.forEach(node => {
-                        this.TREE_DATA[i].childNode.forEach(subnode => {
-                            this.TREE_DATA[i].childNode[j].childNode.forEach(subsubnode => {
-                                this.TREE_DATA[i].childNode[j].childNode[m].childNode.forEach(subsubsubnode =>{
-                                    if(subsubsubnode.name == name){
-                                        this.TREE_DATA[i].childNode[j].childNode[m].childNode.splice(n,1);
-                                    }
-                                    n++;
-                                })
-                                m++;
+                        node.childNode.forEach(subnode => {
+                            subnode.childNode.forEach(subsubnode => {
+                                    subsubnode.childNode.forEach(subsubsubnode =>{
+                                        if(subsubsubnode.name == name){
+                                            subsubnode.childNode.splice(n,1);
+                                        }
+                                        n++;
+                                    })
                             });
-                            j++;
                         });
-                        i++;
                     });
                 }
                 this.name = name;
@@ -211,10 +192,11 @@ export class DataTransferService{
 }
 
 export class Node {
-    name: string = '';
-    childNode ? : Node[];
-    constructor(name_, childnode_ ? ) {
+    name: string = null;
+    childNode: Node[] = [];
+    constructor(name_, childnode_? ) {
         this.name = name_;
         this.childNode = childnode_;
+        this.childNode = [];
     }
 }

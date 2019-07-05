@@ -43,7 +43,7 @@ public class Launcher {
         p2.setParameter(Profile.MAIN_PORT, "1099");
 
         System.out.println("Creating agent container");
-        AgentContainer acc = runtime.createAgentContainer(p2);
+        // AgentContainer acc = runtime.createAgentContainer(p2);
 
         // Di seguito la creazioe di due agenti, uno nel main e uno nell'altro container
         try {

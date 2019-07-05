@@ -46,10 +46,6 @@ export class MainMenuComponent implements OnInit {
     constructor(private dialog: MatDialog, private snackBar: MatSnackBar, private http: HttpClient, private router: Router, private dataService: DataTransferService) {}
 
 
-    updateSelection() {
-        this.selection = this.dataService.selection;
-    }
-
     startDialog() {
         this.startDialogRef = this.dialog.open(StartDialogComponent, {
             data: {
@@ -59,12 +55,11 @@ export class MainMenuComponent implements OnInit {
     }
 
     cloneDialog(title: string) {
-        this.updateSelection();
-        if (this.selection.indexOf('@') !== -1 && this.selection != '') {
+        if (this.dataService.selection.indexOf('@') !== -1 && this.dataService.selection != '') {
             this.cloneDialogRef = this.dialog.open(CloneDialogComponent, {
                 data: {
                     1: title,
-                    2: this.selection
+                    2: this.dataService
                 }
             });
             this.snackBar.open("Warning: Some agents might not be able to migrate or be cloned because of lack of serialization support in their implementation. If you are not sure about the  implemementation of this agent, Cancel this operation.", "Dismiss", {
@@ -78,20 +73,17 @@ export class MainMenuComponent implements OnInit {
     }
 
     securityDialog(title: string) {
-        this.updateSelection();
         this.securityDialogRef = this.dialog.open(SecurityDialogComponent, {
             data: {
                 1: title,
-                2: this.selection,
-                3: this.dataService
+                2: this.dataService
             }
         });
     }
 
     startSniffer() {
-        this.updateSelection();
-        if (this.selection.indexOf('@') == -1 && this.selection != '') {
-            console.log("Starting sniffer on " + this.selection);
+        if (this.dataService.selection.indexOf('@') == -1 && this.dataService.selection != '') {
+            console.log("Starting sniffer on " + this.dataService.selection);
             this.router.navigate(['/sniffer']);
         } else {
             this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
@@ -101,9 +93,8 @@ export class MainMenuComponent implements OnInit {
     }
 
     startDummy() {
-        this.updateSelection();
-        if (this.selection.indexOf('@') == -1 && this.selection != '') {
-            console.log("Starting dummy on " + this.selection);
+        if (this.dataService.selection.indexOf('@') == -1 && this.dataService.selection != '') {
+            console.log("Starting dummy on " + this.dataService.selection);
             this.router.navigate(['/dummy']);
         } else {
             this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
@@ -113,9 +104,8 @@ export class MainMenuComponent implements OnInit {
     }
 
     startIntrospector() {
-        this.updateSelection();
-        if (this.selection.indexOf('@') == -1 && this.selection != '') {
-            console.log("Starting dummy on " + this.selection);
+        if (this.dataService.selection.indexOf('@') == -1 && this.dataService.selection != '') {
+            console.log("Starting dummy on " + this.dataService.selection);
             this.router.navigate(['/introspector']);
         } else {
             this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
@@ -125,9 +115,8 @@ export class MainMenuComponent implements OnInit {
     }
 
     startLog() {
-        this.updateSelection();
-        if (this.selection.indexOf('@') == -1 && this.selection != '') {
-            console.log("Starting log-manager on " + this.selection);
+        if (this.dataService.selection.indexOf('@') == -1 && this.dataService.selection != '') {
+            console.log("Starting log-manager on " + this.dataService.selection);
             this.router.navigate(['/log']);
         } else {
             this.snackBar.open("You must select an agent-platform or an agent-container in the tree", "Dismiss", {
@@ -138,6 +127,64 @@ export class MainMenuComponent implements OnInit {
 
     goToLink(url: string){
         window.open(url, "_blank");
+    }
+
+    addPlatformAMS(){
+        this.cloneDialogRef = this.dialog.open(CloneDialogComponent, {
+            data: {
+                1: "Add remote platforms via AMS",
+                2: this.dataService
+            }
+        });
+    }
+
+    removePlatform(){
+        this.securityDialogRef = this.dialog.open(SecurityDialogComponent, {
+            data: {
+                1: "Remove platform",
+                2: this.dataService
+            }
+        });
+    }
+
+    refreshAgents(){
+        var n = 0;
+        this.dataService.TREE_DATA.forEach(node => {
+            node.childNode.forEach(subnode => {
+                if(subnode.name == "Remote Platforms"){
+                    subnode.childNode.forEach(subsubnode =>{
+                        if(subsubnode.name == this.dataService.selection){
+                            subsubnode.childNode = [];
+                        }
+                    })
+                }
+            });
+        });
+        let params = new HttpParams().set("platform", this.dataService.selection);
+        this.http.get('http://localhost:2020/refreshAgents', {
+            params: params
+        }).subscribe(data => {
+            console.log(data)
+            this.dataService.changeRefreshStatus(true);
+        });
+    }
+
+    viewDescription(){
+        this.securityDialogRef = this.dialog.open(SecurityDialogComponent, {
+            data: {
+                1: "APDescription",
+                2: this.dataService
+            }
+        });
+    }
+
+    refreshDescription(){
+        this.securityDialogRef = this.dialog.open(SecurityDialogComponent, {
+            data: {
+                1: "Refresh description",
+                2: this.dataService
+            }
+        })
     }
 
 }

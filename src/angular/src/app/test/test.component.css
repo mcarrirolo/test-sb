@@ -20,6 +20,25 @@ mat-toolbar button{
     overflow: hidden;
 }
 
+.rounded{
+    border-radius: 16px;
+    box-shadow: 0 0 14px #53596165;
+    margin: 2.5% 4%;
+    padding: 10px;
+}
+
+::-webkit-scrollbar {
+    width: 16px;
+}
+::-webkit-scrollbar-track {
+    border-radius: 16px;
+    background-color: rgb(238, 238, 238);
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 16px;
+    background-color: rgb(123, 140, 216);
+}
+
 
 #other{
     border: 3px solid black;
@@ -40,37 +59,32 @@ mat-toolbar button{
     display: inline-flex;
     border: 3px solid orange;
 }
+#snifftable{
+    max-height: 70vh;
+    overflow-y: scroll;
+}
 
 
 
 .dummyControl{
-    width: 40%;
-    /* border: 1px solid black; */
-    display: inline-block;
-    text-align: center;
-    min-height: 80vh;
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-bottom: 50px;
-    box-shadow: 0 0 40px #aebaca;
-    padding: 4px;
-    border-radius: 16px;
-}
-.msgOption{
-    display: inline-block;
     width: 100%;
-    margin-top: 45px;
-}
-.msgOption mat-form-field{
-    width: 90%;
-}
-.dummyMessages{
-    width: 55%;
-    float: right;
     /* border: 1px solid black; */
-    display: inline-block;
-    min-height: 800px;
-    margin-top: 5px;
+    display: block;
+    text-align: center;
+    padding: 4px;
+}
+#dummyInput{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+#dummyInput mat-form-field{
+    width: 50%;
+    margin: 2.5% 25%;
+    text-align: center;
+}
+#dummytable{
+    max-height: 18vh;
+    overflow-y: scroll;
 }
 .dualSelector{
     display: inline;
@@ -79,59 +93,13 @@ mat-toolbar button{
     padding: 0 6px;
 }
 
-
-
-.introspectorGrid{
-    margin: 1% 2.5%;
-    display: grid;
-    grid-template-areas:
-      'in in in out out out'
-      'st be be be  be  be'
-      'sp sp sp sp  sp  sp';
-    grid-gap: 10px;
-    min-height: 800px;
-}
-.intrGridElement{
-    /* border: 2px solid gray; */
-}
-#item1{
-    text-align: center;
-    grid-area: in;
-    /* overflow-y: auto; */
-}
-#item2{
-    text-align: center;
-    grid-area: out;
-    /* overflow-y: auto; */
-}
-#item3{
-    text-align: center;
-    grid-area: st;
-    box-shadow: 0 0 40px #aebaca;
-    padding: 4px;
-    border-radius: 16px;
-}
-#item4{
-    text-align: left;
-    grid-area: be;
-    box-shadow: 0 0 40px #aebaca;
-    padding: 4px;
-    border-radius: 16px;
-}
-#item5{
-    text-align: left;
-    grid-area: sp;
-    box-shadow: 0 0 40px #aebaca;
-    padding: 4px;
-    border-radius: 16px;
-}
 .example-tree-invisible {
     display: none;
 }
 .example-tree ul,
 .example-tree li {
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 4px;
     list-style-type: none;
 }
 .example-tree-node {
@@ -157,21 +125,45 @@ span{
     background-color: rgb(92, 116, 221);
     color: white;
 }
-
-
+#behaviour-tree{
+    max-height: 16vh;
+    overflow-y: scroll;
+}
+#incoming{
+    max-height: 18vh;
+    overflow-y: scroll;
+}
+#outgoing{
+    max-height: 18vh;
+    overflow-y: scroll;
+}
 
 
 .logtable{
-    width: 95%;
-    margin: 2.5% 2.5%;
+    display: block;
+    margin: 2.5% 4%;
     font-family: inherit;
     font-size: inherit;
     font-style: normal;
     text-align: left;
     padding: 4px;
     border-radius: 16px;
-    box-shadow: 0 0 40px #aebaca;
+    box-shadow: 0 0 14px #53596165;
+}
+.logtable tbody{
+    display: block;
+    width: 100%;
 }
 .logtable tr:nth-child(even){
     background-color: #a0c6ff42;
+}
+.logtable th{
+    margin: 4px;
+}
+.logtable td{
+    margin: 4px;
+}
+#logtable{
+    max-height: 80vh;
+    overflow-y: scroll;
 }

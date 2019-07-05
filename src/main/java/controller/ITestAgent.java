@@ -7,6 +7,7 @@ public interface ITestAgent {
     String platformNameRequest();
     String containerNameRequest();
     String[] agentsNameRequest();
+    String[] remoteAgentsNameRequest(String remoteContainer);
 
     void killRequest(String name);
     void suspendRequest(String name);
@@ -39,5 +40,10 @@ public interface ITestAgent {
 	Object[] getPostedMsgRequest();
 
     String[] updateRequest();
+    
+	void addPlatformAMSRequest(String string);
+	void refreshAgentsRequest(String platform);
+	String getAPDescriptionRequest();
+
 
 }

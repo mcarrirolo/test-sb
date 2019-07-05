@@ -23,7 +23,6 @@ import {
 export class SecurityDialogComponent implements OnInit {
 
     title = '';
-    selection: string;
     dataService :DataTransferService;
     status: boolean;
 
@@ -35,13 +34,12 @@ export class SecurityDialogComponent implements OnInit {
     ngOnInit() {
         console.log(this.data)
         this.title = this.data[1];
-        this.selection = this.data[2];
-        this.dataService = this.data[3];
+        this.dataService = this.data[2];
     }
 
     private send(): void {
-        console.log(this.selection);
-        let params = new HttpParams().set("name", this.selection);
+        console.log(this.dataService.selection);
+        let params = new HttpParams().set("name", this.dataService.selection);
         if (this.title == 'kill') {
             this.http.get('http://localhost:2020/kill', {
                 params: params, observe : 'response'
@@ -64,14 +62,36 @@ export class SecurityDialogComponent implements OnInit {
             this.http.get('http://localhost:2020/freeze', {
                 params: params
             }).subscribe(data => console.log(data));
-        } else if (this.title == 'thaw') {
-            this.http.get('http://localhost:2020/thaw', {
-                params: params
-            }).subscribe(data => console.log(data));
         } else if (this.title == 'save') {
             this.http.get('http://localhost:2020/save', {
                 params: params
             }).subscribe(data => console.log(data));
+        } else if (this.title == 'Remove platform'){
+            var n = 0;
+            this.dataService.TREE_DATA.forEach(node => {
+                node.childNode.forEach(subnode => {
+                    if(subnode.name == "Remote Platforms"){
+                        subnode.childNode.forEach(subsubnode =>{
+                            if(subsubnode.name == this.dataService.selection){
+                                subnode.childNode = subnode.childNode.filter(item => item.name !== subsubnode.name);
+                            } else{
+                                n++;
+                            }
+                        })
+                    }
+                });
+            });
+            this.dataService.apd.splice(n,1);
+            this.dataService.changeRefreshStatus(true);
+        } else if (this.title == 'APDescription'){
+        } else if (this.title == 'Refresh description'){
+            this.http.get('http://localhost:2020/getAPDescription', {
+                responseType: 'text'
+            }).subscribe(data => {
+                if(data !== ""){
+                    this.dataService.apd.push(data);
+                }
+            });
         }
         this.dialogRef.close();
     }

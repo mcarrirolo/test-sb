@@ -1,6 +1,30 @@
-<section class="mat-typography">
+<section class="mat-typography" *ngIf="title=='kill'">
     <h3>Are you sure you want to {{title}} this agent?</h3>
 </section>
+<section class="mat-typography" *ngIf="title=='suspend'">
+    <h3>Are you sure you want to {{title}} this agent?</h3>
+</section>
+<section class="mat-typography" *ngIf="title=='resume'">
+    <h3>Are you sure you want to {{title}} this agent?</h3>
+</section>
+<section class="mat-typography" *ngIf="title=='freeze'">
+    <h3>Are you sure you want to {{title}} this agent?</h3>
+</section>
+<section class="mat-typography" *ngIf="title=='save'">
+    <h3>Are you sure you want to {{title}} this agent?</h3>
+</section>
+<section class="mat-typography" *ngIf="title=='Remove platform'">
+    <h3>Are you sure you want to remove this platform?</h3>
+</section>
+<section class="mat-typography" *ngIf="title=='Refresh description'">
+    <h3>Are you sure you want to refresh all AP descriptions ?</h3>
+</section>
+<section class="mat-typography" *ngIf="title=='APDescription'">
+    <h3> {{ title }}</h3>
+    <ul *ngFor="let desc of dataService.apd">
+        <li>Name: <strong>{{ desc }}</strong></li>
+    </ul>
+</section>
 
-<button mat-button (click)="cancel()">Cancel</button>
 <button mat-button (click)="send()">OK</button>
+<button mat-button (click)="cancel()">Cancel</button>

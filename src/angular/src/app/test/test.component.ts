@@ -66,6 +66,7 @@ export class TestComponent implements OnInit, OnDestroy{
     receivedMsgList: Message[] = [];
     postedMsgList: Message[] = [];
 
+    debugged: string;
     selected: string;
     class: string;
     kind: string;
@@ -387,7 +388,7 @@ export class TestComponent implements OnInit, OnDestroy{
 
     debugOn(){
         this.debugging = true;
-        console.log(this.dataService.selection);
+        this.debugged = this.dataService.selection;
         let params = new HttpParams().set("name", this.dataService.selection);
         this.http.get('http://localhost:2020/debugOn', {
             params: params
@@ -397,14 +398,21 @@ export class TestComponent implements OnInit, OnDestroy{
     }
 
     debugOff(){
-        this.debugging = false;
-        console.log(this.dataService.selection);
         let params = new HttpParams().set("name", this.dataService.selection);
         this.http.get('http://localhost:2020/debugOff', {
             params: params
         }).subscribe(data => {
             console.log(data);
             this.behaviours = [];
+            console.log(this.behaviours);
+            this.tree.renderNodeChanges(this.VOID_DATA);
+            this.sentMsgList = [];
+            this.receivedMsgList = [];
+            this.postedMsgList = [];
+            this.state = "";
+            this.debugged = "";
+            this.detail = false;
+            this.debugging = false;
         });
     }
 

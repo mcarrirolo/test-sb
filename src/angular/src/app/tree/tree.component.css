@@ -24,13 +24,32 @@
     padding-left: 30px;
   }
 
+  .notExpandibleParent{
+    display: table;
+    padding-left: 40px;
+  }
+
+  .notExpandible{
+      display: table-cell;
+      vertical-align: middle;
+  }
+
+  .expandible{
+      padding: 5px 6px;
+      margin-top: 15px;
+  }
+
+  /deep/ app-tree.tree{
+      padding-top: 10px;
+  }
+
   /* span:focus{
       outline: none;
   } */
   span{
       cursor: pointer;
       border: 5px solid transparent;
-      padding-right: 8px;
+      padding: 0 14px;
   }
   .focusClass{
     background-color: rgb(92, 116, 221);

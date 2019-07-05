@@ -4,10 +4,10 @@
 
 <cdk-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
     <!-- This is the tree node template for leaf nodes -->
-    <cdk-nested-tree-node *cdkTreeNodeDef="let node" class="example-tree-node">
+    <cdk-nested-tree-node *cdkTreeNodeDef="let node" class="example-tree-node" class="notExpandibleParent">
         <!-- use a disabled button to provide padding for tree leaf -->
         <button mat-icon-button disabled *ngIf='node.name;else other_content'></button>
-        <span tabindex="1" (click)="focus(node.name)" [ngClass]="{focusClass: selected == node.name}">
+        <span tabindex="1" (click)="focus(node.name)" [ngClass]="{focusClass: selected == node.name}" class="notExpandible">
             {{node.name}}
         </span>
         <!-- <ng-template #other_content>Qui se non esiste il nome della cartella ma solo gli agenti</ng-template> -->
@@ -23,7 +23,7 @@
                 {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
             </mat-icon>
         </button>
-        <span tabindex="1" (click)="focus(node.name)" [ngClass]="{focusClass: selected == node.name}">
+        <span tabindex="1" (click)="focus(node.name)" [ngClass]="{focusClass: selected == node.name}" class="expandible">
             {{node.name}}
         </span>
         <div [class.example-tree-invisible]="!treeControl.isExpanded(node)">

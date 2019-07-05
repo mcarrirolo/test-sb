@@ -44,7 +44,7 @@
                 
 
     </mat-toolbar>
-    <div *ngIf="isSniffer" style="overflow-y: auto; max-height:92vh; min-height:90vh;">
+    <div *ngIf="isSniffer">
         <div class="sniffed" id="other">
             Other
         </div>
@@ -54,7 +54,7 @@
         <div class="showed" *ngFor="let agent of showed">
             {{agent}}
         </div>
-        <table class="logtable">
+        <table class="logtable" id="snifftable">
             <tr>
                 <th> Sender </th>
                 <th> Type </th>
@@ -72,13 +72,13 @@
 
     <div *ngIf="isDummy">
         <div class="dummyControl">
-            <div class="dualSelector">
+            <!-- <div class="dualSelector">
                 ACL Message
             </div>
             <div class="dualSelector">
                 Envelope
-            </div>
-            <div class="msgOption">
+            </div> -->
+            <div class="rounded" id="dummyInput">
                 <form>
                     <mat-form-field>
                         <input matInput type="text" placeholder="Sender" [(ngModel)]="sender"
@@ -177,89 +177,41 @@
                 </form>
             </div>
         </div>
-        <div class="dummyMessages">
-            <table class="logtable">
-                <tr>
-                    <th> Sender </th>
-                    <th> Type </th>
-                    <th> Receiver </th>
-                    <th> Content </th>
-                </tr>
-                <tr *ngFor="let m of dummyMsgList">
-                    <th> {{ m.sender }} </th>
-                    <th> {{ m.type }} </th>
-                    <th> {{ m.receiver }} </th>
-                    <th> {{ m.content }} </th>
-                </tr>
-            </table>
-        </div>
+        <table class="logtable" id="dummytable">
+            <tr>
+                <th> Sender </th>
+                <th> Type </th>
+                <th> Receiver </th>
+                <th> Content </th>
+            </tr>
+            <tr *ngFor="let m of dummyMsgList">
+                <th> {{ m.sender }} </th>
+                <th> {{ m.type }} </th>
+                <th> {{ m.receiver }} </th>
+                <th> {{ m.content }} </th>
+            </tr>
+        </table>
     </div>
         
-        <div *ngIf="isLog" style="overflow-y: auto; max-height:92vh; min-height:90vh;">
-            <table class="logtable">
-                <tr>
-                    <th> Name </th>
-                    <th> Level </th>
-                </tr>
-                <tr *ngFor="let l of logs">
-                    <th> {{ l.name }} </th>
-                    <th> {{ l.level }} </th>
-                </tr>
-            </table>
+    <div *ngIf="isLog">
+        <table class="logtable" id="logtable">
+            <tr>
+                <th> Name </th>
+                <th> Level </th>
+            </tr>
+            <tr *ngFor="let l of logs">
+                <td> {{ l.name }} </td>
+                <td> {{ l.level }} </td>
+            </tr>
+        </table>
     </div>
 
-    <div *ngIf="isIntrospector" class="introspectorGrid">
-        <div class="intrGridElement" id="item1">
-            <p>Incoming Messages</p>
-            <!-- <div class="dualSelector">
-                Pending
-            </div>
-            <div class="dualSelector">
-                Received
-            </div> -->
-            <table class="logtable">
-                <tr>
-                    <th> Sender </th>
-                    <th> Type </th>
-                    <th> Receiver </th>
-                    <th> Content </th>
-                </tr>
-                <tr *ngFor="let m of receivedMsgList">
-                    <th> {{ m.sender }} </th>
-                    <th> {{ m.type }} </th>
-                    <th> {{ m.receiver }} </th>
-                    <th> {{ m.content }} </th>
-                </tr>
-            </table>
-        </div>
-        <div class="intrGridElement" id="item2">
-            <p>Outgoing Messages</p>
-            <!-- <div class="dualSelector">
-                Pending
-            </div>
-            <div class="dualSelector">
-                Received
-            </div> -->
-            <table class="logtable">
-                <tr>
-                    <th> Sender </th>
-                    <th> Type </th>
-                    <th> Receiver </th>
-                    <th> Content </th>
-                </tr>
-                <tr *ngFor="let m of sentMsgList">
-                    <th> {{ m.sender }} </th>
-                    <th> {{ m.type }} </th>
-                    <th> {{ m.receiver }} </th>
-                    <th> {{ m.content }} </th>
-                </tr>
-            </table>
-        </div>
-        <div class="intrGridElement" id="item3">
-            Current State
+    <div *ngIf="isIntrospector">
+        <div *ngIf="debugging" class="rounded">
+            Current State of {{ debugged }}
             <p>{{ state }}</p>
         </div>
-        <div class="intrGridElement" id="item4">
+        <div class="rounded" id="behaviour-tree">
             Behaviours
             <cdk-tree #tree [dataSource]="dataSource" [treeControl]="treeControl">
                 <!-- This is the tree node template for leaf nodes -->
@@ -291,13 +243,62 @@
                 </cdk-nested-tree-node>
             </cdk-tree>
         </div>
-        <div *ngIf="detail" class="intrGridElement" id="item5">
+        <div *ngIf="detail" class="rounded">
+            <p>Behaviour details</p>
             <ul>
                 <li>Name: {{ selected }}</li>
                 <li>Class: {{ class }}</li>
                 <li>Kind: {{ kind }}</li>
             </ul>
         </div>
+        <!-- <div class="intrGridElement" id="item1"> -->
+            <!-- <p>Incoming Messages</p> -->
+            <!-- <div class="dualSelector">
+                Pending
+            </div>
+            <div class="dualSelector">
+                Received
+            </div> -->
+            <table class="logtable" id="incoming">
+                <p>Incoming Messages </p>
+                <tr>
+                    <th> Sender </th>
+                    <th> Type </th>
+                    <th> Receiver </th>
+                    <th> Content </th>
+                </tr>
+                <tr *ngFor="let m of receivedMsgList">
+                    <td> {{ m.sender }} </td>
+                    <td> {{ m.type }} </td>
+                    <td> {{ m.receiver }} </td>
+                    <td> {{ m.content }} </td>
+                </tr>
+            </table>
+        <!-- </div> -->
+        <!-- <div class="intrGridElement" id="item2"> -->
+            <!-- <p>Outgoing Messages</p> -->
+            <!-- <div class="dualSelector">
+                Pending
+            </div>
+            <div class="dualSelector">
+                Received
+            </div> -->
+            <table class="logtable" id="outgoing">
+                <p>Outgoing Messages</p>
+                <tr>
+                    <th> Sender </th>
+                    <th> Type </th>
+                    <th> Receiver </th>
+                    <th> Content </th>
+                </tr>
+                <tr *ngFor="let m of sentMsgList">
+                    <td> {{ m.sender }} </td>
+                    <td> {{ m.type }} </td>
+                    <td> {{ m.receiver }} </td>
+                    <td> {{ m.content }} </td>
+                </tr>
+            </table>
+        <!-- </div> -->
     </div>
 </div>
 

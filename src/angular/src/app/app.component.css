@@ -2,6 +2,7 @@
 .drawer{
     height: 100vh;
     background-color: white;
+    overflow: hidden;
 }
 button{
     padding-left: 6px;
@@ -9,10 +10,7 @@ button{
     min-width: 0px;
     margin: 0 6px;
 }
-mat-drawer-content{
-    overflow: unset !important;
-}
-.mat-drawer-content{
+/deep/ mat-drawer-content.mat-drawer-content {
     overflow: unset !important;
 }
 mat-toolbar button{
@@ -40,10 +38,9 @@ div{
 }
 .tree{
     grid-area: tree;
-    border-right: 1px solid gainsboro;
+    border-right: 1px solid transparent;
     overflow: auto;
     resize: horizontal;
-    min-height: calc(100vh - 68px);
     max-height: calc(100vh - 68px);
     min-width: 590px;
     max-width: 70vw;
