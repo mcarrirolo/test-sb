@@ -18,6 +18,14 @@ import { Node } from '../data-transfer.service';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
+/**
+ * 
+ * This class represents the main tree in the GUI
+ * 
+ * @author Matteo Carrirolo
+ * 
+ */
+
 @Component({
     selector: 'app-tree',
     templateUrl: './tree.component.html',

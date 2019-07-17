@@ -2,8 +2,16 @@ import { Injectable } from '@angular/core';
 import {
     HttpClient
 } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
+/**
+ * 
+ * This class keeps track of the selected node in the tree,
+ * get the updates for the tree, and share this data with all the other components
+ * 
+ * @author Matteo Carrirolo
+ * 
+ */
 
 @Injectable()
 export class DataTransferService{
@@ -32,90 +40,64 @@ export class DataTransferService{
     }
 
     // Retrive the initial tree, shouldn't be used after initialization
-    // Add or remove nodes from TREE_DATA using updateFromRemote()
-    // instead
     public getTree() :Promise<Node[]>{
         let platform = '';
-        let container = '';
-        let agents: string[] = [];
 
-        return this.http.get('http://localhost:2020/containerName', {
+        return this.http.get('http://localhost:2020/platformName', {
             responseType: 'text'
         }).toPromise().then(data => {
-            container = data;
+            platform = data;
 
-            return this.http.get('http://localhost:2020/platformName', {
-                responseType: 'text'
-            }).toPromise().then(data => {
-                platform = data;
-                this.ip = platform;
-
-                return this.http.get('http://localhost:2020/agentsName').toPromise().then(data => {
-                    let agentlist: Node[] = [];
-                    for (let i in data) {
-                        agents.push(data[i]);
-                        let ag = new Node(agents[i]);
-                        agentlist.push(ag);
-                    }
-                    let maincontainer: Node[] = [{
-                        name: container,
-                        childNode: agentlist
-                    }];
-                    let ip: Node[] = [{
-                        name: platform,
-                        childNode: maincontainer
-                    }];
-                    this.TREE_DATA.push({
-                        name: 'Agent Platforms',
-                        childNode: ip
-                    });
-                    console.log(this.TREE_DATA);
-                    return this.TREE_DATA;
-                });
-            });
+            this.ip = platform;
+            this.TREE_DATA.push(new Node("Agent Platforms"));
+            this.TREE_DATA[0].childNode.push(new Node(this.ip));
+            console.log(this.TREE_DATA);
+            return this.TREE_DATA;
         });
     }
 
-    public remove(): void{
-        var n = 0;
-        this.TREE_DATA.forEach(node => {
-            node.childNode.forEach(subnode => {
-                subnode.childNode.forEach(subsubnode => {
-                    subsubnode.childNode.forEach(subsubsubnode =>{
-                        if(subsubsubnode.name == this.selection){
-                            subsubnode.childNode.splice(n,1);
-                        }
-                        n++;
-                    })
-                });
-            });
-        });
-        this.changeRefreshStatus(true);
-    }
+    // public remove(): void{
+    //     var n = 0;
+    //     this.TREE_DATA.forEach(node => {
+    //         node.childNode.forEach(subnode => {
+    //             subnode.childNode.forEach(subsubnode => {
+    //                 subsubnode.childNode.forEach(subsubsubnode =>{
+    //                     if(subsubsubnode.name == this.selection){
+    //                         subsubnode.childNode.splice(n,1);
+    //                     }
+    //                     n++;
+    //                 })
+    //             });
+    //         });
+    //     });
+    //     this.changeRefreshStatus(true);
+    // }
 
-    public add(name: string, container: string): void{
-        var existing = false;
-        this.TREE_DATA.forEach(node => {
-            node.childNode.forEach(subnode => {
-                subnode.childNode.forEach(subsubnode => {
-                    if(subsubnode.name == container){
-                        subsubnode.childNode.forEach(subsubsubnode =>{
-                            if(subsubsubnode.name.indexOf(name) !== -1){
-                                existing = true;
-                            }
-                        })
-                        if(existing == false){
-                            subsubnode.childNode.push(new Node(name + '@' + this.ip));
-                        }
-                    }
-                });
-            });
-        });
-        this.changeRefreshStatus(true);
-    }
+    // public add(name: string, container: string): void{
+    //     var existing = false;
+    //     this.TREE_DATA.forEach(node => {
+    //         node.childNode.forEach(subnode => {
+    //             subnode.childNode.forEach(subsubnode => {
+    //                 if(subsubnode.name == container){
+    //                     subsubnode.childNode.forEach(subsubsubnode =>{
+    //                         if(subsubsubnode.name.indexOf(name) !== -1){
+    //                             existing = true;
+    //                         }
+    //                     })
+    //                     if(existing == false){
+    //                         subsubnode.childNode.push(new Node(name + '@' + this.ip));
+    //                     }
+    //                 }
+    //             });
+    //         });
+    //     });
+    //     this.changeRefreshStatus(true);
+    // }
 
     public updateFromRemote(): void{
         this.http.get('http://localhost:2020/update').subscribe(data => {
+
+            console.log(data);
 
             var name: string = '';
             var container: string = '';
@@ -127,14 +109,8 @@ export class DataTransferService{
             state = data[2];
             ip = data[3];
             
-            if(name == "" && container == "" && state == "" && this.ready == false){
-                this.name = name;
-                this.container = container;
-                this.state = state;
-                this.ready = true;
-                console.log("Ready -> " + true);
-            }
-            else if((this.name != name || this.container != container || this.state != state) && this.ready == true){
+            this.ready = true;
+            if((this.name != name || this.container != container || this.state != state) && this.ready == true){
                 if(state == "added"){
                     // Agent added
                     if(name != ""){
@@ -171,12 +147,15 @@ export class DataTransferService{
                     this.TREE_DATA.forEach(node => {
                         node.childNode.forEach(subnode => {
                             subnode.childNode.forEach(subsubnode => {
-                                    subsubnode.childNode.forEach(subsubsubnode =>{
-                                        if(subsubsubnode.name == name){
-                                            subsubnode.childNode.splice(n,1);
-                                        }
-                                        n++;
-                                    })
+                                subsubnode.childNode.forEach(subsubsubnode =>{
+                                    if(subsubsubnode.name == name){
+                                        console.log(subsubsubnode.name);
+                                        console.log(subsubnode.childNode.splice(n,1));
+                                        console.log(n);
+                                    }
+                                    n++;
+                                })
+                                n = 0;
                             });
                         });
                     });

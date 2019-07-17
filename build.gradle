@@ -15,7 +15,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 bootJar {
-    baseName = 'test-sb'
+    baseName = 'MVC-JADE'
     version =  '0.1.0'
     mainClassName = 'controller.Launcher'
 }
@@ -56,5 +56,6 @@ task buildAngular(type: Exec){
     workingDir "$angularSrcDir"
     inputs.dir "$angularSrcDir"
     outputs.dir "$angularBinDir"
-    commandLine "ng", "build", "--build-optimizer=false" //,  "--source-map=false"
+    // commandLine "ng", "build", "--build-optimizer=false" //,  "--source-map=false"
+    commandLine "ng", "build", "--prod"
 }

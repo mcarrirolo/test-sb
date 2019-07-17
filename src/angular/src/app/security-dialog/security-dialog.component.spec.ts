@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, toolsBed } from '@angular/core/testing';
 
 import { SecurityDialogComponent } from './security-dialog.component';
 
@@ -7,14 +7,14 @@ describe('SecurityDialogComponent', () => {
   let fixture: ComponentFixture<SecurityDialogComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
+    toolsBed.configuretestingModule({
       declarations: [ SecurityDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SecurityDialogComponent);
+    fixture = toolsBed.createComponent(SecurityDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

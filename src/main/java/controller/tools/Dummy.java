@@ -23,14 +23,16 @@ Boston, MA  02111-1307, USA.
 
 package controller.tools;
 
-//Import required Jade classes
 import jade.core.*;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 
 /**
-@author Giovanni Caire - CSELT S.p.A
-@version $Date: 2009-04-08 11:41:41 +0200 (mer, 08 apr 2009) $ $Revision: 6110 $
+ *
+ * This class represents the Introspector Agent.
+ * 
+ * @author Giovanni Caire - CSELT S.p.A
+ * 
  */
 
 public class Dummy extends Agent 
@@ -52,7 +54,7 @@ public class Dummy extends Agent
                 ACLMessage msg = receive();
                 if (msg != null) {
                     System.out.println("\n\n\n\n" + msg.toString());
-                    controller.TestAgent.dl.add(msg.toString());
+                    controller.GAM.dl.add(msg.toString());
                 }
             }
         

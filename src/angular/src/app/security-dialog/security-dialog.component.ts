@@ -15,6 +15,14 @@ import {
     DataTransferService
 } from '../data-transfer.service';
 
+/**
+ * 
+ * This class handle every simple OK/cancel dialog
+ * 
+ * @author Matteo Carrirolo
+ * 
+ */
+
 @Component({
     selector: 'app-security-dialog',
     templateUrl: './security-dialog.component.html',
@@ -37,7 +45,7 @@ export class SecurityDialogComponent implements OnInit {
         this.dataService = this.data[2];
     }
 
-    private send(): void {
+    public send(): void {
         console.log(this.dataService.selection);
         let params = new HttpParams().set("name", this.dataService.selection);
         if (this.title == 'kill') {
@@ -46,8 +54,8 @@ export class SecurityDialogComponent implements OnInit {
             }).subscribe(data => {
                 console.log(data);
                 if(data.statusText == "OK"){
-                    this.dataService.remove();
-                    // this.dataService.updateFromRemote();
+                    // this.dataService.remove();
+                    this.dataService.updateFromRemote();
                 };
             });
         } else if (this.title == 'suspend') {
@@ -92,11 +100,18 @@ export class SecurityDialogComponent implements OnInit {
                     this.dataService.apd.push(data);
                 }
             });
+        } else if (this.title == 'quit') {
+            this.http.get('http://localhost:2020/quit');
+            window.close();
+        }
+        else if (this.title == 'shutdown') {
+            this.http.get('http://localhost:2020/shutdown');
+            window.close();
         }
         this.dialogRef.close();
     }
 
-    private cancel(): void {
+    public cancel(): void {
         this.dialogRef.close();
     }
 

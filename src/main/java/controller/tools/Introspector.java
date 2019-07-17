@@ -29,13 +29,9 @@ import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.Enumeration;
 import jade.util.leap.List;
-import jade.util.leap.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Vector;
-
-import controller.TestAgent;
-
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -48,15 +44,11 @@ import jade.core.behaviours.*;
 
 import jade.content.AgentAction;
 
-import jade.domain.FIPANames;
 import jade.domain.FIPAService;
 import jade.domain.introspection.*;
-
 import jade.domain.JADEAgentManagement.JADEManagementOntology;
 import jade.domain.JADEAgentManagement.DebugOn;
 import jade.domain.JADEAgentManagement.DebugOff;
-
-import jade.gui.AgentTreeModel;
 
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
@@ -66,26 +58,25 @@ import jade.content.onto.basic.Done;
 
 import jade.proto.SimpleAchieveREResponder;
 import jade.proto.SimpleAchieveREInitiator;
-import jade.proto.AchieveREInitiator;
 
 import jade.tools.ToolAgent;
 import jade.tools.introspector.Sensor;
 import jade.tools.introspector.SensorManager;
-import jade.tools.introspector.gui.IntrospectorGUI;
 import jade.tools.introspector.gui.MainWindow;
 
 import jade.util.Logger;
 
-/*
- This class represents the Introspector Agent. This agent registers
- with the AMS as a tool, to manage an AgentTree component, then
- activates its GUI. The agent listens for ACL messages containing
- introspection events and updates the display through the
- IntrospectorGUI class.
- 
- @author Andrea Squeri, -  Universita' di Parma
- @author Giovanni Caire, -  TILAB
+/**
+ * 
+ * This class represents the Introspector Agent. This agent registers
+ * with the AMS as a tool. The agent listens for ACL messages containing
+ * introspection events and updates the display through GAM static variables
+ * 
+ * @author Andrea Squeri, -  Universita' di Parma
+ * @author Giovanni Caire, -  TILAB
+ * 
  */
+ 
 public class Introspector extends ToolAgent {
 	
 	private Set allAgents = null;
@@ -471,7 +462,7 @@ public class Introspector extends ToolAgent {
 					// MainWindow wnd = (MainWindow)windowMap.get(agent);
 					// if(wnd != null)
                         // myGUI.behaviourAdded(wnd, ab);
-                    controller.TestAgent.bl.add(ab.getBehaviour());
+                    controller.GAM.bl.add(ab.getBehaviour());
 				}
 				
 			});
@@ -484,7 +475,7 @@ public class Introspector extends ToolAgent {
 					// if(wnd != null)
                         // myGUI.behaviourRemoved(wnd, rb);
                     Vector<BehaviourID> toremove = new Vector<BehaviourID>();
-                    Iterator it = controller.TestAgent.bl.iterator();
+                    Iterator it = controller.GAM.bl.iterator();
                     while(it.hasNext()){
                         BehaviourID b = (BehaviourID)it.next();
                         if(b.getName().equals(rb.getBehaviour().getName())){
@@ -492,7 +483,7 @@ public class Introspector extends ToolAgent {
                         }
                     }
                     for (BehaviourID b : toremove) {
-                        controller.TestAgent.bl.remove(b);
+                        controller.GAM.bl.remove(b);
                     }
 				}
 				
@@ -529,7 +520,7 @@ public class Introspector extends ToolAgent {
 					// MainWindow wnd = (MainWindow)windowMap.get(sender);
 					// if(wnd != null)
                         // myGUI.messageSent(wnd, sm);
-                    controller.TestAgent.sl.add(sm.getMessage().getPayload());
+                    controller.GAM.sl.add(sm.getMessage().getPayload());
 				}
 				
 			});
@@ -541,7 +532,7 @@ public class Introspector extends ToolAgent {
 					// MainWindow wnd = (MainWindow)windowMap.get(receiver);
 					// if(wnd != null)
                         // myGUI.messageReceived(wnd, rm);
-                    controller.TestAgent.rl.add(rm.getMessage().getPayload());
+                    controller.GAM.rl.add(rm.getMessage().getPayload());
 				}
 				
 			});
@@ -553,7 +544,7 @@ public class Introspector extends ToolAgent {
 					// MainWindow wnd = (MainWindow)windowMap.get(receiver);
 					// if(wnd != null)
                         // myGUI.messagePosted(wnd, pm);
-                    controller.TestAgent.pl.add(pm.getMessage().getPayload());
+                    controller.GAM.pl.add(pm.getMessage().getPayload());
 				}
 				
 			});
@@ -565,7 +556,7 @@ public class Introspector extends ToolAgent {
 					// MainWindow wnd = (MainWindow)windowMap.get(agent);
 					// if(wnd != null)
                         // myGUI.changedAgentState(wnd, cas);
-                    controller.TestAgent.as = cas.getTo().getName();
+                    controller.GAM.as = cas.getTo().getName();
 				}
 				
 			});

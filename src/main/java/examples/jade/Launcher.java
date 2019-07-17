@@ -48,11 +48,11 @@ public class Launcher {
 		// Di seguito la creazioe di due agenti, uno nel main e uno nell'altro container
 		try {
 			System.out.println("Creating agent1 in main container");
-			AgentController agent1 = mcc.createNewAgent("agent1", "examples.jade.TestAgent", null);
+			AgentController agent1 = mcc.createNewAgent("agent1", "examples.jade.GAM", null);
 			agent1.start();
 			
 			System.out.println("Creating agent2 in container");
-			acc.createNewAgent("agent2", "examples.jade.TestAgent", null).start();
+			acc.createNewAgent("agent2", "examples.jade.GAM", null).start();
 		} catch (StaleProxyException e) {
 			e.printStackTrace();
 		}

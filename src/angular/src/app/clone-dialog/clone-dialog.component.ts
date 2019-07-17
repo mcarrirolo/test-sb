@@ -13,6 +13,15 @@ import {
 } from '@angular/common/http';
 import { DataTransferService } from '../data-transfer.service';
 
+/**
+ * 
+ * This class handle every dialog which needs some data input
+ * 
+ * @author Matteo Carrirolo
+ * 
+ */
+
+
 @Component({
     selector: 'app-clone-dialog',
     templateUrl: './clone-dialog.component.html',
@@ -35,7 +44,7 @@ export class CloneDialogComponent implements OnInit {
         this.dataService = this.data[2];
     }
 
-    private send(): void {
+    public send(): void {
         if (this.title == 'Clone') {
             let params = new HttpParams().set("name", this.dataService.selection).set("container", this.cont).set("newname", this.name);
             this.http.get('http://localhost:2020/clone', {
@@ -60,7 +69,7 @@ export class CloneDialogComponent implements OnInit {
         this.dialogRef.close();
     }
 
-    private cancel(): void {
+    public cancel(): void {
         this.dialogRef.close();
     }
 

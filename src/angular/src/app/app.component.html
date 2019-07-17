@@ -1,7 +1,5 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
 <mat-drawer-container autosize class="drawer" (contextmenu)="rightClick()">
     <mat-drawer mode="side" opened>
         <app-main-menu></app-main-menu>
@@ -12,21 +10,18 @@
         <button mat-button matTooltip="Start a new agent" (click)="menu.startDialog()"><i class="material-icons">add_circle</i></button>
         <button mat-button matTooltip="Kill" (click)="menu.securityDialog('kill')"><i class="material-icons">cancel</i></button>
         <button mat-button matTooltip="Suspend" (click)="menu.securityDialog('suspend')"><i class="material-icons">pause_circle_filled</i></button>
-        <button mat-button matTooltip="Resume" (click)="menusecurityDialog('resume')"><i class="material-icons">play_circle_filled</i></button>
+        <button mat-button matTooltip="Resume" (click)="menu.securityDialog('resume')"><i class="material-icons">play_circle_filled</i></button>
         <!-- <button mat-button><i class="material-icons">drafts</i></button> -->
         <button mat-button matTooltip="Move" (click)="menu.cloneDialog('Migrate')"><i class="material-icons">swap_vertical_circle</i></button>
         <button mat-button matTooltip="Clone" (click)="menu.cloneDialog('Clone')"><i class="material-icons">supervised_user_circle</i></button>
         <!-- <button mat-button><i class="material-icons">description</i></button> -->
         <!-- <button mat-button><i class="material-icons">save</i></button> -->
         <button mat-button matTooltip="Freeze" (click)="menu.securityDialog('freeze')"><i class="material-icons">ac_unit</i></button>
-        <button mat-button matTooltip="Thaw the agent" (click)="menu.cloneDialog('thaw')"><i class="material-icons">whatshot</i></button>
+        <button mat-button matTooltip="Thaw the agent" (click)="menu.cloneDialog('Thaw')"><i class="material-icons">whatshot</i></button>
         <button mat-button matTooltip="Start sniffer" (click)="menu.startSniffer()"><i class="material-icons">visibility</i></button>
         <button mat-button matTooltip="Start dummy agent" (click)="menu.startDummy()"><i class="material-icons">face</i></button>
         <button mat-button matTooltip="Start log manager" (click)="menu.startLog()"><i class="material-icons">receipt</i></button>
         <button mat-button matTooltip="Start introspector" (click)="menu.startIntrospector()"><i class="material-icons">bug_report</i></button>
-        <!-- <button mat-button (click)="sayHello()">Say Hello</button>
-        <button mat-button (click)="changeName()">Change name</button>
-        <button mat-button routerLink="/test">Router Test</button> -->
     </mat-toolbar>
 
 

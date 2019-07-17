@@ -7,7 +7,7 @@ import java.net.UnknownHostException;
 import java.util.Iterator;
 import java.util.Map;
 
-import controller.TestAgent;
+import controller.GAM;
 import jade.core.*;
 import jade.domain.FIPAAgentManagement.APDescription;
 import jade.domain.introspection.*;
@@ -26,6 +26,7 @@ import jade.tools.logging.gui.LogManagerGUI;
  * 
  * @author Giovanni Caire - TILAB
  * @author Rosalba Bochicchio - TILAB
+ * 
  */
 public class Log extends LogManagerAgent {
     // private LogManagerGUI myGui;
@@ -105,7 +106,7 @@ public class Log extends LogManagerAgent {
         }
         Object[] var = infos.toArray();
         for (Object i : var) {
-            controller.TestAgent.ll.add(i);
+            controller.GAM.ll.add(i);
         }
 	}
 	

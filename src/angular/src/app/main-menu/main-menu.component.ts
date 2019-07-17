@@ -28,6 +28,15 @@ import {
     DataTransferService
 } from '../data-transfer.service';
 
+/**
+ * 
+ * This contains the methods of the side menu
+ * 
+ * @author Matteo Carrirolo
+ * 
+ */
+
+
 @Component({
     selector: 'app-main-menu',
     templateUrl: './main-menu.component.html',

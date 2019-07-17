@@ -1,3 +1,9 @@
+<section class="mat-typography" *ngIf="title=='quit'">
+    <h3>Are you sure you want to leave this page and kill GAM ?</h3>
+</section>
+<section class="mat-typography" *ngIf="title=='shutdown'">
+    <h3>Are you sure you want to shut down agent platform ?</h3>
+</section>
 <section class="mat-typography" *ngIf="title=='kill'">
     <h3>Are you sure you want to {{title}} this agent?</h3>
 </section>

@@ -1,9 +1,5 @@
 package controller;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -13,6 +9,16 @@ import jade.wrapper.AgentContainer;
 import jade.wrapper.AgentController;
 import jade.wrapper.ContainerController;
 import jade.wrapper.StaleProxyException;
+
+
+/**
+ *
+ * This class starts the JADE application and it's web interface at
+ * localhost:2020
+ * 
+ * @author Matteo Carrirolo
+ * 
+ */
 
 @SpringBootApplication
 public class Launcher {
@@ -31,7 +37,7 @@ public class Launcher {
         p.setParameter(Profile.MAIN_HOST, "localhost");
         p.setParameter(Profile.MAIN_PORT, "1099");
         p.setParameter(Profile.CONTAINER_NAME, "MainContainer");
-        p.setParameter(Profile.GUI, "true"); // Questa opzione crea la GUI attuale con RMA
+        p.setParameter(Profile.GUI, "false"); // Questa opzione crea la GUI attuale con RMA
 
         System.out.println("Creating main container");
         ContainerController mcc = runtime.createMainContainer(p);
@@ -43,16 +49,16 @@ public class Launcher {
         p2.setParameter(Profile.MAIN_PORT, "1099");
 
         System.out.println("Creating agent container");
-        // AgentContainer acc = runtime.createAgentContainer(p2);
+        AgentContainer acc = runtime.createAgentContainer(p2);
 
         // Di seguito la creazioe di due agenti, uno nel main e uno nell'altro container
         try {
             System.out.println("Creating GAM (GUI Agent Manager) in main container");
-            gamCtrl = mcc.createNewAgent("GAM", "controller.TestAgent", null);
+            gamCtrl = mcc.createNewAgent("GAM", "controller.GAM", null);
             gamCtrl.start();
 
-            // System.out.println("Creating agent2 in container");
-            // acc.createNewAgent("agent2", "jade.core.Agent", null).start();
+            System.out.println("Creating agent2 in container");
+            acc.createNewAgent("agent2", "jade.core.Agent", null).start();
         } catch (StaleProxyException e) {
             e.printStackTrace();
         }
@@ -64,7 +70,7 @@ public class Launcher {
         // OPEN THE WEB PAGE
 
         // try {
-        //     java.awt.Desktop.getDesktop().browse(new URI("http://localhost:4200"));
+        //     java.awt.Desktop.getDesktop().browse(new URI("http://localhost:2020"));
         // } catch (IOException e) {
         //     // TODO Auto-generated catch block
         //     e.printStackTrace();

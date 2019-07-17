@@ -23,16 +23,12 @@ Boston, MA  02111-1307, USA.
 
 package controller.tools;
 
-import java.io.StringReader;
-
 import java.util.Map;
-import java.util.TreeMap;
 import jade.util.leap.Iterator;
 import jade.util.leap.List;
 import jade.util.leap.ArrayList;
 import jade.util.Logger;
 
-import java.util.LinkedList;
 import java.util.Hashtable;
 import java.util.Set;
 import java.util.HashSet;
@@ -40,7 +36,6 @@ import java.util.HashSet;
 import jade.core.*;
 import jade.core.behaviours.*;
 
-import jade.domain.FIPANames;
 import jade.domain.JADEAgentManagement.*;
 import jade.domain.introspection.*;
 import jade.domain.FIPAService;
@@ -51,8 +46,6 @@ import jade.lang.acl.MessageTemplate;
 import jade.lang.acl.ACLCodec;
 import jade.lang.acl.StringACLCodec;
 
-import jade.content.lang.sl.SLCodec;
-
 import jade.content.AgentAction;
 import jade.content.onto.basic.Action;
 import jade.content.onto.basic.Done;
@@ -60,9 +53,7 @@ import jade.content.onto.basic.Done;
 import jade.proto.SimpleAchieveREResponder;
 import jade.proto.SimpleAchieveREInitiator;
 
-import jade.tools.ToolAgent;
 import jade.tools.sniffer.Message;
-import jade.tools.sniffer.MessageList;
 import jade.util.ExtendedProperties;
 
 import java.net.InetAddress;
@@ -137,7 +128,6 @@ import java.io.*;
  * @author Robert Kessler University of Utah (preload configuration, don't scroll agent boxes)
  * @author Martin Griss HP Labs (display additional message information)
  * @author Dick Cowan HP Labs (property handling, display full agent name when mouse over)
- * @version $Date: 2010-06-11 15:32:31 +0200 (ven, 11 giu 2010) $ $Revision: 6352 $
  *
  */
 
@@ -262,14 +252,14 @@ public class Sniffer extends jade.tools.sniffer.Sniffer{
 						if ((msg.getPerformative() >= 0) && filters[msg.getPerformative()]) {
                             // myGUI.mainPanel.panelcan.canvMess.recMessage(msg);
                             // ml.addMessage(msg);
-                            controller.TestAgent.ml.add(msg.toString());
+                            controller.GAM.ml.add(msg.toString());
 						}
 					} else {
                         // myGUI.mainPanel.panelcan.canvMess.recMessage(msg);
                         // System.out.println("\n\n\n\n\n\nSNIFFER RECEIVED:\n\n" +  msg.toString() + "\n\n\n");
                         // ml.addMessage(msg);
-                        controller.TestAgent.ml.add(msg.toString());
-                        // System.out.println("\n\nLAST MESSAGE ADDED:\n\n" + controller.TestAgent.ml.lastElement());
+                        controller.GAM.ml.add(msg.toString());
+                        // System.out.println("\n\nLAST MESSAGE ADDED:\n\n" + controller.GAM.ml.lastElement());
 					}
 				}
 				catch(Throwable e) {
@@ -685,7 +675,7 @@ public class Sniffer extends jade.tools.sniffer.Sniffer{
 
         // myGUI.mainPanel.panelcan.canvMess.ml.removeAllMessages();
         // ml.removeAllMessages();
-        controller.TestAgent.ml.clear();
+        controller.GAM.ml.clear();
 
 		// Now we unsubscribe from the rma list
 		send(getCancel());

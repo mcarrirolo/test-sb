@@ -22,6 +22,15 @@ import {
     NestedTreeControl
 } from '@angular/cdk/tree';
 
+/**
+ * 
+ * This class manages every tool
+ * (Sniffer, Dummy, Log, Introspector)
+ * 
+ * @author Matteo Carrirolo
+ * 
+ */
+
 @Component({
     selector: 'app-test',
     templateUrl: './test.component.html',
@@ -183,7 +192,8 @@ export class TestComponent implements OnInit, OnDestroy{
             this.http.get('http://localhost:2020/sniffer', {
                 params: params, responseType: 'text'
             }).subscribe(data => {
-                this.dataService.add("sniffer" + data, this.dataService.selection);
+                // this.dataService.add("sniffer" + data, this.dataService.selection);
+                this.dataService.updateFromRemote();
             });
             this.timer = interval(2000);
             this.subscription = this.timer.subscribe(val => {
@@ -204,7 +214,8 @@ export class TestComponent implements OnInit, OnDestroy{
             this.http.get('http://localhost:2020/dummy', {
                 params: params, responseType: 'text'
             }).subscribe(data => {
-                this.dataService.add("da" + data, this.dataService.selection);
+                // this.dataService.add("da" + data, this.dataService.selection);
+                this.dataService.updateFromRemote();
                 this.sender = "da" + data;
             });
             this.timer = interval(2000);
@@ -225,7 +236,8 @@ export class TestComponent implements OnInit, OnDestroy{
             this.http.get('http://localhost:2020/introspector', {
                 params: params, responseType: 'text'
             }).subscribe(data => {
-                this.dataService.add("introspector" + data, this.dataService.selection);
+                // this.dataService.add("introspector" + data, this.dataService.selection);
+                this.dataService.updateFromRemote();
             });           
             this.timer = interval(2000);
             this.subscription = this.timer.subscribe(val => {
@@ -274,7 +286,8 @@ export class TestComponent implements OnInit, OnDestroy{
             this.http.get('http://localhost:2020/log', {
                 params: params, responseType: 'text'
             }).subscribe(data => {
-                this.dataService.add("log" + data, this.dataService.selection);
+                // this.dataService.add("log" + data, this.dataService.selection);
+                this.dataService.updateFromRemote();
             });
             this.timer = interval(2000);
             this.subscription = this.timer.subscribe(val => {

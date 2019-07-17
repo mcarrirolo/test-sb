@@ -5,9 +5,9 @@
                     File
                </mat-panel-title>
           </mat-expansion-panel-header>
-          <p>Close RMA agent</p>
-          <p>Exit this container</p>
-          <p>Shut down AgentPlatform</p>
+          <p (click)="securityDialog('quit')">Close RMA agent</p>
+          <!-- <p>Exit this container</p> -->
+          <p (click)="securityDialog('shutdown')">Shut down AgentPlatform</p>
      </mat-expansion-panel>
      <mat-expansion-panel>
           <mat-expansion-panel-header>
@@ -25,7 +25,6 @@
           <p>Load agent</p>
           <p (click)="securityDialog('save')">Save agent</p>
           <p (click)="securityDialog('freeze')">Freeze agent</p>
-          <!-- FIXME: THAW need a container as input, maybe cloneDialog can be used -->
           <p (click)="cloneDialog('Thaw')">Thaw agent</p>
      </mat-expansion-panel>
      <mat-expansion-panel>

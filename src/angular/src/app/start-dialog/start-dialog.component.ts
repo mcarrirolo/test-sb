@@ -15,6 +15,14 @@ import {
     DataTransferService
 } from '../data-transfer.service';
 
+/**
+ * 
+ * This class handle the setup of a new agent
+ * 
+ * @author Matteo Carrirolo
+ * 
+ */
+
 @Component({
     selector: 'app-start-dialog',
     templateUrl: './start-dialog.component.html',
@@ -37,21 +45,21 @@ export class StartDialogComponent implements OnInit {
 
     constructor(private dialogRef: MatDialogRef < StartDialogComponent > , @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient) {}
 
-    private send(): void {
+    public send(): void {
         let params = new HttpParams().set("name", this.name).set("clas", this.clas).set("args", this.args).set("owner", this.own).set("container", this.cont);
         this.http.get('http://localhost:2020/start', {
             params: params, observe : 'response'
         }).subscribe(data => {
             console.log(data);
             if(data.statusText == "OK"){
-                this.dataService.add(this.name, this.cont);
-                // this.dataService.updateFromRemote();
+                // this.dataService.add(this.name, this.cont);
+                this.dataService.updateFromRemote();
             };
         });
         this.dialogRef.close();
     }
 
-    private cancel(): void {
+    public cancel(): void {
         this.dialogRef.close();
     }
 
