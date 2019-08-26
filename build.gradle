@@ -38,7 +38,7 @@ dependencies {
 }
 
 processResources {
-    dependsOn "buildAngular"
+    // dependsOn "buildAngular"
 }
 
 def angularSrcDir = "$projectDir/src/angular"
