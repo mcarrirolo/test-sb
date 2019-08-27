@@ -30,45 +30,15 @@ java -jar /path/to/file
 
 ## Building
 
-To build this software you'll need
+:warning: Before starting, make sure you have [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) and [Gradle](https://gradle.org/install/) installed
 
-- [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
-- [Gradle](https://gradle.org/install/)
-- [Node JS](https://nodejs.org/it/download/)
-- [Angular CLI](https://angular.io/guide/setup-local#step-1-install-the-angular-cli) (follow only Step 1)
-
-Once that you have everything installed start by cloning this repository
-``` 
-git clone https://github.com/mcarrirolo/MVC-JADE.git
+Clone this repository to your pc, enter the directory and run gradle
+```
+git clone https://github.com/mcarrirolo/MVC-JADE.git && cd MVC-JADE && gradle build
 ```
 
-Enter in the angular directory
-``` 
-cd MVC-JADE/src/angular
-```
->**Note**: replace ' / ' with ' \ ' if using Windows cmd prompt
+gradle will automatically installs nodejs and npm modules, compiles java, builds the angular project and packs the jar, wich can then be run as metioned in [quick start](#quick-start)
 
-Install node modules
-```
-npm install --no-optional
-```
-
-Build the angular application
-``` 
-ng build
-```
-
-Return to the main folder 
-``` 
-cd ../..
-```
->**Note**: replace ' / ' with ' \ ' if using Windows cmd prompt
-
-Run gradle to compile Java and pack the jar
-
-```
-gradle build
-```
 
 ***
 ### Disclaimer
